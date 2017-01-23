@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div class="nav">
-		你好, <span class="user-name"><?php  ?></span>
+		你好, <span class="user-name"><?php echo $name ?></span>
 	</div>
     <form action="/Login/do_login" method="post">
         <input type="text" name="id" placeholder="请输入用户名">

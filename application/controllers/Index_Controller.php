@@ -4,13 +4,14 @@
  * @author YYCoder
  * @date   2017-01-22
  */
-class IndexController extends CI_Controller {
+class Index_Controller extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
 
 		$this->load->library('session');
+		$this->load->model('Test_Model');
 		// $this->login = new LoginController();
 	}
 
@@ -21,12 +22,9 @@ class IndexController extends CI_Controller {
 			show_404();
 		}
 
-		if ( ! isset($_SESSION['id']))
-		{
-			// $this->login->do_login();
-		}
-
-		$this->load->view('index/index');
+		$name = '袁野';
+		$data['name'] = $name;
+		$this->load->view('index/index', $data);
 		// 及时关闭session, 防止并发请求对session的影响
 		session_write_close();
 	}
