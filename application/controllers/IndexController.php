@@ -1,7 +1,6 @@
 <?php
 /**
  * 首页模块
- * @param  无
  * @author YYCoder
  * @date   2017-01-22
  */
