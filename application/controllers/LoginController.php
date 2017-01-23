@@ -5,7 +5,7 @@
  * @date   	2017-01-22
  */
 class LoginController extends CI_Controller {
-
+// 现在是commit状态
 	/**
 	 * 用户登录方法
 	 * @param  	id(必传): 用户id
