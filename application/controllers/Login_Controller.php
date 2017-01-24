@@ -31,5 +31,13 @@ class Login_Controller extends CI_Controller {
 		}
 	}
 
+	/**
+	 * 注册方法
+	 * @param  	id(必传): 用户id
+	 * @param  	pw(必传): 用户密码
+	 * @param  	name(必传): 用户姓名
+	 * @param  	mobile(非必传): 用户手机号
+	 */
+
 
 }
