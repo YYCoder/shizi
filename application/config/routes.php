@@ -54,7 +54,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // 自定义路由
-$route['home'] = '';
+$route['login'] = 'Index_Controller/do_login';
+$route['register'] = 'Index_Controller/register';
 
 
 

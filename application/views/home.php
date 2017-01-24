@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>YY login</title>
+    <title>Home</title>
     <style>
 	.nav {
 		height: 50px;
