@@ -26,28 +26,42 @@ class ServiceClass
 
     /**
      * 返回数据
-     * @param  [array]  $data
+     * @param  [array]||[string](若为string, 则默认为'msg'字段)
      */
-    public function return_data($data)
+    public function return_data($inp)
     {
-        $data['code'] = 0;
-        if ($data['msg'] == '')
+        $data = array(
+            'code' => 0,
+            'msg'  => '操作成功',
+            'data' => array()
+        );
+        if (is_string($inp) && !empty($inp))
         {
-            $data['msg'] = '操作成功';
+            $data['msg'] = $inp;
         }
+        else if (is_array($inp))
+        {
+            !empty($inp['msg']) && ($data['msg'] = $inp['msg']);
+            $data['data'] = $inp;
+        }
+        
         $this->return_json($data);
     }
 
     /**
      * 返回错误信息
-     * @param  [array]  $data
+     * @param  [string]
      */
-    public function return_error($data){
-        $data['code'] = 1;
-        if ($data['msg'] == '')
+    public function return_error($inp){
+        $data = array(
+            'code' => 1,
+            'msg'  => '操作失败'
+        );
+        if (!empty($inp))
         {
-            $data['msg'] = '操作失败';
+            $data['msg'] = $inp;
         }
+        
         $this->return_json($data);
     }
 

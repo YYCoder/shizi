@@ -14,8 +14,8 @@
         <p>师资信息管理系统</p>
         <form action="login" method="post" name="login">
             <label>
-                <span>邮箱(手机)&nbsp;/</span>
-                <input type="text" name="user">
+                <span>手机(邮箱)&nbsp;/</span>
+                <input type="text" name="user" maxlength=15>
             </label>
             <label>
                 <span>密码&nbsp;/</span>
@@ -33,8 +33,12 @@
         <p>师资信息管理系统</p>
         <form action="register" method="post" name="register">
             <label>
-                <span>邮箱&nbsp;/</span>
-                <input type="text" name="email">
+                <span>手机号&nbsp;/</span>
+                <input type="text" name="mobile" maxlength=11>
+            </label>
+            <label>
+                <span>姓名&nbsp;/</span>
+                <input type="text" name="name" maxlength=15>
             </label>
             <label>
                 <span>密码&nbsp;/</span>
@@ -45,12 +49,8 @@
                 <input type="password" name="confirm-pw">
             </label>
             <label>
-                <span>姓名&nbsp;/</span>
-                <input type="text" name="name">
-            </label>
-            <label>
-                <span>手机号&nbsp;/</span>
-                <input type="number" name="mobile">
+                <span>邮箱&nbsp;/</span>
+                <input type="text" name="email">
             </label>
             <button id="submit" type="submit">注册</button>
         </form>
