@@ -2,19 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
-    <style>
-	.nav {
-		height: 50px;
-		line-height: 50px;
-		background: rgba(33,33,33,0.5);
-		text-align: right;
-	}
-	.user-name {
-		color: red;
-	}
-    </style>
+    <link rel="stylesheet" href="">
     <script>
 
     </script>

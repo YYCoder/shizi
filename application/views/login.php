@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>登录/注册页</title>
     <link rel="stylesheet" href="
     style/login.css">
@@ -12,7 +12,7 @@
     <div class="login">
         <h1>Login</h1>
         <p>师资信息管理系统</p>
-        <form action="login" method="post" name="login">
+        <form action="login" method="post" name="login" accept-charset="utf-8">
             <label>
                 <span>手机(邮箱)&nbsp;/</span>
                 <input type="text" name="user" maxlength=15>
@@ -31,7 +31,7 @@
     <div class="register">
         <h1>Register</h1>
         <p>师资信息管理系统</p>
-        <form action="register" method="post" name="register">
+        <form action="register" method="post" name="register" accept-charset="UTF-8">
             <label>
                 <span>手机号&nbsp;/</span>
                 <input type="text" name="mobile" maxlength=11>

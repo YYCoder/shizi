@@ -1,6 +1,6 @@
 <?php
 /**
- * 首页模块
+ * 首页控制器
  * @author whyCoder
  * @date   2017-01-22
  */
@@ -25,8 +25,6 @@ class Index_Controller extends CI_Controller
         {
             $this->load->view('login');
         }
-        // 及时关闭session, 防止并发请求对session的影响
-        session_write_close();
     }
 
     /**
@@ -54,15 +52,17 @@ class Index_Controller extends CI_Controller
             {
                 $service->return_error('请输入正确的邮箱或手机号');
             }
-            $user_info = $this->User_Model->get_user($user);
+
+            $user_info = $this->User_Model
+                              ->get_user($user);
             if (empty($user_info))
             {
                 $service->return_error('请输入正确的邮箱或手机号');
             }
             else
             {
-var_dump($user_info);die;
-                $service->return_data($user_info);
+            	$_SESSION['user'] = $user_info;
+                $this->load->view('home', $user_info);
             }
         }
         else
