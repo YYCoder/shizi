@@ -1,8 +1,8 @@
 <?php
 /**
  * 用户模型
- * @author     whyCoder
- * @date       2017-01-24
+ * @author    whyCoder
+ * @date      2017-01-24
  */
 class User_Model extends CI_Model
 {
@@ -20,11 +20,13 @@ class User_Model extends CI_Model
      */
     public function get_user($data)
     {
-    	$user_info = $this->db
-		                  ->get_where($data)
-		                  ->from('user')
-		                  ->result_array();
-		return $user_info;
+
+        $user_info = $this->db
+                          ->from('user')
+                          ->where($data)
+                          ->get()
+                          ->result_array();
+        return $user_info;
     }
 
     

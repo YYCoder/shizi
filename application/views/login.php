@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>登录/注册页</title>
     <link rel="stylesheet" href="
     style/login.css">
 </head>
@@ -13,7 +14,7 @@
         <p>师资信息管理系统</p>
         <form action="login" method="post" name="login">
             <label>
-                <span>邮箱&nbsp;/</span>
+                <span>邮箱(手机)&nbsp;/</span>
                 <input type="text" name="user">
             </label>
             <label>

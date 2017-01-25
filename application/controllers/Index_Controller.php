@@ -35,8 +35,8 @@ class Index_Controller extends CI_Controller
      */
     public function do_login()
     {
-    	$user_info;// 返回用户信息
-    	$user;// 用于查询用户信息
+        $user_info;// 返回用户信息
+        $user;// 用于查询用户信息
         if (!empty($_POST['user']) && !empty($_POST['pw']))
         {
             $user = array(
@@ -56,12 +56,18 @@ class Index_Controller extends CI_Controller
                     'msg' => '请输入正确的邮箱或手机号'
                 ));
             }
-            $user_info = $this->Login_Model->get_user($user);
-for ($i = 0; $i < count($user_info); $i++) { 
-	echo $user_info[$i];
-}
-die;
-            $this->serviceclass->return_data($user_info);
+            $user_info = $this->User_Model->get_user($user);
+            if (empty($user_info))
+            {
+                $this->serviceclass->return_error(array(
+                    'msg' => '请输入正确的邮箱或手机号'
+                ));
+            }
+            else
+            {
+var_dump($user_info);die;
+                $this->serviceclass->return_data($user_info);
+            }
         }
         else
         {
