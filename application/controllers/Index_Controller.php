@@ -11,7 +11,6 @@ class Index_Controller extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_Model');
-        $this->load->library('session');
         $this->load->library('ServiceClass');
 
 		// $this->FE_PATH = $this->config->item('base_url').'application/views/';
