@@ -1,2 +1,8 @@
 @import 'animate.min.css';
 @import 'normalizeV3.0.2.css';
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
