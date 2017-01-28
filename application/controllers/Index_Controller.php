@@ -6,19 +6,16 @@
  */
 class Index_Controller extends CI_Controller
 {
-	private $FE_PATH;
     public function __construct()
     {
         parent::__construct();
         $this->load->model('User_Model');
         $this->load->library('ServiceClass');
 
-		// $this->FE_PATH = $this->config->item('base_url').'application/views/';
     }
 
     public function index()
     {
-        // $data = array('FE_PATH' => $this->FE_PATH);
         if ($this->is_login())
         {
             $this->load->view('home', $data);
@@ -63,7 +60,7 @@ class Index_Controller extends CI_Controller
             }
             else
             {
-            	$_SESSION['user'] = $user_info;
+                $_SESSION['user'] = $user_info;
                 $this->load->view('home', $user_info);
             }
         }
