@@ -1,11 +1,12 @@
 // 全局require配置
 require.config({
+    baseUrl: './FE',
     paths: {
-        'vue': './node_modules/vue/vue',
-        'bootstrap': './node_modules/bootstrap/dist/js/bootstrap',
-        'jquery': './FE/dep/jquery-2.2.0.min',
-        'layer': './FE/dep/layer/layer',
-        'moment': './node_modules/moment/moment'
+        'vue': './dep/vue/dist/vue',
+        'bootstrap': './dep/bootstrap/dist/js/bootstrap',
+        'jquery': './dep/jquery-2.2.0.min',
+        'layer': './dep/layer/layer',
+        'moment': './FE/dep/moment/moment'
     },
     shim: {
         'layer': {
@@ -13,4 +14,9 @@ require.config({
             exports: 'layer'
         }
     }
+});
+
+// 应用入口模块
+define(function (require, exports) {
+	require('login');
 });

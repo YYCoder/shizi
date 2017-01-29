@@ -1,5 +1,6 @@
 @import 'animate.min.css';
 @import 'normalizeV3.0.2.css';
+@import '../dep/layer/skin/default/layer.css';
 .show {
   display: block;
 }
@@ -8,6 +9,10 @@
 }
 body {
   background: #37afea;
+}
+body #wrap {
+  overflow: hidden;
+  position: relative;
 }
 body #bg {
   width: 100%;
@@ -20,17 +25,18 @@ body #bg {
 body .login,
 body .register {
   width: 350px;
-  margin: 120px auto;
   text-align: center;
+  opacity: 0;
+  padding: 130px 0 55px;
+  transform: translateX(-50%);
   position: absolute;
   left: 50%;
-  transform: translateX(50%);
-  opacity: 0;
+  transition: all 0.4s ease;
 }
 body .login.active,
 body .register.active {
-  transform: translateX(-50%);
   opacity: 1;
+  z-index: 2;
 }
 body .login h1,
 body .register h1 {
@@ -60,6 +66,7 @@ body .register form[name="register"] #submit {
   letter-spacing: 6px;
   background: rgba(255, 255, 255, 0.5);
   color: #1390da;
+  transition: all 0.5s ease;
 }
 body .login form[name="login"] #submit:focus,
 body .register form[name="login"] #submit:focus,
@@ -67,7 +74,6 @@ body .login form[name="register"] #submit:focus,
 body .register form[name="register"] #submit:focus {
   outline: none;
   box-shadow: none;
-  border: none;
 }
 body .login form[name="login"] #submit:hover,
 body .register form[name="login"] #submit:hover,
@@ -95,18 +101,20 @@ body .register p.hrefs a {
   font-size: 13px;
   margin-right: 20px;
 }
-body .login p.hrefs a#login,
-body .register p.hrefs a#login {
-  margin-right: 0;
+body .login p.hrefs a#goLogin,
+body .register p.hrefs a#goLogin {
+  margin-right: 5px;
 }
 body .login p .form-label,
 body .register p .form-label {
-  border: 1px solid #e0e0e0;
   padding: 15px;
   border-radius: 35px;
-  box-shadow: 0 0 4px #ddd;
   height: 45px;
   line-height: 45px;
+  transition: all 0.5s ease;
+  box-shadow: none;
+  border: 1px solid #cccccc;
+  color: #cccccc;
 }
 body .login p .form-label .form-span,
 body .register p .form-label .form-span {
@@ -127,8 +135,6 @@ body .register p .form-label input:focus {
 }
 body footer {
   text-align: center;
-  position: absolute;
-  bottom: 0;
   width: 100%;
   color: #e0e0e0;
   line-height: 50px;

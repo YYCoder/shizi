@@ -3,6 +3,10 @@
 @fontColor : #e0e0e0;
 body {
     background: @mainBtnBg;
+    #wrap {
+	    overflow: hidden;
+	    position: relative;
+    }
     #bg {
         width: 100%;
         height: 100%;
@@ -13,16 +17,17 @@ body {
     }
     .login, .register {
         width: 350px;
-        margin: 120px auto;
-        text-align: center;
-        position: absolute;
-        left: 50%;
-        transform: translateX(50%);
-        opacity: 0;
-        &.active {
-            transform: translateX(-50%);
-            opacity: 1;
-        }
+	    text-align: center;
+	    opacity: 0;
+	    padding: 130px 0 55px;
+	    transform: translateX(-50%);
+	    position: absolute;
+	    left: 50%;
+	    transition: all 0.4s ease;
+	    &.active {
+	    	opacity: 1;
+	    	z-index: 2;
+	    }
         .text() {
             color: @fontColor;
             text-shadow: 2px 2px 3px #aaa;
@@ -46,10 +51,10 @@ body {
                 letter-spacing: 6px;
                 background: rgba(255,255,255,0.5);
                 color: darken(@btn2, 10%);
+                transition: all 0.5s ease;
                 &:focus {
                     outline: none;
                     box-shadow: none;
-                    border: none;
                 }
                 &:hover {
                     background: transparent;
@@ -68,18 +73,20 @@ body {
                     color: #e0e0e0;
                     font-size: 13px;
                     margin-right: 20px;
-                    &#login {
-                        margin-right: 0;
+                    &#goLogin {
+                        margin-right: 5px;
                     }
                 }
             }
             .form-label {
-                border: 1px solid @fontColor;
                 padding: 15px;
                 border-radius: 35px;
-                box-shadow: 0 0 4px #ddd;
                 height: 45px;
                 line-height: 45px;
+                transition: all 0.5s ease;
+                box-shadow: none;
+                border: 1px solid darken(@fontColor, 8%);
+                color: darken(@fontColor, 8%);
                 .form-span {
                     display: inline-block;
                     width: 90px;
@@ -99,8 +106,6 @@ body {
     }
     footer {
         text-align: center;
-        position: absolute;
-        bottom: 0;
         width: 100%;
         color: @fontColor;
         line-height: 50px;
