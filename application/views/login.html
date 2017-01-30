@@ -18,16 +18,16 @@
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">手机(邮箱)</span>/
-                        <input @focus='focused' @blur='blured' type="text" name="user" maxlength=15 autocomplete="off">
+                        <input v-model="logData.user" @focus="focused" @blur="blured" type="text" name="user" maxlength=15 autocomplete="off">
                     </label>
                 </p>
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">密码</span>/
-                        <input @focus='focused' @blur='blured' type="password" name="pw">
+                        <input v-model="logData.pw" @focus="focused" @blur="blured" type="password" name="pw">
                     </label>
                 </p>
-                <button id="submit" type="submit">登录</button>
+                <button id="submit" type="submit" @click="login">登录</button>
             </form>
             <p class="hrefs">
                 <a href="javascript:;" id="forget">忘记密码</a>
@@ -42,34 +42,34 @@
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">手机号</span>/
-                        <input @focus='focused' @blur='blured' type="text" name="mobile" maxlength=11 autocomplete="off">
+                        <input v-model="regData.mobile" @focus="focused" @blur="blured" type="text" name="mobile" maxlength=11 autocomplete="off">
                     </label>
                 </p>
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">姓名</span>/
-                        <input @focus='focused' @blur='blured' type="text" name="name" maxlength=15 autocomplete="off">
+                        <input v-model="regData.name" @focus="focused" @blur="blured" type="text" name="name" maxlength=15 autocomplete="off">
                     </label>
                 </p>
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">密码</span>/
-                        <input @focus='focused' @blur='blured' type="password" name="pw">
+                        <input v-model="regData.pw" @focus="focused" @blur="blured" type="password" name="pw">
                     </label>
                 </p>
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">确认密码</span>/
-                        <input @focus='focused' @blur='blured' type="password" name="confirm-pw">
+                        <input v-model="regData.confirmPw" @focus="focused" @blur="blured" type="password" name="confirm-pw">
                     </label>
                 </p>
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">邮箱</span>/
-                        <input @focus='focused' @blur='blured' type="text" name="email">
+                        <input v-model="regData.email" @focus="focused" @blur="blured" type="text" name="email" autocomplete="off">
                     </label>
                 </p>
-                <button id="submit" type="submit">注册</button>
+                <button id="submit" type="submit" @click="register">注册</button>
             </form>
             <p class="hrefs">
                 <a href="javascript:;" id="goLogin" @click="toggle">登陆</a>

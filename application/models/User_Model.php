@@ -14,7 +14,7 @@ class User_Model extends CI_Model
 
     /**
      * 获取用户信息
-     * @param    data(必传)[array]: 用户邮箱或手机及密码
+     * @param    data(必传)[array]: 用户邮箱或手机(密码可选)
      * @return   user_info[array]: 用户信息数组
      */
     public function get_user($data = array())

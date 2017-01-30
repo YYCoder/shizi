@@ -1,3 +1,4 @@
+'use strict'
 // 全局require配置
 require.config({
     baseUrl: './FE',
@@ -6,7 +7,10 @@ require.config({
         'bootstrap': './dep/bootstrap/dist/js/bootstrap',
         'jquery': './dep/jquery-2.2.0.min',
         'layer': './dep/layer/layer',
-        'moment': './FE/dep/moment/moment'
+        'moment': './dep/moment/moment',
+        
+        'util': './common/util',
+        'ui': './common/ui'
     },
     shim: {
         'layer': {

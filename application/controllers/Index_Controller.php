@@ -36,9 +36,7 @@ class Index_Controller extends CI_Controller
         $user;// 用于查询用户信息
         if (!empty($_POST['user']) && !empty($_POST['pw']))
         {
-            $user = array(
-                'password' => md5($_POST['pw'])
-            );
+            $user = array();
             if (filter_var($_POST['user'], FILTER_VALIDATE_EMAIL))
             {
                 $user['email'] = $_POST['user'];
@@ -51,22 +49,29 @@ class Index_Controller extends CI_Controller
             {
                 $service->return_error('请输入正确的邮箱或手机号');
             }
-
-            $user_info = $this->User_Model
-                              ->get_user($user);
+            $user_info = $this->User_Model->get_user($user);
             if (empty($user_info))
             {
-                $service->return_error('请输入正确的邮箱或手机号');
+                $service->return_error('没有找到该用户');
             }
             else
             {
-                $_SESSION['user'] = $user_info;
-                $this->load->view('home', $user_info);
+                $user['password'] = md5($_POST['pw']);
+                $user_info = $this->User_Model->get_user($user);
+                if (empty($user_info))
+                {
+                    $service->return_error('密码不正确');
+                }
+                else
+                {
+                    $_SESSION['user'] = $user_info;
+                    $this->load->view('home', $user_info);
+                }
             }
         }
         else
         {
-            $service->return_error('请输入邮箱或手机号');
+            $service->return_error('请输入邮箱或手机号及密码');
         }
     }
 
@@ -91,37 +96,51 @@ class Index_Controller extends CI_Controller
     public function register()
     {
         $service = $this->serviceclass;
+        $user;
         $data = array();
         $flag = !empty($_POST['mobile']) &&
                 !empty($_POST['name'])   && 
                 !empty($_POST['pw'])     &&
-                !empty($_POST['confirm-pw']);
+                !empty($_POST['confirmPw']);
         if ($flag)
         {
             // 验证手机号
             !preg_match('/^1[34578]{1}\d{9}$/', $_POST['mobile']) &&
             $service->return_error('请输入正确的手机号');
+
             // 验证姓名长度
             (strlen($_POST['name']) > 15) &&
             $service->return_error('姓名太长啦');
+
             // 验证密码
-            ($_POST['pw'] !== $_POST['confirm-pw']) &&
+            ($_POST['pw'] !== $_POST['confirmPw']) &&
             $service->return_error('两次密码输入不一致');
 
-            $data = array(
-                'mobile'     => $_POST['mobile'],
-                'name'       => $_POST['name'],
-                'password'   => md5($_POST['pw'])
-            );
+            // 验证手机是否重复注册           
+            $user = $this->User_Model->get_user(array('mobile' => $_POST['mobile']));
+            !empty($user) &&
+            $service->return_error('该手机号已被注册');
+
+            // 验证昵称是否重复注册           
+            $user = $this->User_Model->get_user(array('name' => $_POST['name']));
+            !empty($user) &&
+            $service->return_error('该昵称已被注册');
+
             // 验证邮箱
-            if (!empty($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+            if (!empty($_POST['email']))
             {
-                $service->return_error('请输入正确的邮箱');
+                if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+                {
+                    $service->return_error('请输入正确的邮箱');
+                }
+                else
+                {
+                    $data['email'] = $_POST['email'];
+                }
             }
-            else
-            {
-                $data['email'] = $_POST['email'];
-            }            
+            $data['mobile'] = $_POST['mobile'];
+            $data['name'] = $_POST['name'];
+            $data['password'] = md5($_POST['pw']);
 
             // 插入用户数据
             $status = $this->User_Model->add_user($data);
