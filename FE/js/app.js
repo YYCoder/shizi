@@ -22,5 +22,5 @@ require.config({
 
 // 应用入口模块
 define(function (require, exports) {
-	require('login');
+    require('login');
 });

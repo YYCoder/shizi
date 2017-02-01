@@ -30,7 +30,7 @@
                 <button id="submit" type="submit" @click="login">登录</button>
             </form>
             <p class="hrefs">
-                <a href="javascript:;" id="forget">忘记密码</a>
+                <a href="javascript:;" id="forget" @click="error">忘记密码</a>
                 <a href="javascript:;" id="goRegister" @click="toggle">注册</a>
             </p>
         </div>
@@ -38,7 +38,12 @@
         <div class="register" id="register" v-bind:class="{active: !show}">
             <h1>REGISTER</h1>
             <p>师资信息管理系统</p>
+            <input type="file" name="avatar" id="avatar" class="avatar-upload" accept="image/png,image/gif" @change="avatarChange">
             <form action="javascript:;" method="post" name="register" accept-charset="UTF-8">
+                <p class="avatar-container">
+                    <label for="avatar" class="click-avatar" title="点击上传头像"></label>
+                    <img src="./FE/img/user.png" class="avatar">
+                </p>
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">手机号</span>/

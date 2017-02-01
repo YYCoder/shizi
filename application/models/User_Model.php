@@ -35,9 +35,31 @@ class User_Model extends CI_Model
     public function add_user($data = array())
     {
         $data['reg_time'] = time();
+        $data['avatar'] = '/Users/bjhl/myServer/shizi/FE/img/user.png';
         $status = $this->db
                        ->insert('user', $data);
+
+        $id = $this->db->insert_id();
+        return array(
+            'status' => $status,
+            'id' => $id
+        );
+    }
+
+    /**
+     * 修改用户信息
+     * @param    data(必传)[array]: 要修改的用户信息(id[必须]|邮箱|手机|密码|姓名|头像)
+     * @return   status[string]: 修改状态(未成功为0, 成功为1) 
+     */
+    public function modify($data = array())
+    {
+        $status = $this->db
+                       ->where('id', $data['id'])
+                       ->update('user', $data);
         return $status;
     }
+
+
+
 
 }

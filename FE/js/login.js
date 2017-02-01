@@ -9,11 +9,54 @@ define('login', function (require, exports) {
     var $ = require('jquery');
     var ui = require('ui');
 
+    /*var c = document.getElementsByTagName('canvas')[0],
+        x = c.getContext('2d'),
+        pr = window.devicePixelRatio || 1,
+        w = window.innerWidth,
+        h = window.innerHeight,
+        f = 90,
+        q,
+        m = Math,
+        r = 0,
+        u = m.PI*2,
+        v = m.cos,
+        z = m.random
+    c.width = w*pr;
+    c.height = h*pr;
+    x.scale(pr, pr);
+    x.globalAlpha = 0.6;
+    function i(){
+        x.clearRect(0,0,w,h);
+        q=[{x:0,y:h*.7+f},{x:0,y:h*.7-f}];
+        while(q[1].x<w+f) d(q[0], q[1]);
+    }
+    function d(i,j){   
+        x.beginPath();
+        x.moveTo(i.x, i.y);
+        x.lineTo(j.x, j.y);
+        var k = j.x + (z()*2-0.25)*f,
+            n = y(j.y);
+        x.lineTo(k, n);
+        x.closePath();
+        r -= u/-50;
+        x.fillStyle = '#'+(v(r)*127+128<<16 | v(r+u/3)*127+128<<8 | v(r+u/3*2)*127+128).toString(16);
+        x.fill();
+        q[0] = q[1];
+        q[1] = {x:k,y:n};
+    }
+    function y(p){
+        var t = p + (z()*2-1.1)*f;
+        return (t>h||t<0) ? y(p) : t;
+    }
+    document.onclick = i;
+    i();*/
+
     var vmLogin = new Vue({
         el: '#wrap',
         data: {
             'show': true,
             'height': '647px',
+            'regForm': document.forms['register'],
             'logData': {
                 'user': '',
                 'pw': ''
@@ -37,11 +80,15 @@ define('login', function (require, exports) {
             'blured': function (e) {
                 $(e.target).parent('.form-label')[0].style = '';
             },
+            'error': function () {
+                ui.msgError('暂不支持该功能,敬请期待');
+            },
             'toggle': function () {
                 var show = this['show'];
                 show = !show;
                 this['show'] = show;
-                this['height'] = show ? '647px' : '900px';
+                this['height'] = show ? '647px' : '1025px';
+                ui.closeAll();
             },
             'login': function (e) {
                 var form = document.forms['login'];
@@ -99,6 +146,7 @@ define('login', function (require, exports) {
                     confirmPw: confirmPw,
                     mobile: mobile
                 };
+                var vSelf = this;
                 // 先单独验证邮箱
                 if (email.length !== 0) {
                     if (!patternE.test(email)) {
@@ -106,6 +154,7 @@ define('login', function (require, exports) {
                             'msg': '邮箱格式不正确',
                             'follow': form.elements['email'].parentElement
                         });
+                        return;
                     }
                     else {
                         param['email'] = email;
@@ -157,12 +206,25 @@ define('login', function (require, exports) {
                         timeout: 10000,
                         success: function (res) {
                             if (res.code === 0) {
-                                // location.href = 
+                                // 若选择了图片则更换头像
+                                var file = $('#avatar')[0].files;
+                                if (file.length !== 0) {
+                                    vSelf.upload(res.data.id);
+                                }
+                                else {
+                                    ui.closeAll('loading');
+                                    ui.msgRight({
+                                        'msg': res.msg,
+                                        'fun': function () {
+                                            // location.href = 'www.baidu.com';
+                                        }
+                                    });
+                                }
                             }
                             else {
                                 ui.msgError(res.msg);
+                                ui.closeAll('loading');
                             }
-                            ui.closeAll('loading');
                         },
                         error: function (res) {
                             ui.closeAll('loading');
@@ -170,6 +232,63 @@ define('login', function (require, exports) {
                         }
                     });
                 }
+            },
+            'avatarChange': function (e) {
+                var target = e.target;
+                var file = target.files[0];
+                var img = $('.avatar')[0];
+                if (file.size > 2097152) {
+                    // 要清除input[type=file]中的文件,直接设置value为''即可,不能操作files属性
+                    target.value = '';
+                    ui.msgError('图片大小不能超过2MB');
+                }
+                else {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = function (e) {
+                        // 通过FileReader对象的result属性获取到图片的base64编码,img的src属性也是支持base64编码的
+                        img.src = e.target.result;
+                    }
+                    reader.onerror = function (e) {
+                        ui.msgError('读取图片失败');
+                    }
+                }
+
+            },
+            'upload': function (id) {
+                var formData = new FormData();
+                // 通过input[type=file]的files属性获取选择的文件对象
+                var file = $('#avatar')[0].files[0];
+                formData.append('avatar', file);
+                // php是可以通过$_POST获取到该值的
+                formData.append('id', id);
+                $.ajax({
+                    url: 'index.php/change_avatar',
+                    type: 'post',
+                    data: formData,
+                    // jq使用FormData时一定要加上这两项
+                    contentType: false,
+                    processData: false,
+                    timeout: 10000,
+                    success: function (res) {
+                        if (res.code === 0) {
+                            ui.msgRight({
+                                'msg': res.msg,
+                                'fun': function () {
+                                    // location.href = 'www.baidu.com';
+                                }
+                            });
+                        }
+                        else {
+                            ui.msgError(res.msg);
+                        }
+                        ui.closeAll('loading');
+                    },
+                    error: function (res) {
+                        ui.closeAll('loading');
+                        ui.msgError();
+                    }
+                });
             }
         }
     });

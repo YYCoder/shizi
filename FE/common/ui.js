@@ -21,10 +21,11 @@ define(function (require, exports) {
             layer.open({
                 type: 4,
                 content: [opt.msg, opt.follow],
-                time: opt.time || 3000,
+                time: opt.time || 2000,
                 tips: [opt.guide || 3, opt.bg || '#000'],
                 shade: 0,
-                closeBtn: 0
+                closeBtn: 0,
+                fixed: false
             });
         }
         else {
