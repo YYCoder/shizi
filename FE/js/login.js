@@ -238,7 +238,6 @@ define('login', function (require, exports) {
                 var file = target.files[0];
                 var img = $('.avatar')[0];
                 if (file.size > 2097152) {
-                    // 要清除input[type=file]中的文件,直接设置value为''即可,不能操作files属性
                     target.value = '';
                     ui.msgError('图片大小不能超过2MB');
                 }
@@ -246,7 +245,6 @@ define('login', function (require, exports) {
                     var reader = new FileReader();
                     reader.readAsDataURL(file);
                     reader.onload = function (e) {
-                        // 通过FileReader对象的result属性获取到图片的base64编码,img的src属性也是支持base64编码的
                         img.src = e.target.result;
                     }
                     reader.onerror = function (e) {
@@ -257,16 +255,14 @@ define('login', function (require, exports) {
             },
             'upload': function (id) {
                 var formData = new FormData();
-                // 通过input[type=file]的files属性获取选择的文件对象
                 var file = $('#avatar')[0].files[0];
                 formData.append('avatar', file);
-                // php是可以通过$_POST获取到该值的
                 formData.append('id', id);
                 $.ajax({
                     url: 'index.php/change_avatar',
                     type: 'post',
                     data: formData,
-                    // jq使用FormData时一定要加上这两项
+                    // jq使用FormData上传文件时一定要加上这两项
                     contentType: false,
                     processData: false,
                     timeout: 10000,
