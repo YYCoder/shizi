@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>登录/注册页</title>
-    <link rel="stylesheet" type="text/css" href="./FE/style/login.css">
-    <script type="text/javascript" data-main="./FE/js/app.js" src="./node_modules/requirejs/require.js"></script>
-    <script type="text/javascript" src="./FE/js/login.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $base_url ?>/FE/style/login.css">
+    <script type="text/javascript" data-main="<?php echo $base_url ?>/FE/js/app.js" src="<?php echo $base_url ?>/node_modules/requirejs/require.js"></script>
+    <script type="text/javascript" src="<?php echo $base_url ?>/FE/js/login.js"></script>
 </head>
 <body>
     <canvas id="bg">你的浏览器不支持canvas!</canvas>
@@ -42,7 +42,7 @@
             <form action="javascript:;" method="post" name="register" accept-charset="UTF-8">
                 <p class="avatar-container">
                     <label for="avatar" class="click-avatar" title="点击上传头像"></label>
-                    <img src="./FE/img/user.png" class="avatar">
+                    <img src="<?php echo $base_url ?>/FE/img/user.png" class="avatar">
                 </p>
                 <p class="form-p">
                     <label class="form-label">

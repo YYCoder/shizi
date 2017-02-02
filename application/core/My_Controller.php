@@ -100,6 +100,22 @@ class My_Controller extends CI_Controller
     }
 
 
+    /**
+     * 判断登录方法
+     */
+    public function is_login()
+    {
+        if (!empty($_SESSION['user']))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+
 
 
 }

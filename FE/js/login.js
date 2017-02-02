@@ -67,7 +67,11 @@ define('login', function (require, exports) {
                 'pw': '',
                 'confirmPw': '',
                 'email': ''
-            }
+            },
+            'regURL': location.origin + '/index.php/register',
+            'logURL': location.origin + '/index.php/login',
+            'homeURL': location.origin + '/index.php/home',
+            'avatarURL': location.origin + '/index.php/change_avatar'
         },
         methods: {
             'focused': function (e) {
@@ -94,6 +98,7 @@ define('login', function (require, exports) {
                 var form = document.forms['login'];
                 var user = this.logData.user;
                 var pw = this.logData.pw;
+                var vSelf = this;
                 if (user.length === 0) {
                     ui.tips({
                         'msg': '请输入手机号或邮箱',
@@ -109,17 +114,16 @@ define('login', function (require, exports) {
                 else {
                     ui.loading();
                     $.ajax({
-                        url: 'index.php/login',
+                        url: vSelf.logURL,
                         type: 'post',
                         data: this.logData,
                         timeout: 10000,
                         success: function (res) {
                             if (res.code === 0) {
-                                // location.href = 
+                                location.href = vSelf.homeURL;
                                 console.log('登录成功');
                             }
                             else {
-                                console.log(res);
                                 ui.msgError(res.msg); 
                             }
                             ui.closeAll('loading');
@@ -200,7 +204,7 @@ define('login', function (require, exports) {
                 else {
                     ui.loading();
                     $.ajax({
-                        url: 'index.php/register',
+                        url: vSelf.regURL,
                         type: 'post',
                         data: param,
                         timeout: 10000,
@@ -258,8 +262,9 @@ define('login', function (require, exports) {
                 var file = $('#avatar')[0].files[0];
                 formData.append('avatar', file);
                 formData.append('id', id);
+                var vSelf = this;
                 $.ajax({
-                    url: 'index.php/change_avatar',
+                    url: vSelf.avatarURL,
                     type: 'post',
                     data: formData,
                     // jq使用FormData上传文件时一定要加上这两项
@@ -271,7 +276,7 @@ define('login', function (require, exports) {
                             ui.msgRight({
                                 'msg': res.msg,
                                 'fun': function () {
-                                    // location.href = 'www.baidu.com';
+                                    location.href = vSelf.homeURL;
                                 }
                             });
                         }
