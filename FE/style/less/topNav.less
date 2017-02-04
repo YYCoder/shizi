@@ -1,0 +1,101 @@
+header {
+    background: @mainBtnBg;
+    height: 60px;
+    color: @mainBtn;
+    padding: 0px 10px;
+    font-size: 14px;
+    .top-title {
+        margin: 0;
+        font-size: 17px;
+        display: inline-block;
+        margin-right: 30px;
+        height: 100%;
+        line-height: 57px;
+        float: left;
+    }
+    .nav {
+        display: inline-block;
+        height: 100%;
+        .item {
+            display: inline-block;
+            line-height: 60px;
+            padding: 0 20px;
+            height: 100%;
+            transition: background 0.3s ease;
+            &.active {
+                background: @mainBtnActiveBg;
+            }
+            a {
+                color: @mainBtn;
+                text-decoration: none;
+                display: inline-block;
+                height: 100%;
+                text-align: center;
+                line-height: 85px;
+                position: relative;
+                &.home {
+                    vertical-align: 1px;
+                    line-height: 83px;
+                }
+                &.home:before {
+                    content: '\f015';
+                }
+                &.info:before {
+                    content: '\f07c';
+                }
+                &.course:before {
+                    content: '\f073';
+                }
+                &.train:before {
+                    content: '\f0c0';
+                }
+                &.work:before {
+                    content: '\f0b1';
+                    top: 10px;
+                }
+                &.assessment:before {
+                    content: '\f080';
+                }
+                &.comment:before {
+                    content: '\f086';
+                }
+                &.user:before {
+                    content: '\f2be';
+                }
+                &:before {
+                    font-family: 'FontAwesome';
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    color: #fff;
+                    font-size: 20px;
+                    position: absolute;
+                    top: 8px;
+                    line-height: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+    }
+    .user-info {
+        display: inline-block;
+        height: 100%;
+        float: right;
+        width: 200px;
+        .top-avatar {
+            width: 40px;
+            height: 40px;
+        }
+        .info {
+            display: inline-block;
+            p {
+                margin: 5px;
+                &.greeting {
+                    margin-bottom: 12px;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

@@ -19,7 +19,7 @@ class Login_Controller extends My_Controller
         );
         if ($this->is_login())
         {
-            $this->load->view('home', $data);
+            $this->load->view('home.html', $data);
         }
         else
         {
@@ -132,8 +132,9 @@ class Login_Controller extends My_Controller
             if ($res['status'] != 0)
             {
                 // 存储session
-                $user_info = $this->User_Model->get_user($res['id']);
-                $_SESSION['user'] = $user_info;
+                $user_info = $this->User_Model
+                                  ->get_user(array('id' => $res['id']));
+                $_SESSION['user'] = $user_info[0];
                 $this->return_data(array(
                     'msg' => '插入数据成功',
                     'id' => $res['id']
@@ -160,12 +161,16 @@ class Login_Controller extends My_Controller
             $res = $this->uploadImg();
             $param = array(
                 'id' => $_POST['id'],
-                'avatar' => $res['full_path']
+                'avatar' => str_replace('/Users/bjhl/myServer/shizi', $this->config->item('base_url'), $res['full_path'])
             );
             // 修改数据库
             $status = $this->User_Model->modify($param);
             if ($status == 1)
             {
+                // 存储session
+                $user_info = $this->User_Model
+                                  ->get_user(array('id' => $_POST['id']));
+                $_SESSION['user'] = $user_info[0];
                 $this->return_data();
             }
             else

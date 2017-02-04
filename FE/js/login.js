@@ -220,7 +220,7 @@ define('login', function (require, exports) {
                                     ui.msgRight({
                                         'msg': res.msg,
                                         'fun': function () {
-                                            // location.href = 'www.baidu.com';
+                                            location.href = vSelf.homeURL;
                                         }
                                     });
                                 }

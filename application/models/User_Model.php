@@ -14,7 +14,7 @@ class User_Model extends CI_Model
 
     /**
      * 获取用户信息
-     * @param    data(必传)[array]: 用户邮箱或手机(密码可选)
+     * @param    data(必传)[array]: 用户ID|邮箱|手机(密码可选)
      * @return   user_info[array]: 用户信息数组
      */
     public function get_user($data = array())
@@ -35,7 +35,7 @@ class User_Model extends CI_Model
     public function add_user($data = array())
     {
         $data['reg_time'] = time();
-        $data['avatar'] = '/Users/bjhl/myServer/shizi/FE/img/user.png';
+        $data['avatar'] = $this->config->item('base_url').'/FE/img/user.png';
         $status = $this->db
                        ->insert('user', $data);
 

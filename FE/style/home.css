@@ -1,0 +1,117 @@
+@import 'animate.min.css';
+@import 'normalizeV3.0.2.css';
+@import '../dep/layer/skin/default/layer.css';
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../dep/font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0');
+  src: url('../dep/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../dep/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../dep/font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../dep/font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../dep/font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+header {
+  background: #37afea;
+  height: 60px;
+  color: #fff;
+  padding: 0px 10px;
+  font-size: 14px;
+}
+header .top-title {
+  margin: 0;
+  font-size: 17px;
+  display: inline-block;
+  margin-right: 30px;
+  height: 100%;
+  line-height: 57px;
+  float: left;
+}
+header .nav {
+  display: inline-block;
+  height: 100%;
+}
+header .nav .item {
+  display: inline-block;
+  line-height: 60px;
+  padding: 0 20px;
+  height: 100%;
+  transition: background 0.3s ease;
+}
+header .nav .item.active {
+  background: #329bd8;
+}
+header .nav .item a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+  line-height: 85px;
+  position: relative;
+}
+header .nav .item a.home {
+  vertical-align: 1px;
+  line-height: 83px;
+}
+header .nav .item a.home:before {
+  content: '\f015';
+}
+header .nav .item a.info:before {
+  content: '\f07c';
+}
+header .nav .item a.course:before {
+  content: '\f073';
+}
+header .nav .item a.train:before {
+  content: '\f0c0';
+}
+header .nav .item a.work:before {
+  content: '\f0b1';
+  top: 10px;
+}
+header .nav .item a.assessment:before {
+  content: '\f080';
+}
+header .nav .item a.comment:before {
+  content: '\f086';
+}
+header .nav .item a.user:before {
+  content: '\f2be';
+}
+header .nav .item a:before {
+  font-family: 'FontAwesome';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  top: 8px;
+  line-height: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+header .user-info {
+  display: inline-block;
+  height: 100%;
+  float: right;
+  width: 200px;
+}
+header .user-info .top-avatar {
+  width: 40px;
+  height: 40px;
+}
+header .user-info .info {
+  display: inline-block;
+}
+header .user-info .info p {
+  margin: 5px;
+}
+header .user-info .info p.greeting {
+  margin-bottom: 12px;
+  margin-top: 10px;
+}

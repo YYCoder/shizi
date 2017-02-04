@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>师资信息管理系统</title>
+    <link rel="stylesheet" href="<?php echo $base_url ?>/FE/style/home.css">
+    <?php 
+        $type = $_SESSION['user']['type'];
+        $rights = json_encode(array(
+            'info' => $_SESSION['user']['info'],
+            'course' => $_SESSION['user']['course'],
+            'work' => $_SESSION['user']['work'],
+            'train' => $_SESSION['user']['train'],
+            'assessment' => $_SESSION['user']['assessment'],
+            'comment' => $_SESSION['user']['comment']
+        ), JSON_UNESCAPED_UNICODE);
+        $name = $_SESSION['user']['name'];
+        $avatar = $_SESSION['user']['avatar'];
+    ?>
+    <script type="text/javascript">
+    // 用户信息
+    window.user = {
+        type: '<?php echo $type ?>',
+        rights: JSON.parse('<?php echo $rights ?>'),
+        name: '<?php echo $name ?>',
+        avatar: '<?php echo $avatar ?>'
+    };
+    </script>
+</head>
+<body>
+    
+    <div id="app">
+        <!-- 顶导组件 -->
+        <top-nav
+            :user-type="user.type"
+            :user-name="user.name"
+            :user-avatar="user.avatar"
+            :rights="user.rights"
+            v-on:change-page='changePage'
+        >
+        </top-nav>
+        <!-- 顶导组件 -->
+        <!-- 左导航组件 -->
+        <!-- <left-nav
+        >
+        </left-nav> -->
+        <div class="left-nav">
+            <ul v-if="currentPage == 0">
+                <li><a href="javascript:;">教师列表</a></li>
+                <li><a href="javascript:;">教师详情</a></li>
+            </ul>
+        </div>
+
+
+
+    </div>
+    
+
+    <script type="text/javascript" src="<?php echo $base_url ?>/node_modules/requirejs/require.js"></script>
+    <script type="text/javascript" src="<?php echo $base_url ?>/FE/js/home.js"></script>
+    <script type="text/javascript">
+    'use strict'
+    // 全局require配置
+    require.config({
+        baseUrl: 'http://www.yyteacher.com/FE',
+        paths: {
+            'vue': './dep/vue/dist/vue',
+            'bootstrap': './dep/bootstrap/dist/js/bootstrap',
+            'jquery': './dep/jquery-2.2.0.min',
+            'layer': './dep/layer/layer',
+            'moment': './dep/moment/moment',
+            'text': './dep/text',
+
+            'util': './common/util',
+            'ui': './common/ui'
+        },
+        shim: {
+            'layer': {
+                deps: ['jquery'],
+                exports: 'layer'
+            }
+        }
+    });
+
+    // 应用入口模块
+    require(['home']);
+    </script>
+</body>
+</html>

@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>登录/注册页</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $base_url ?>/FE/style/login.css">
-    <script type="text/javascript" data-main="<?php echo $base_url ?>/FE/js/app.js" src="<?php echo $base_url ?>/node_modules/requirejs/require.js"></script>
-    <script type="text/javascript" src="<?php echo $base_url ?>/FE/js/login.js"></script>
 </head>
 <body>
     <canvas id="bg">你的浏览器不支持canvas!</canvas>
@@ -82,7 +80,33 @@
         </div>
     </div>
     <footer>whyCoder&nbsp;&copy;版权所有</footer>
+    <script type="text/javascript" src="<?php echo $base_url ?>/node_modules/requirejs/require.js"></script>
+    <script type="text/javascript" src="<?php echo $base_url ?>/FE/js/login.js"></script>
     <script type="text/javascript">
+    'use strict'
+    // 全局require配置
+    require.config({
+        baseUrl: 'http://www.yyteacher.com/FE',
+        paths: {
+            'vue': './dep/vue/dist/vue',
+            'bootstrap': './dep/bootstrap/dist/js/bootstrap',
+            'jquery': './dep/jquery-2.2.0.min',
+            'layer': './dep/layer/layer',
+            'moment': './dep/moment/moment',
+
+            'util': './common/util',
+            'ui': './common/ui'
+        },
+        shim: {
+            'layer': {
+                deps: ['jquery'],
+                exports: 'layer'
+            }
+        }
+    });
+
+    // 应用入口模块
+    require(['login']);
     </script>
 </body>
 </html>

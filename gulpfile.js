@@ -8,9 +8,9 @@ var less = require('gulp-less')
 gulp.task('less', function () {
     // 1. 找到 less 文件
     gulp.src('FE/style/less/**.less')
-    // 2. 编译为css
+    // // 2. 编译为css
         .pipe(less())
-    // 3. 另存文件
+    // // 3. 另存文件
         .pipe(gulp.dest('FE/style'))
 });
 

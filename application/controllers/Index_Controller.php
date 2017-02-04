@@ -19,7 +19,7 @@ class Index_Controller extends My_Controller
         );
         if ($this->is_login())
         {
-            $this->load->view('home', $data);
+            $this->load->view('home.html', $data);
         }
         else
         {
