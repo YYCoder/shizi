@@ -1,55 +1,55 @@
 <header>
     <h1 class="top-title">师资信息管理系统</h1>
     <div class="nav">
-        <div class="item" 
-            @click="changeP(0)" 
-            :class="{active: active == 0}"
+        <router-link class="item" 
+            tag="div"
+            to="home"
         >
-            <a href="javascript:;" class="home">首页</a>
-        </div>
-        <div class="item" 
-            @click="changeP(1)" 
-            :class="{active: active == 1}"
+            <a class="home">首页</a>
+        </router-link>
+        <router-link class="item" 
+            tag="div"
+            to="info"
         >
-            <a href="javascript:;" class="info">档案管理</a>
-        </div>
-        <div class="item" 
-            @click="changeP(2)" 
-            :class="{active: active == 2}"
+            <a class="info">档案管理</a>
+        </router-link>
+        <router-link class="item" 
+            tag="div"
+            to="course"
         >
-            <a href="javascript:;" class="course">课程管理</a>
-        </div>
-        <div class="item" 
-            @click="changeP(3)" 
-            :class="{active: active == 3}"
+            <a class="course">课程管理</a>
+        </router-link>
+        <router-link class="item" 
+            tag="div"
+            to="work"
         >
-            <a href="javascript:;" class="work">工作量管理</a>
-        </div>
-        <div class="item" 
-            @click="changeP(4)" 
-            :class="{active: active == 4}"
+            <a class="work">工作量管理</a>
+        </router-link>
+        <router-link class="item" 
+            tag="div"
+            to="train"
         >
-            <a href="javascript:;" class="train">培训管理</a>
-        </div>
-        <div class="item" 
-            @click="changeP(5)" 
-            :class="{active: active == 5}"
+            <a class="train">培训管理</a>
+        </router-link>
+        <router-link class="item" 
+            tag="div"
+            to="assessment"
         >
-            <a href="javascript:;" class="assessment">考核管理</a>
-        </div>
-        <div class="item"
+            <a class="assessment">考核管理</a>
+        </router-link>
+        <router-link class="item"
             v-if="userType == 2"
-            @click="changeP(7)" 
-            :class="{active: active == 7}"
+            tag="div"
+            to="user"
         >
-            <a href="javascript:;" class="user">用户管理</a>
-        </div>
-        <div class="item" 
-            @click="changeP(6)" 
-            :class="{active: active == 6}"
+            <a class="user">用户管理</a>
+        </router-link>
+        <router-link class="item" 
+            tag="div"
+            to="comment"
         >
-            <a href="javascript:;" class="comment">留言板</a>
-        </div>
+            <a class="comment">留言板</a>
+        </router-link>
     </div>
     <div class="user-info">
         <img class="top-avatar" :src="userAvatar" alt="头像">

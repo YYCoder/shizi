@@ -36,21 +36,25 @@
             :user-type="user.type"
             :user-name="user.name"
             :user-avatar="user.avatar"
-            :rights="user.rights"
-            v-on:change-page='changePage'
         >
         </top-nav>
         <!-- 顶导组件 -->
-        <!-- 左导航组件 -->
-        <!-- <left-nav
-        >
-        </left-nav> -->
-        <div class="left-nav">
-            <ul v-if="currentPage == 0">
-                <li><a href="javascript:;">教师列表</a></li>
-                <li><a href="javascript:;">教师详情</a></li>
-            </ul>
-        </div>
+        
+        <section>
+            <!-- 左导航组件 -->
+            <router-view>
+                <left-nav
+                    :user-rights="user.rights"
+                >
+                </left-nav>
+            </router-view>
+            
+            <!-- 左导航组件 -->
+            <!-- 主要内容组件 -->
+            <router-view name="list"></router-view>
+            <main-content></main-content>
+            <!-- 主要内容组件 -->
+        </section>
 
 
 
@@ -71,6 +75,7 @@
             'layer': './dep/layer/layer',
             'moment': './dep/moment/moment',
             'text': './dep/text',
+            'vue-router': './dep/vue-router',
 
             'util': './common/util',
             'ui': './common/ui'
