@@ -36,30 +36,17 @@
             :user-type="user.type"
             :user-name="user.name"
             :user-avatar="user.avatar"
-        >
-        </top-nav>
-        <!-- 顶导组件 -->
-        
+        ></top-nav>
         <section>
             <!-- 左导航组件 -->
-            <router-view>
-                <left-nav
-                    :user-rights="user.rights"
-                >
-                </left-nav>
-            </router-view>
-            
-            <!-- 左导航组件 -->
+            <router-view name="leftNav" 
+                :rights="user.rights"
+                :page="page"
+            ></router-view>
             <!-- 主要内容组件 -->
-            <router-view name="list"></router-view>
-            <main-content></main-content>
-            <!-- 主要内容组件 -->
+            <router-view name="main"></router-view>
         </section>
-
-
-
     </div>
-    
 
     <script type="text/javascript" src="<?php echo $base_url ?>/node_modules/requirejs/require.js"></script>
     <script type="text/javascript" src="<?php echo $base_url ?>/FE/js/home.js"></script>

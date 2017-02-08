@@ -10,7 +10,7 @@ define('home', function (require, exports) {
     var VueRouter = require('vue-router');
     var $ = require('jquery');
     var ui = require('ui');
-    // 组件js
+    // 主要组件js
     var topNav = require('./js/component/topNav');
     var leftNav = require('./js/component/leftNav');
     var main = require('./js/component/main');
@@ -25,46 +25,90 @@ define('home', function (require, exports) {
         linkActiveClass: 'active',
         // 使用H5 history API模式
         mode: 'history',
-        routers: [
+        routes: [
             {
                 path: '/home',
-                name: 'home',
                 components: {
                     'leftNav': leftNav,
                     'main': main
-                }
+                },
+                children: [
+                    {
+                        path: '',
+                        components: {
+                            'teacherList': main.components.list
+                        }
+                    },
+                    {
+                        path: 'list',
+                        components: {
+                            'teacherList': main.components.list
+                        }
+                    },
+                    {
+                        path: 'detail',
+                        components: {
+                            'teacherDetail': main.components.detail
+                        }
+                    }
+                ]
             },
             {
                 path: '/info',
-                name: 'info',
                 components: {
                     'leftNav': leftNav,
                     'main': main
-                }
-                
+                },
+                children: [
+                    {
+                        path: '',
+                        components: {
+                            'update': main.components.update
+                        }
+                    },
+                    {
+                        path: 'update',
+                        components: {
+                            'update': main.components.update
+                        }
+                    },
+                    {
+                        path: 'insert',
+                        components: {
+                            'insert': main.components.insert
+                        }
+                    }
+                ]
             },
-            {
-                path: '/course',
-                name: 'course',
-                components: {
-                    'leftNav': leftNav,
-                    'main': main
-                }
-                
-            },
-            {
-                path: '/work',
-                name: 'work',
-                components: {
-                    'leftNav': leftNav,
-                    'main': main
-                }
-                
-            }
+            // {
+            //     path: '/course',
+            //     components: {
+            //         'leftNav': leftNav,
+            //         'main': main
+            //     },
+            //     children: [
+            //         {
+            //             path: '',
+            //             components: {
+            //                 'info1': main.components.info1
+            //             }
+            //         },
+            //         {
+            //             path: 'info1',
+            //             components: {
+            //                 'info1': main.components.info1
+            //             }
+            //         },
+            //         {
+            //             path: 'info2',
+            //             components: {
+            //                 'info2': main.components.info2
+            //             }
+            //         }
+            //     ]
+            // }
         ]
     });
-
-
     // 定义顶级VM对象
     var topVM = new Vue({
         el: '#app',
@@ -72,6 +116,34 @@ define('home', function (require, exports) {
             'leftNav': leftNav,
             'topNav': topNav,
             'mainContent': main
+        },
+        created: function () {
+            var route = this.$route;
+            if (/^\/home/i.test(route.fullPath)) {
+                this.page = 0;
+            }
+            else if (/^\/info/i.test(route.fullPath)) {
+                this.page = 1;
+            }
+            else if (/^\/course/i.test(route.fullPath)) {
+                this.page = 2;
+            }
+            else if (/^\/work/i.test(route.fullPath)) {
+                this.page = 3;
+            }
+            else if (/^\/train/i.test(route.fullPath)) {
+                this.page = 4;
+            }
+            else if (/^\/assessment/i.test(route.fullPath)) {
+                this.page = 5;
+            }
+            else if (/^\/comment/i.test(route.fullPath)) {
+                this.page = 6;
+            }
+            else if (/^\/user/i.test(route.fullPath)) {
+                this.page = 7;
+            }
+            this.user.rights['info'] = 1;
         },
         router: router,
         data: {
@@ -81,38 +153,10 @@ define('home', function (require, exports) {
                 avatar: window.user.avatar,
                 name: window.user.name
             },
-            currentPage: 0,
-            isManager: false
+            page: 0
         },
         methods: {
-            'changePage': function (page) {
-                var rights = this.user.rights;
-                this.currentPage = page;
-                console.log('changePage: ' + page);
-                switch (this.currentPage) {
-                    case 1: this.isManager = rights['info'] === '1'
-                                           ? true : false;
-                    break;
-                    case 2: this.isManager = rights['course'] === '1'
-                                           ? true : false;
-                    break;
-                    case 3: this.isManager = rights['work'] === '1'
-                                           ? true : false;
-                    break;
-                    case 4: this.isManager = rights['train'] === '1'
-                                           ? true : false;
-                    break;
-                    case 5: this.isManager = rights['assessment'] === '1'
-                                           ? true : false;
-                    break;
-                    case 6: this.isManager = rights['comment'] === '1'
-                                           ? true : false;
-                    break;
-                    case 7: this.isManager = this.user.type === '2'
-                                           ? true : false;
-                    break;
-                }
-            }
+            
         }
 
     });

@@ -1,3 +1,6 @@
+/**
+ * 应用入口样式
+ */
 @import 'animate.min.css';
 @import 'normalizeV3.0.2.css';
 @import '../dep/layer/skin/default/layer.css';
@@ -122,6 +125,7 @@ header .user-info .info p.greeting {
   height: 100%;
   box-sizing: border-box;
   padding: 20px;
+  float: left;
 }
 .left-nav ul {
   padding: 0;
@@ -144,6 +148,25 @@ header .user-info .info p.greeting {
 }
 .left-nav ul .left-item .left-btn.active {
   background: #27303d;
+}
+.main-container {
+  height: 100%;
+  display: block;
+  margin-left: 176px;
+  box-sizing: border-box;
+  padding: 20px;
+  background: #f3f3f3;
+}
+.insert-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+}
+.insert-container .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
 }
 section {
   height: 650px;

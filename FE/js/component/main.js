@@ -4,15 +4,22 @@
  * @date    2017-02-06
  */
 define(function (require, exports) {
+    'use strict'
 
     var mainRender = require('text!../template/main.tpl');
     // 子组件
     var teacherList = require('./home/teacherList');
+    var teacherDetail = require('./home/teacherDetail');
+    var insert = require('./info/insert');
+    var update = require('./info/update');
 
     var main = {
         template: mainRender,
         components: {
-        	'list': teacherList
+            list: teacherList,
+            detail: teacherDetail,
+            insert: insert,
+            update: update
         }
     }
 

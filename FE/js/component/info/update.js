@@ -1,16 +1,16 @@
 /**
- * 老师列表组件
+ * 档案测试组件2
  * @author  WhyCoder
  * @date    2017-02-06
  */
 define(function (require, exports) {
     'use strict'
     
-    var render = require('text!../../template/home/teacherList.tpl');
+    var render = require('text!../../template/info/update.tpl');
 
-    var teacherList = {
+    var update = {
         template: render
     }
 
-    return teacherList;
+    return update;
 });

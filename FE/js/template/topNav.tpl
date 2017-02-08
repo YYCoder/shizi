@@ -3,50 +3,50 @@
     <div class="nav">
         <router-link class="item" 
             tag="div"
-            to="home"
+            to="/home"
         >
             <a class="home">首页</a>
         </router-link>
         <router-link class="item" 
             tag="div"
-            to="info"
+            to="/info"
         >
             <a class="info">档案管理</a>
         </router-link>
         <router-link class="item" 
             tag="div"
-            to="course"
+            to="/course"
         >
             <a class="course">课程管理</a>
         </router-link>
         <router-link class="item" 
             tag="div"
-            to="work"
+            to="/work"
         >
             <a class="work">工作量管理</a>
         </router-link>
         <router-link class="item" 
             tag="div"
-            to="train"
+            to="/train"
         >
             <a class="train">培训管理</a>
         </router-link>
         <router-link class="item" 
             tag="div"
-            to="assessment"
+            to="/assessment"
         >
             <a class="assessment">考核管理</a>
         </router-link>
         <router-link class="item"
             v-if="userType == 2"
             tag="div"
-            to="user"
+            to="/user"
         >
             <a class="user">用户管理</a>
         </router-link>
         <router-link class="item" 
             tag="div"
-            to="comment"
+            to="/comment"
         >
             <a class="comment">留言板</a>
         </router-link>

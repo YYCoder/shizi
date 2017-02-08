@@ -6,11 +6,11 @@
 define(function (require, exports) {
     'use strict'
     
-    var render = require('text!../../template/home/teacherList.tpl');
+    var render = require('text!../../template/home/teacherDetail.tpl');
 
-    var teacherList = {
+    var teacherDetail = {
         template: render
     }
 
-    return teacherList;
+    return teacherDetail;
 });
