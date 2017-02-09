@@ -57,7 +57,12 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'Login_Controller/do_login';
 $route['register'] = 'Login_Controller/register';
 $route['change_avatar'] = 'Login_Controller/change_avatar';
+// 首页
 $route['home'] = 'Index_Controller/index';
+// 档案管理
+$route['info'] = 'Info_Controller/index';
+$route['info/insert'] = 'Info_Controller/index';
+$route['info/update'] = 'Info_Controller/index';
 
 
 

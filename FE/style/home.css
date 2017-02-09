@@ -168,6 +168,62 @@ header .user-info .info p.greeting {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
+.insert-container .tab-container {
+  margin: 15px 0 40px;
+}
+.insert-container .tab-container button {
+  background: #33a8ed;
+  border: none;
+  padding: 8px 0 8px 10px;
+  width: 33%;
+  border-radius: 5px;
+  text-align: left;
+  box-sizing: border-box;
+  color: #fff;
+}
+.insert-container .tab-container button:focus {
+  outline: none;
+}
+.insert-container .tab-container button.disabled {
+  background: #ccc;
+}
+.insert-container .form-container {
+  width: 75%;
+}
+.insert-container .form-container .info-label {
+  width: 100%;
+  display: inline-block;
+}
+.insert-container .form-container .info-label .info-name {
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+  margin-right: -2px;
+}
+.insert-container .form-container .info-label .require-icon {
+  color: red;
+  font-style: normal;
+  vertical-align: -3px;
+}
+.insert-container .form-container .info-label .info-inp {
+  margin-left: 15px;
+  padding: 5px 4px 3px 4px;
+  width: 65%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.insert-container .form-container .next {
+  float: right;
+  margin-top: 15px;
+  padding: 5px 15px;
+  border: none;
+  background: #33a8ed;
+  border-radius: 5px;
+  color: #fff;
+}
+.insert-container .form-container .next:focus {
+  outline: none;
+}
 section {
   height: 650px;
 }
