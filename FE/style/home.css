@@ -193,6 +193,7 @@ header .user-info .info p.greeting {
 .insert-container .form-container .info-label {
   width: 100%;
   display: inline-block;
+  margin-bottom: 15px;
 }
 .insert-container .form-container .info-label .info-name {
   display: inline-block;
@@ -204,6 +205,10 @@ header .user-info .info p.greeting {
   color: red;
   font-style: normal;
   vertical-align: -3px;
+}
+.insert-container .form-container .info-label textarea {
+  resize: none;
+  float: right;
 }
 .insert-container .form-container .info-label .info-inp {
   margin-left: 15px;

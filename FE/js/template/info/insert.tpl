@@ -3,17 +3,17 @@
     <hr>
     <div class="tab-container">
         <button id="basic"
-        	@click="curPage = 1"
+            @click="curPage = 1"
         >1.基本信息</button>
         <button id="personal"
-        	@click="curPage = 2"
-        	:disabled="disables.personal"
-        	:class="{disabled: disables.personal}"
+            @click="curPage = 2"
+            :disabled="disables.personal"
+            :class="{disabled: disables.personal}"
         >2.个人信息</button>
         <button id="experience"
-        	@click="curPage = 3"
-        	:disabled="disables.experience"
-        	:class="{disabled: disables.experience}"
+            @click="curPage = 3"
+            :disabled="disables.experience"
+            :class="{disabled: disables.experience}"
         >3.工作经历</button>
     </div>
     <div class="form-container">
@@ -26,11 +26,27 @@
                     v-model="formData.name"
                 >
             </label>
-            <button class="next" @click="">下一步</button>
+            <button class="next" @click="changePage(curPage)">下一步</button>
         </div>
         <div class="info-personal" v-show="curPage == 2">
-            <input type="text" name="self" maxlength=100>
-            <button class="next" @click="curPage = 3">下一步</button>
+            <label class="info-label">
+                <span class="info-name">年龄</span>
+                <i class="require-icon" v-if="requires.age">*</i>
+                <input class="info-inp" type="number" name="age"
+                    max=100
+                    v-model="formData.age"
+                >
+            </label>
+            <label class="info-label">
+                <span class="info-name">自我描述</span>
+                <i class="require-icon" v-if="requires.self">*</i>
+                <textarea class="info-inp" name="self"
+                    rows=4
+                    maxlength=100
+                    v-model="formData.self"
+                ></textarea>
+            </label>
+            <button class="next" @click="changePage(curPage)">下一步</button>
         </div>
         <div class="info-experience" v-show="curPage == 3">
             <input type="text" name="exp-college-1" maxlength=20>
