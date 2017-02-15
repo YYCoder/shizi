@@ -10,6 +10,7 @@ class Info_Controller extends My_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('User_Model');
     }
 
     public function index()
@@ -24,6 +25,30 @@ class Info_Controller extends My_Controller
         else
         {
             $this->load->view('login.html', $data);
+        }
+    }
+
+    /**
+     * 修改用户头像
+     */
+    public function upload_avatar()
+    {
+        if (!empty($_FILES['avatar']))
+        {
+            $res = $this->uploadImg();
+            $param = array(
+                'avatar' => str_replace('/Users/bjhl/myServer/shizi', $this->config->item('base_url'), $res['full_path'])
+            );
+            if (!empty($res))
+            {
+                $this->return_data(array(
+                    'avatar' => $param['avatar']
+                ));
+            }
+            else
+            {
+                $this->return_error('上传头像失败');
+            }
         }
     }
 

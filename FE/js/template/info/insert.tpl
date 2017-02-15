@@ -18,26 +18,48 @@
     </div>
     <div class="form-container">
         <div class="info-basic" v-show="curPage == 1">
-            <label class="info-label">
+            <div class="info-container">
                 <span class="info-name">姓名</span>
                 <i class="require-icon" v-if="requires.name">*</i>
                 <input class="info-inp" type="text" name="name"
                     maxlength=20
                     v-model="formData.name"
                 >
-            </label>
+            </div>
+            <div class="info-container">
+                <span class="info-name">头像</span>
+                <i class="require-icon" v-if="requires.avatar">*</i>
+                <input type="file" name="avatar" id="avatar"
+                    accept="image/png,image/gif" 
+                    @change="changeAvatar"
+                >
+                <label for="avatar">点击上传头像</label>
+                <img src="http://www.yyteacher.com/FE/img/user.png" class="avatar">
+            </div>
+            <div class="info-container">
+                <span class="info-name">性别</span>
+                <i class="require-icon" v-if="requires.sex">*</i>
+                <label>
+                    男:<input type="radio" name="sex" value="1"
+                            v-model="formData.sex">
+                </label>
+                <label>
+                    女:<input type="radio" name="sex" value="2"
+                            v-model="formData.sex">
+                </label>
+            </div>
             <button class="next" @click="changePage(curPage)">下一步</button>
         </div>
         <div class="info-personal" v-show="curPage == 2">
-            <label class="info-label">
+            <div class="info-container">
                 <span class="info-name">年龄</span>
                 <i class="require-icon" v-if="requires.age">*</i>
                 <input class="info-inp" type="number" name="age"
                     max=100
                     v-model="formData.age"
                 >
-            </label>
-            <label class="info-label">
+            </div>
+            <div class="info-container">
                 <span class="info-name">自我描述</span>
                 <i class="require-icon" v-if="requires.self">*</i>
                 <textarea class="info-inp" name="self"
@@ -45,7 +67,7 @@
                     maxlength=100
                     v-model="formData.self"
                 ></textarea>
-            </label>
+            </div>
             <button class="next" @click="changePage(curPage)">下一步</button>
         </div>
         <div class="info-experience" v-show="curPage == 3">

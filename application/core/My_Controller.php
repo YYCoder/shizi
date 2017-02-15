@@ -73,7 +73,7 @@ class My_Controller extends CI_Controller
     }
 
     /**
-     * 上传图片
+     * 上传头像
      * @param  
      */
     public function uploadImg()
