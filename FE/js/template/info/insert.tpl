@@ -21,25 +21,29 @@
             <div class="info-container">
                 <span class="info-name">姓名</span>
                 <i class="require-icon" v-if="requires.name">*</i>
-                <input class="info-inp" type="text" name="name"
-                    maxlength=20
-                    v-model="formData.name"
-                >
+                <div class="content-container">
+	                <input class="info-inp" type="text" name="name"
+	                    maxlength=20
+	                    v-model="formData.name"
+	                >
+                </div>
             </div>
             <div class="info-container">
                 <span class="info-name">头像</span>
                 <i class="require-icon" v-if="requires.avatar">*</i>
-                <input type="file" name="avatar" id="avatar"
-                    accept="image/png,image/gif" 
-                    @change="changeAvatar"
-                >
-                <label for="avatar">点击上传头像</label>
-                <img src="http://www.yyteacher.com/FE/img/user.png" class="avatar">
+                <div class="content-container">
+	                <input type="file" name="avatar" id="avatar"
+	                    accept="image/png,image/gif" 
+	                    @change="changeAvatar"
+	                >
+	                <label for="avatar">点击上传头像</label>
+	                <img src="http://www.yyteacher.com/FE/img/user.png" class="avatar">
+                </div>
             </div>
             <div class="info-container">
                 <span class="info-name">性别</span>
                 <i class="require-icon" v-if="requires.sex">*</i>
-                <div class="radio-container">
+                <div class="content-container">
                     <label>
                         男:&nbsp;<input type="radio" name="sex" value="1"
                                 v-model="formData.sex">
@@ -48,6 +52,16 @@
                         女:&nbsp;<input type="radio" name="sex" value="2"
                                 v-model="formData.sex">
                     </label>
+                </div>
+            </div>
+            <div class="info-container">
+                <span class="info-name">专业</span>
+                <i class="require-icon" v-if="requires.major">*</i>
+                <div class="content-container">
+	                <input type="list" list="majors" name="major">
+	                <datalist id="majors">
+	                    <option v-for="major in majors" value="major.id">{{major.name}}</option>
+	                </datalist>
                 </div>
             </div>
             <button class="next" @click="changePage(curPage)">下一步</button>

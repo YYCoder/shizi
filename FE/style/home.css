@@ -218,34 +218,34 @@ header .user-info .info p.greeting {
   resize: none;
   float: right;
 }
-.insert-container .form-container .info-container .info-inp {
+.insert-container .form-container .info-container .content-container {
+  display: inline-block;
   margin-left: 12px;
-  padding: 5px 4px 3px 4px;
   width: 77%;
+}
+.insert-container .form-container .info-container .content-container .info-inp {
+  padding: 5px 4px 3px 4px;
+  width: 100%;
   border-radius: 5px;
   border: 1px solid #ccc;
+  box-sizing: border-box;
 }
-.insert-container .form-container .info-container #avatar {
+.insert-container .form-container .info-container .content-container #avatar {
   display: none;
 }
-.insert-container .form-container .info-container label[for="avatar"] {
-  margin-left: 12px;
+.insert-container .form-container .info-container .content-container label[for="avatar"] {
   cursor: pointer;
   padding: 5px 10px;
   background: #33a8ed;
   border-radius: 5px;
   color: #fff;
 }
-.insert-container .form-container .info-container .avatar {
+.insert-container .form-container .info-container .content-container .avatar {
   width: 100px;
   height: 80px;
   vertical-align: middle;
   float: right;
   border-radius: 5px;
-}
-.insert-container .form-container .info-container .radio-container {
-  display: inline-block;
-  margin-left: 12px;
 }
 .insert-container .form-container .next {
   margin-top: 15px;

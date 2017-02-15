@@ -56,34 +56,34 @@
                 resize: none;
                 float: right;
             }
-            .info-inp {
-                margin-left: 12px;
-                padding: 5px 4px 3px 4px;
-                width: 77%;
-                border-radius: 5px;
-                border: 1px solid #ccc;
-            }
-            #avatar {
-            	display: none;
-            }
-            label[for="avatar"] {
-        	    margin-left: 12px;
-			    cursor: pointer;
-			    padding: 5px 10px;
-			    background: @btn2;
-			    border-radius: 5px;
-			    color: @mainBtn;
-            }
-            .avatar {
-        	    width: 100px;
-			    height: 80px;
-			    vertical-align: middle;
-			    float: right;
-			    border-radius: 5px;
-            }
-            .radio-container {
+            .content-container {
             	display: inline-block;
             	margin-left: 12px;
+            	width: 77%;
+	            .info-inp {
+	                padding: 5px 4px 3px 4px;
+	                width: 100%;
+	                border-radius: 5px;
+	                border: 1px solid #ccc;
+	                box-sizing: border-box;
+	            }
+	            #avatar {
+	            	display: none;
+	            }
+	            label[for="avatar"] {
+				    cursor: pointer;
+				    padding: 5px 10px;
+				    background: @btn2;
+				    border-radius: 5px;
+				    color: @mainBtn;
+	            }
+	            .avatar {
+	        	    width: 100px;
+				    height: 80px;
+				    vertical-align: middle;
+				    float: right;
+				    border-radius: 5px;
+	            }
             }
         }
         .next {

@@ -11,6 +11,7 @@ class Info_Controller extends My_Controller
     {
         parent::__construct();
         $this->load->model('User_Model');
+        $this->load->model('Mult_Model');
     }
 
     public function index()
@@ -52,6 +53,23 @@ class Info_Controller extends My_Controller
         }
     }
 
+    /**
+     * 获取全部专业信息
+     */
+    public function get_majors()
+    {
+        $res = $this->Mult_Model->get_major();
+        if (!empty($res))
+        {
+            $this->return_data(array(
+                'majors' => $res
+            ));
+        }
+        else
+        {
+            $this->return_error('获取专业失败');
+        }
+    }
 
 
 }

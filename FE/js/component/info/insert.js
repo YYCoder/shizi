@@ -27,13 +27,18 @@ define(function (require, exports) {
                     'self': '',
                     'age': 0,
                     'avatar': '',
-                    'sex': '0'
+                    'sex': '0',
+                    'major': ''
                 },
                 disables: {
                     'personal': true,
                     'experience': true
-                }
+                },
+                majors: []
             };
+        },
+        created: function () {
+        	this.getMajors();
         },
         methods: {
             'submit': function () {
@@ -46,6 +51,12 @@ define(function (require, exports) {
                     }
                     else if (this.formData['avatar'].length === 0) {
                         ui.tips({msg: '请输上传您的头像', follow: 'label[for="avatar"]'});
+                    }
+                    else if (this.formData['sex'] === '0') {
+                        ui.tips({msg: '请选择您的性别', follow: 'input[name="sex"]'});
+                    }
+                    else if (this.formData['major'].length === 0) {
+                        ui.tips({msg: '请选择您所属的专业', follow: 'input[name="major"]'});
                     }
                     else {
                         this.disables['personal'] = false;
@@ -70,6 +81,7 @@ define(function (require, exports) {
                 var file = target.files[0];
                 var img = document.querySelector('.avatar');
                 var formData;
+                var vm = this;
                 if (file.size > 2097152) {
                     target.value = '';
                     ui.msgError('图片大小不能超过2MB');
@@ -85,8 +97,8 @@ define(function (require, exports) {
                         contentType: false,
                         processData: false,
                         success: function (res) {
-                            console.log(res);
                             if (res.code === 0) {
+                            	vm.formData['avatar'] = res.data['avatar'];
                                 img.src = res.data['avatar'];
                             }
                             else {
@@ -95,6 +107,16 @@ define(function (require, exports) {
                         }
                     });
                 }
+            },
+            'getMajors': function () {
+            	$.ajax({
+            		url: location.origin + '/index.php/get_majors',
+            		dataType: 'json',
+            		type: 'get',
+            		success: function (res) {
+            			console.log(res);
+            		}
+            	});
             }
         }
     }
