@@ -39,14 +39,16 @@
             <div class="info-container">
                 <span class="info-name">性别</span>
                 <i class="require-icon" v-if="requires.sex">*</i>
-                <label>
-                    男:<input type="radio" name="sex" value="1"
-                            v-model="formData.sex">
-                </label>
-                <label>
-                    女:<input type="radio" name="sex" value="2"
-                            v-model="formData.sex">
-                </label>
+                <div class="radio-container">
+                    <label>
+                        男:&nbsp;<input type="radio" name="sex" value="1"
+                                v-model="formData.sex">
+                    </label>
+                    <label>
+                        女:&nbsp;<input type="radio" name="sex" value="2"
+                                v-model="formData.sex">
+                    </label>
+                </div>
             </div>
             <button class="next" @click="changePage(curPage)">下一步</button>
         </div>

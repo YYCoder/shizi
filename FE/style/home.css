@@ -243,6 +243,10 @@ header .user-info .info p.greeting {
   float: right;
   border-radius: 5px;
 }
+.insert-container .form-container .info-container .radio-container {
+  display: inline-block;
+  margin-left: 12px;
+}
 .insert-container .form-container .next {
   margin-top: 15px;
   padding: 5px 15px;
