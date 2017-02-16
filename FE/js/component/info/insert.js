@@ -16,11 +16,20 @@ define(function (require, exports) {
                 curPage: 1,
                 requires: {
                     'name': true,
-                    'age': true,
+                    'age': false,
                     'self': true,
                     'avatar': true,
                     'sex': true,
-                    'major': true
+                    'major': true,
+                    'nationality': false,
+                    'title': true,
+                    'graduation': true,
+                    'direction': false,
+                    'postcode': false,
+                    'teachYear': false,
+                    'marriage': false,
+                    'mobile': true,
+                    'address': false
                 },
                 formData: {
                     'name': '',
@@ -28,17 +37,26 @@ define(function (require, exports) {
                     'age': 0,
                     'avatar': '',
                     'sex': '0',
-                    'major': ''
+                    'major': '',
+                    'nationality': '中国',
+                    'title': '',
+                    'graduation': '',
+                    'direction': '无',
+                    'postcode': 0,
+                    'teachYear': 0,
+                    'marriage': 0,
+                    'mobile': '',
+                    'address': ''
                 },
                 disables: {
-                    'personal': true,
+                    'personal': false,
                     'experience': true
                 },
                 majors: []
             };
         },
         created: function () {
-        	this.getMajors();
+            this.getMajors();
         },
         methods: {
             'submit': function () {
@@ -58,14 +76,27 @@ define(function (require, exports) {
                     else if (this.formData['major'].length === 0) {
                         ui.tips({msg: '请选择您所属的专业', follow: 'input[name="major"]'});
                     }
+                    else if (this.formData['title'].length === 0) {
+                        ui.tips({msg: '请输入您的职称', follow: 'input[name="title"]'});
+                    }
+                    else if (this.formData['graduation'].length === 0) {
+                        ui.tips({msg: '请输入您的毕业院校', follow: 'input[name="graduation"]'});
+                    }
                     else {
                         this.disables['personal'] = false;
                         this.curPage = 2;
                     }
+                    this.formData['major'] = this.formData['major'].replace(/^[0]+/g, '');
                 }
                 else if (curPage === 2) {
                     if (this.formData['age'] <= 20) {
                         ui.tips({msg: '您的年龄太小啦', follow: 'input[name="age"]'});
+                    }
+                    else if (this.formData['mobile'].length === 0) {
+                        ui.tips({msg: '请输入您的手机号', follow: 'input[name="mobile"]'});
+                    }
+                    else if (!/^1[13578]{1}\d{9}$/.test(this.formData['mobile'])) {
+                        ui.tips({msg: '请输入正确的手机号', follow: 'input[name="mobile"]'});
                     }
                     else if (this.formData['self'].length === 0) {
                         ui.tips({msg: '请输入您的自我描述', follow: 'textarea[name="self"]'});
@@ -74,6 +105,9 @@ define(function (require, exports) {
                         this.disables['experience'] = false;
                         this.curPage = 3;
                     }
+                }
+                else if (curPage === 3) {
+
                 }
             },
             'changeAvatar': function (e) {
@@ -98,7 +132,7 @@ define(function (require, exports) {
                         processData: false,
                         success: function (res) {
                             if (res.code === 0) {
-                            	vm.formData['avatar'] = res.data['avatar'];
+                                vm.formData['avatar'] = res.data['avatar'];
                                 img.src = res.data['avatar'];
                             }
                             else {
@@ -109,14 +143,15 @@ define(function (require, exports) {
                 }
             },
             'getMajors': function () {
-            	$.ajax({
-            		url: location.origin + '/index.php/get_majors',
-            		dataType: 'json',
-            		type: 'get',
-            		success: function (res) {
-            			console.log(res);
-            		}
-            	});
+                var vm = this;
+                $.ajax({
+                    url: location.origin + '/index.php/get_majors',
+                    dataType: 'json',
+                    type: 'get',
+                    success: function (res) {
+                        vm.majors = res.data.majors;
+                    }
+                });
             }
         }
     }

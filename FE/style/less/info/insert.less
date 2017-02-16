@@ -32,70 +32,79 @@
     }
     .form-container {
         width: 100%;
-        .info-basic {
-    	    width: 60%;
-		    margin: 0 auto;
-		    position: relative;
+        .info-basic, .info-personal, .info-experience {
+            width: 60%;
+            margin: 0 auto;
+            position: relative;
         }
         .info-container {
             width: 85%;
-		    display: inline-block;
-		    margin-bottom: 15px;
+            display: inline-block;
+            margin-bottom: 15px;
+            position: relative;
             .info-name {
                 display: inline-block;
-			    width: 15%;
-			    text-align: right;
-			    margin-right: -2px;
+                width: 15%;
+                text-align: right;
+                margin-right: -2px;
+                &.self-desc {
+                    vertical-align: top;
+                }
             }
             .require-icon {
                 color: red;
                 font-style: normal;
-                vertical-align: -3px;
+                position: absolute;
+                top: 5px;
             }
             textarea {
                 resize: none;
                 float: right;
             }
             .content-container {
-            	display: inline-block;
-            	margin-left: 12px;
-            	width: 77%;
-	            .info-inp {
-	                padding: 5px 4px 3px 4px;
-	                width: 100%;
-	                border-radius: 5px;
-	                border: 1px solid #ccc;
-	                box-sizing: border-box;
-	            }
-	            #avatar {
-	            	display: none;
-	            }
-	            label[for="avatar"] {
-				    cursor: pointer;
-				    padding: 5px 10px;
-				    background: @btn2;
-				    border-radius: 5px;
-				    color: @mainBtn;
-	            }
-	            .avatar {
-	        	    width: 100px;
-				    height: 80px;
-				    vertical-align: middle;
-				    float: right;
-				    border-radius: 5px;
-	            }
+                display: inline-block;
+                margin-left: 15px;
+                width: 80%;
+                .info-inp {
+                    padding: 5px 4px 3px 4px;
+                    width: 100%;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    box-sizing: border-box;
+                }
+                #avatar {
+                    display: none;
+                }
+                label[for="avatar"] {
+                    cursor: pointer;
+                    padding: 5px 10px;
+                    background: @btn1;
+                    border-radius: 5px;
+                    color: @mainBtn;
+                }
+                .avatar {
+                    width: 100px;
+                    height: 80px;
+                    vertical-align: middle;
+                    float: right;
+                    border-radius: 5px;
+                }
+                .tip {
+                    font-size: 12px;
+                    color: #999;
+                }
             }
         }
         .next {
             margin-top: 15px;
-		    padding: 5px 15px;
-		    border: none;
-		    background: @btn2;
-		    border-radius: 5px;
-		    color: @mainBtn;
-		    position: absolute;
-		    bottom: -30px;
-		    right: 100px;
+            padding: 5px 15px;
+            border: none;
+            background: @btn2;
+            border-radius: 5px;
+            color: @mainBtn;
+            position: absolute;
+            bottom: -30px;
+            right: 100px;
             &:focus {
                 outline: none;
             }

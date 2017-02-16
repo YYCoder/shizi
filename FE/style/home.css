@@ -193,7 +193,9 @@ header .user-info .info p.greeting {
 .insert-container .form-container {
   width: 100%;
 }
-.insert-container .form-container .info-basic {
+.insert-container .form-container .info-basic,
+.insert-container .form-container .info-personal,
+.insert-container .form-container .info-experience {
   width: 60%;
   margin: 0 auto;
   position: relative;
@@ -202,6 +204,7 @@ header .user-info .info p.greeting {
   width: 85%;
   display: inline-block;
   margin-bottom: 15px;
+  position: relative;
 }
 .insert-container .form-container .info-container .info-name {
   display: inline-block;
@@ -209,10 +212,14 @@ header .user-info .info p.greeting {
   text-align: right;
   margin-right: -2px;
 }
+.insert-container .form-container .info-container .info-name.self-desc {
+  vertical-align: top;
+}
 .insert-container .form-container .info-container .require-icon {
   color: red;
   font-style: normal;
-  vertical-align: -3px;
+  position: absolute;
+  top: 5px;
 }
 .insert-container .form-container .info-container textarea {
   resize: none;
@@ -220,8 +227,8 @@ header .user-info .info p.greeting {
 }
 .insert-container .form-container .info-container .content-container {
   display: inline-block;
-  margin-left: 12px;
-  width: 77%;
+  margin-left: 15px;
+  width: 80%;
 }
 .insert-container .form-container .info-container .content-container .info-inp {
   padding: 5px 4px 3px 4px;
@@ -236,7 +243,7 @@ header .user-info .info p.greeting {
 .insert-container .form-container .info-container .content-container label[for="avatar"] {
   cursor: pointer;
   padding: 5px 10px;
-  background: #33a8ed;
+  background: #4fbfaa;
   border-radius: 5px;
   color: #fff;
 }
@@ -246,6 +253,10 @@ header .user-info .info p.greeting {
   vertical-align: middle;
   float: right;
   border-radius: 5px;
+}
+.insert-container .form-container .info-container .content-container .tip {
+  font-size: 12px;
+  color: #999;
 }
 .insert-container .form-container .next {
   margin-top: 15px;
