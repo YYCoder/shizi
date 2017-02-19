@@ -23,13 +23,16 @@ define(function (require, exports) {
                     'major': true,
                     'nationality': false,
                     'title': true,
+                    'direction': false,
                     'graduation': true,
                     'direction': false,
-                    'postcode': false,
+                    'postcode': true,
                     'teachYear': false,
                     'marriage': false,
                     'mobile': true,
-                    'address': false
+                    'address': false,
+                    'salary': true,
+                    'idCode': true
                 },
                 formData: {
                     'name': '',
@@ -46,11 +49,13 @@ define(function (require, exports) {
                     'teachYear': 0,
                     'marriage': 0,
                     'mobile': '',
-                    'address': ''
+                    'address': '',
+                    'salary': 0.00,
+                    'idCode': 0
                 },
                 disables: {
                     'personal': false,
-                    'experience': true
+                    'experience': false
                 },
                 majors: []
             };
@@ -63,9 +68,16 @@ define(function (require, exports) {
                 ui.msgRight('提交成功');
             },
             'changePage': function (curPage) {
+                var idReg = /^[1-9]{1}[0-9]{14}$|^[1-9]{1}[0-9]{16}([0-9]|[xX])$/;
                 if (curPage === 1) {
                     if (this.formData['name'].length === 0) {
                         ui.tips({msg: '请输入您的姓名', follow: 'input[name="name"]'});
+                    }
+                    else if (this.formData['idCode'].length === 0) {
+                        ui.tips({msg: '请输入您的身份证号', follow: 'input[name="idCode"]'});
+                    }
+                    else if (idReg.test(this.formData['idCode'])) {
+                        ui.tips({msg: '请输入正确的身份证号', follow: 'input[name="idCode"]'});
                     }
                     else if (this.formData['avatar'].length === 0) {
                         ui.tips({msg: '请输上传您的头像', follow: 'label[for="avatar"]'});
@@ -100,6 +112,9 @@ define(function (require, exports) {
                     }
                     else if (this.formData['self'].length === 0) {
                         ui.tips({msg: '请输入您的自我描述', follow: 'textarea[name="self"]'});
+                    }
+                    else if (this.formData['salary'] === 0) {
+                        ui.tips({msg: '请输入您的薪资', follow: 'input[name="salary"]'});
                     }
                     else {
                         this.disables['experience'] = false;

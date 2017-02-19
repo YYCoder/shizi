@@ -169,7 +169,7 @@ header .user-info .info p.greeting {
   margin: 10px 0 15px;
 }
 .insert-container .tab-container {
-  margin: 15px 0 40px;
+  margin: 15px 0 30px;
   overflow: hidden;
 }
 .insert-container .tab-container button {
@@ -192,6 +192,8 @@ header .user-info .info p.greeting {
 }
 .insert-container .form-container {
   width: 100%;
+  height: 75%;
+  overflow: scroll;
 }
 .insert-container .form-container .info-basic,
 .insert-container .form-container .info-personal,
@@ -257,6 +259,17 @@ header .user-info .info p.greeting {
 .insert-container .form-container .info-container .content-container .tip {
   font-size: 12px;
   color: #999;
+}
+.insert-container .form-container .info-container .content-container .salary-icon {
+  position: absolute;
+  top: 5px;
+  margin-left: 4px;
+}
+.insert-container .form-container .info-container .content-container input[type=number] {
+  width: 50%;
+}
+.insert-container .form-container .info-container .content-container input[type=number][name=salary] {
+  padding-left: 20px;
 }
 .insert-container .form-container .next {
   margin-top: 15px;

@@ -30,6 +30,17 @@
                 </div>
             </div>
             <div class="info-container">
+                <span class="info-name">身份证号</span>
+                <i class="require-icon" v-if="requires.idCode">*</i>
+                <div class="content-container">
+                    <input class="info-inp" type="number" name="idCode"
+                        min="0"
+                        maxlength="18"
+                        v-model="formData.idCode"
+                    >
+                </div>
+            </div>
+            <div class="info-container">
                 <span class="info-name">头像</span>
                 <i class="require-icon" v-if="requires.avatar">*</i>
                 <div class="content-container">
@@ -65,6 +76,17 @@
                         </template>
                     </datalist>
                     <span class="tip">专业编号或专业名称</span>
+                </div>
+            </div>
+            <div class="info-container">
+                <span class="info-name">研究方向</span>
+                <i class="require-icon" v-if="requires.direction">*</i>
+                <div class="content-container">
+                    <input class="info-inp" type="text" 
+                        name="direction"
+                        maxlength=30
+                        v-model="formData.direction"
+                    >
                 </div>
             </div>
             <div class="info-container">
@@ -109,7 +131,7 @@
                 <i class="require-icon" v-if="requires.age">*</i>
                 <div class="content-container">
                     <input class="info-inp" type="number" name="age"
-                        max=100
+                        max=100 min="0"
                         v-model="formData.age"
                     >
                 </div>
@@ -135,6 +157,17 @@
                 </div>
             </div>
             <div class="info-container">
+                <span class="info-name">邮政编码</span>
+                <i class="require-icon" v-if="requires.postcode">*</i>
+                <div class="content-container">
+                    <input class="info-inp" type="number" 
+                        name="postcode"
+                        maxlength=10
+                        v-model="formData.postcode"
+                    >
+                </div>
+            </div>
+            <div class="info-container">
                 <span class="info-name self-desc">自我描述</span>
                 <i class="require-icon" v-if="requires.self">*</i>
                 <div class="content-container">
@@ -146,13 +179,14 @@
                 </div>
             </div>
             <div class="info-container">
-                <span class="info-name">教龄</span>
-                <i class="require-icon" v-if="requires.teachYear">*</i>
+                <span class="info-name">薪资</span>
+                <i class="require-icon" v-if="requires.salary">*</i>
                 <div class="content-container">
-                    <input class="info-inp" type="number" name="teachYear"
-                        max=20
-                        v-model="formData.teachYear"
-                    >
+                    <i class="salary-icon">¥&nbsp;</i>
+                    <input class="info-inp" type="number" name="salary" 
+                        max="10" min="0"
+                        v-model="formData.salary">
+                    <span class="tip">k/月</span>
                 </div>
             </div>
             <div class="info-container">
@@ -173,6 +207,16 @@
         </div>
         <!-- 工作经验 -->
         <div class="info-experience" v-show="curPage == 3">
+            <div class="info-container">
+                <span class="info-name">教龄</span>
+                <i class="require-icon" v-if="requires.teachYear">*</i>
+                <div class="content-container">
+                    <input class="info-inp" type="number" name="teachYear"
+                        max=20 min="0"
+                        v-model="formData.teachYear"
+                    >
+                </div>
+            </div>
             <input type="text" name="exp-college-1" maxlength=20>
             <button class="next" @click="submit">提交</button>
         </div>
