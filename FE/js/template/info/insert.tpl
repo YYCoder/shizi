@@ -33,7 +33,7 @@
                 <span class="info-name">身份证号</span>
                 <i class="require-icon" v-if="requires.idCode">*</i>
                 <div class="content-container">
-                    <input class="info-inp" type="number" name="idCode"
+                    <input class="info-inp" type="text" name="idCode"
                         min="0"
                         maxlength="18"
                         v-model="formData.idCode"
@@ -48,7 +48,7 @@
                         accept="image/png,image/gif" 
                         @change="changeAvatar"
                     >
-                    <label for="avatar">点击上传头像</label>
+                    <label class="btn1" for="avatar">点击上传头像</label>
                     <img src="http://www.yyteacher.com/FE/img/user.png" class="avatar">
                 </div>
             </div>
@@ -122,7 +122,7 @@
                     >
                 </div>
             </div>
-            <button class="next" @click="changePage(curPage)">下一步</button>
+            <button class="btn2" @click="changePage(curPage)">下一步</button>
         </div>
         <!-- 个人信息 -->
         <div class="info-personal" v-show="curPage == 2">
@@ -203,10 +203,6 @@
                     </label>
                 </div>
             </div>
-            <button class="next" @click="changePage(curPage)">下一步</button>
-        </div>
-        <!-- 工作经验 -->
-        <div class="info-experience" v-show="curPage == 3">
             <div class="info-container">
                 <span class="info-name">教龄</span>
                 <i class="require-icon" v-if="requires.teachYear">*</i>
@@ -217,8 +213,19 @@
                     >
                 </div>
             </div>
-            <input type="text" name="exp-college-1" maxlength=20>
-            <button class="next" @click="submit">提交</button>
+            <button class="btn2" @click="changePage(curPage)">下一步</button>
+        </div>
+        <!-- 工作经验 -->
+        <div class="info-experience" v-show="curPage == 3">
+            
+            <transition name="custom-classes-transition"
+            	enter-active-class="animated "
+            	leave-active-class="animated "
+            >
+
+            </transition>
+            <button class="btn1" @click="addExp">添加</button>
+            <button class="btn2" @click="submit">提交</button>
         </div>
     </div>
 </div>

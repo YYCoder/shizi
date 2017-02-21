@@ -1,3 +1,5 @@
+@import 'experience/exp.less';
+
 .insert-container {
     padding: 15px;
     height: 100%;
@@ -61,7 +63,6 @@
             }
             textarea {
                 resize: none;
-                float: right;
             }
             .content-container {
                 display: inline-block;
@@ -76,13 +77,6 @@
                 }
                 #avatar {
                     display: none;
-                }
-                label[for="avatar"] {
-                    cursor: pointer;
-                    padding: 5px 10px;
-                    background: @btn1;
-                    border-radius: 5px;
-                    color: @mainBtn;
                 }
                 .avatar {
                     width: 100px;
@@ -108,7 +102,15 @@
                 }
             }
         }
-        .next {
+        .btn1 {
+            cursor: pointer;
+            padding: 5px 10px;
+            background: @btn1;
+            border-radius: 5px;
+            color: @mainBtn;
+            border: none;
+        }
+        .btn2 {
             margin-top: 15px;
             padding: 5px 15px;
             border: none;

@@ -157,6 +157,48 @@ header .user-info .info p.greeting {
   padding: 20px;
   background: #f3f3f3;
 }
+.exp-container {
+  width: 85%;
+  display: inline-block;
+  margin-bottom: 15px;
+  position: relative;
+}
+.exp-container .exp-title {
+  text-align: center;
+  color: #777;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+  margin: 5px 0 15px;
+}
+.exp-container .exp-content {
+  margin: 10px 0;
+}
+.exp-container .exp-content .exp-inp {
+  margin-left: 15px;
+  width: 35%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px 4px 3px 4px;
+}
+.exp-container .exp-content .exp-inp[name*="Start"] {
+  margin-right: 5px;
+}
+.exp-container .exp-content .exp-inp[name*="End"] {
+  margin-left: 5px;
+}
+.exp-container .exp-content .exp-info-title {
+  vertical-align: top;
+}
+.exp-container .exp-content textarea {
+  resize: none;
+  padding: 5px 4px 3px 4px;
+  width: 81.5%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-left: 15px;
+  line-height: 1.5rem;
+}
 .insert-container {
   padding: 15px;
   height: 100%;
@@ -225,7 +267,6 @@ header .user-info .info p.greeting {
 }
 .insert-container .form-container .info-container textarea {
   resize: none;
-  float: right;
 }
 .insert-container .form-container .info-container .content-container {
   display: inline-block;
@@ -241,13 +282,6 @@ header .user-info .info p.greeting {
 }
 .insert-container .form-container .info-container .content-container #avatar {
   display: none;
-}
-.insert-container .form-container .info-container .content-container label[for="avatar"] {
-  cursor: pointer;
-  padding: 5px 10px;
-  background: #4fbfaa;
-  border-radius: 5px;
-  color: #fff;
 }
 .insert-container .form-container .info-container .content-container .avatar {
   width: 100px;
@@ -271,7 +305,15 @@ header .user-info .info p.greeting {
 .insert-container .form-container .info-container .content-container input[type=number][name=salary] {
   padding-left: 20px;
 }
-.insert-container .form-container .next {
+.insert-container .form-container .btn1 {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: #4fbfaa;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+}
+.insert-container .form-container .btn2 {
   margin-top: 15px;
   padding: 5px 15px;
   border: none;
@@ -282,7 +324,7 @@ header .user-info .info p.greeting {
   bottom: -30px;
   right: 100px;
 }
-.insert-container .form-container .next:focus {
+.insert-container .form-container .btn2:focus {
   outline: none;
 }
 section {

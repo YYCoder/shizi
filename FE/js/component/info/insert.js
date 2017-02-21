@@ -4,10 +4,12 @@
  * @date    2017-02-06
  */
 define(function (require, exports) {
-    'use strict'
+    'use strict';
     
     var render = require('text!../../template/info/insert.tpl');
     var ui = require('ui');
+    // 子组件
+    var exp = require('./experience/exp');
 
     var insert = {
         template: render,
@@ -51,13 +53,31 @@ define(function (require, exports) {
                     'mobile': '',
                     'address': '',
                     'salary': 0.00,
-                    'idCode': 0
+                    'idCode': '',
+                    'exp1College': '',
+                    'exp1Time': 0,
+                    'exp1Descp': '',
+                    'exp2College': '',
+                    'exp2Time': 0,
+                    'exp2Descp': '',
+                    'exp3College': '',
+                    'exp3Time': 0,
+                    'exp3Descp': ''
+                },
+                expTime: {
+                    'exp1Start': 0,
+                    'exp1End': 0,
+                    'exp2Start': 0,
+                    'exp2End': 0,
+                    'exp3Start': 0,
+                    'exp3End': 0
                 },
                 disables: {
                     'personal': false,
                     'experience': false
                 },
-                majors: []
+                majors: [],
+                expCount: 1
             };
         },
         created: function () {
@@ -68,7 +88,7 @@ define(function (require, exports) {
                 ui.msgRight('提交成功');
             },
             'changePage': function (curPage) {
-                var idReg = /^[1-9]{1}[0-9]{14}$|^[1-9]{1}[0-9]{16}([0-9]|[xX])$/;
+                var idReg = /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i;
                 if (curPage === 1) {
                     if (this.formData['name'].length === 0) {
                         ui.tips({msg: '请输入您的姓名', follow: 'input[name="name"]'});
@@ -76,7 +96,7 @@ define(function (require, exports) {
                     else if (this.formData['idCode'].length === 0) {
                         ui.tips({msg: '请输入您的身份证号', follow: 'input[name="idCode"]'});
                     }
-                    else if (idReg.test(this.formData['idCode'])) {
+                    else if (!idReg.test(this.formData['idCode'])) {
                         ui.tips({msg: '请输入正确的身份证号', follow: 'input[name="idCode"]'});
                     }
                     else if (this.formData['avatar'].length === 0) {
@@ -167,6 +187,20 @@ define(function (require, exports) {
                         vm.majors = res.data.majors;
                     }
                 });
+            },
+            'addExp': function (e) {
+                var self = e.target;
+                if (this.expCount < 3) {
+                    this.expCount++;
+                }
+                else {
+                    self.style.display = 'none';
+                }
+            },
+            'delExp': function () {
+                if (this.expCount > 0) {
+                    this.expCount--;
+                }
             }
         }
     }
