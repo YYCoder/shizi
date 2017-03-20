@@ -4,7 +4,7 @@
  * @date    2017-02-06
  */
 define(function (require, exports) {
-    'use strict'
+    'use strict';
 
     var topNavRender = require('text!../template/topNav.tpl');
 
@@ -32,7 +32,7 @@ define(function (require, exports) {
             }
         },
         methods: {
-            
+
         }
     };
 

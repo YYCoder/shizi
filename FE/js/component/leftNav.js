@@ -4,7 +4,7 @@
  * @date    2017-02-06
  */
 define(function (require, exports) {
-    'use strict'
+    'use strict';
 
     var leftNavRender = require('text!../template/leftNav.tpl');
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>师资信息管理系统</title>
     <link rel="stylesheet" href="<?php echo $base_url ?>/FE/style/home.css">
-    <?php 
+    <?php
         $type = $_SESSION['user']['type'];
         $rights = json_encode(array(
             'info' => $_SESSION['user']['info'],
@@ -29,7 +29,7 @@
     </script>
 </head>
 <body>
-    
+
     <div id="app">
         <!-- 顶导组件 -->
         <top-nav
@@ -39,7 +39,7 @@
         ></top-nav>
         <section>
             <!-- 左导航组件 -->
-            <router-view name="leftNav" 
+            <router-view name="leftNav"
                 :rights="user.rights"
                 :page="page"
             ></router-view>
@@ -63,9 +63,9 @@
             'moment': './dep/moment/moment',
             'text': './dep/text',
             'vue-router': './dep/vue-router',
-
             'util': './common/util',
-            'ui': './common/ui'
+            'ui': './common/ui',
+            'cookie': './common/cookie'
         },
         shim: {
             'layer': {

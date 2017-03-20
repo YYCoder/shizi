@@ -4,17 +4,21 @@
  * @date    2017-02-02
  */
 define('home', function (require, exports) {
-    'use strict'
+    'use strict';
 
     var Vue = require('vue');
     var VueRouter = require('vue-router');
     var $ = require('jquery');
     var ui = require('ui');
+    var cookie = require('cookie');
     // 主要组件js
     var topNav = require('./js/component/topNav');
     var leftNav = require('./js/component/leftNav');
     var main = require('./js/component/main');
-
+cookie.setCookie('Markey', 'yuanye', {
+    expires: 24,
+    domain:  'yyteacher.com'
+});
     // 开启路由
     Vue.use(VueRouter);
     // 定义vue路由
@@ -119,6 +123,8 @@ define('home', function (require, exports) {
         },
         created: function () {
             var route = this.$route;
+            var height = screen.availHeight - 50;
+            $('section').height(height);
             if (/^\/home/i.test(route.fullPath)) {
                 this.page = 0;
             }
@@ -156,10 +162,9 @@ define('home', function (require, exports) {
             page: 0
         },
         methods: {
-            
+
         }
 
     });
-
 
 });

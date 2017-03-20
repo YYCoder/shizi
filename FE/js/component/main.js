@@ -4,7 +4,7 @@
  * @date    2017-02-06
  */
 define(function (require, exports) {
-    'use strict'
+    'use strict';
 
     var mainRender = require('text!../template/main.tpl');
     // 子组件

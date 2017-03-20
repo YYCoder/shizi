@@ -327,6 +327,3 @@ header .user-info .info p.greeting {
 .insert-container .form-container .btn2:focus {
   outline: none;
 }
-section {
-  height: 650px;
-}
