@@ -5,7 +5,7 @@
  */
 define(function (require, exports) {
     'use strict';
-    
+
     var render = require('text!../../template/info/insert.tpl');
     var ui = require('ui');
     // 子组件

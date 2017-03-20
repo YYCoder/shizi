@@ -15,10 +15,7 @@ define('home', function (require, exports) {
     var topNav = require('./js/component/topNav');
     var leftNav = require('./js/component/leftNav');
     var main = require('./js/component/main');
-cookie.setCookie('Markey', 'yuanye', {
-    expires: 24,
-    domain:  'yyteacher.com'
-});
+
     // 开启路由
     Vue.use(VueRouter);
     // 定义vue路由

@@ -7,7 +7,7 @@ define(function (require, exports) {
     'use strict';
 
     var leftNavRender = require('text!../template/leftNav.tpl');
-
+    var cookie = require('cookie');
     var leftNav = {
         template: leftNavRender,
         props: {
@@ -72,6 +72,7 @@ define(function (require, exports) {
                 }
                 console.log(to);
                 console.log(this.p);
+console.log(cookie.getCookie('Markey'));
             }
         },
         created: function () {

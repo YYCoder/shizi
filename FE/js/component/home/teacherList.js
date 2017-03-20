@@ -5,7 +5,7 @@
  */
 define(function (require, exports) {
     'use strict'
-    
+
     var render = require('text!../../template/home/teacherList.tpl');
 
     var teacherList = {
