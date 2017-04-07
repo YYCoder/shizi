@@ -4,7 +4,7 @@
  * @date    2017-01-28
  */
 define('login', function (require, exports) {
-    'use strict'
+    'use strict';
     var Vue = require('vue');
     var $ = require('jquery');
     var ui = require('ui');
@@ -30,7 +30,7 @@ define('login', function (require, exports) {
         q=[{x:0,y:h*.7+f},{x:0,y:h*.7-f}];
         while(q[1].x<w+f) d(q[0], q[1]);
     }
-    function d(i,j){   
+    function d(i,j){
         x.beginPath();
         x.moveTo(i.x, i.y);
         x.lineTo(j.x, j.y);
@@ -55,7 +55,7 @@ define('login', function (require, exports) {
         el: '#wrap',
         data: {
             'show': true,
-            'height': '647px',
+            'height': document.documentElement.clientHeight - 50 + 'px',
             'regForm': document.forms['register'],
             'logData': {
                 'user': '',
@@ -124,7 +124,7 @@ define('login', function (require, exports) {
                                 console.log('登录成功');
                             }
                             else {
-                                ui.msgError(res.msg); 
+                                ui.msgError(res.msg);
                             }
                             ui.closeAll('loading');
                         },
@@ -294,6 +294,6 @@ define('login', function (require, exports) {
         }
     });
 
-    
+
 
 });

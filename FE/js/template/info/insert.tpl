@@ -45,10 +45,10 @@
                 <i class="require-icon" v-if="requires.avatar">*</i>
                 <div class="content-container">
                     <input type="file" name="avatar" id="avatar"
-                        accept="image/png,image/gif" 
+                        accept="image/png,image/gif"
                         @change="changeAvatar"
                     >
-                    <label class="btn1" for="avatar">点击上传头像</label>
+                    <label class="btn1 upload" for="avatar">点击上传头像</label>
                     <img src="http://www.yyteacher.com/FE/img/user.png" class="avatar">
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 <span class="info-name">研究方向</span>
                 <i class="require-icon" v-if="requires.direction">*</i>
                 <div class="content-container">
-                    <input class="info-inp" type="text" 
+                    <input class="info-inp" type="text"
                         name="direction"
                         maxlength=30
                         v-model="formData.direction"
@@ -93,7 +93,7 @@
                 <span class="info-name">国籍</span>
                 <i class="require-icon" v-if="requires.nationality">*</i>
                 <div class="content-container">
-                    <input class="info-inp" type="text" 
+                    <input class="info-inp" type="text"
                         name="nationality"
                         maxlength=30
                         v-model="formData.nationality"
@@ -104,7 +104,7 @@
                 <span class="info-name">职称</span>
                 <i class="require-icon" v-if="requires.title">*</i>
                 <div class="content-container">
-                    <input class="info-inp" type="text" 
+                    <input class="info-inp" type="text"
                         name="title"
                         maxlength=30
                         v-model="formData.title"
@@ -115,7 +115,7 @@
                 <span class="info-name">毕业院校</span>
                 <i class="require-icon" v-if="requires.graduation">*</i>
                 <div class="content-container">
-                    <input class="info-inp" type="text" 
+                    <input class="info-inp" type="text"
                         name="graduation"
                         maxlength=20
                         v-model="formData.graduation"
@@ -160,7 +160,7 @@
                 <span class="info-name">邮政编码</span>
                 <i class="require-icon" v-if="requires.postcode">*</i>
                 <div class="content-container">
-                    <input class="info-inp" type="number" 
+                    <input class="info-inp" type="number"
                         name="postcode"
                         maxlength=10
                         v-model="formData.postcode"
@@ -183,7 +183,7 @@
                 <i class="require-icon" v-if="requires.salary">*</i>
                 <div class="content-container">
                     <i class="salary-icon">¥&nbsp;</i>
-                    <input class="info-inp" type="number" name="salary" 
+                    <input class="info-inp" type="number" name="salary"
                         max="10" min="0"
                         v-model="formData.salary">
                     <span class="tip">k/月</span>
@@ -217,15 +217,47 @@
         </div>
         <!-- 工作经验 -->
         <div class="info-experience" v-show="curPage == 3">
-            
-            <transition name="custom-classes-transition"
-            	enter-active-class="animated "
-            	leave-active-class="animated "
+            <!-- 列表过渡 -->
+            <transition-group name="exp-transition"
+                tag="div"
             >
+                <div class="exp-container" v-for="exp in formData.exps"
+                    :key="formData.exps.indexOf(exp) + 1"
+                    @transitionend="afterAdd"
+                >
+                    <p class="exp-title">工作经验{{formData.exps.indexOf(exp) + 1}}</p>
+                    <div class="exp-content">
+                        <span class="exp-info-title">任教学校:</span>
+                        <input class="exp-inp" type="text" name="expCollege"
+                            maxlength="20"
+                            v-model="exp.expCollege"
+                        >
+                    </div>
+                    <div class="exp-content">
+                        <span class="exp-info-title">任教时间:</span>
+                        <input class="exp-inp" type="date" name="expStart"
+                            v-model="exp.expStart"
+                        >&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;
+                        <input class="exp-inp" type="date" name="expEnd"
+                            v-model="exp.expEnd"
+                        >
+                    </div>
+                    <div class="exp-content">
+                        <span class="exp-info-title-descp">工作描述:</span>
+                        <textarea name="expDescp"
+                            rows="4" maxlength="100"
+                            v-model="exp.expDescp"
+                        >
+                        </textarea>
+                    </div>
+                    <button class="btn1"
+                        @click="formData.exps.splice(formData.exps.indexOf(exp), 1)"
+                    >删除</button>
+                </div>
+            </transition-group>
 
-            </transition>
-            <button class="btn1" @click="addExp">添加</button>
             <button class="btn2" @click="submit">提交</button>
+            <button class="btn1 add" @click="addExp">添加</button>
         </div>
     </div>
 </div>

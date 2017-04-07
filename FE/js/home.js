@@ -120,7 +120,7 @@ define('home', function (require, exports) {
         },
         created: function () {
             var route = this.$route;
-            var height = screen.availHeight - 50;
+            var height = window.innerHeight - 60;
             $('section').height(height);
             if (/^\/home/i.test(route.fullPath)) {
                 this.page = 0;
@@ -146,6 +146,7 @@ define('home', function (require, exports) {
             else if (/^\/user/i.test(route.fullPath)) {
                 this.page = 7;
             }
+            // 为了开发,先写死档案管理权限
             this.user.rights['info'] = 1;
         },
         router: router,

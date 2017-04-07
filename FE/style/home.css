@@ -154,50 +154,8 @@ header .user-info .info p.greeting {
   display: block;
   margin-left: 176px;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 15px;
   background: #f3f3f3;
-}
-.exp-container {
-  width: 85%;
-  display: inline-block;
-  margin-bottom: 15px;
-  position: relative;
-}
-.exp-container .exp-title {
-  text-align: center;
-  color: #777;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 15px;
-  margin: 5px 0 15px;
-}
-.exp-container .exp-content {
-  margin: 10px 0;
-}
-.exp-container .exp-content .exp-inp {
-  margin-left: 15px;
-  width: 35%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  padding: 5px 4px 3px 4px;
-}
-.exp-container .exp-content .exp-inp[name*="Start"] {
-  margin-right: 5px;
-}
-.exp-container .exp-content .exp-inp[name*="End"] {
-  margin-left: 5px;
-}
-.exp-container .exp-content .exp-info-title {
-  vertical-align: top;
-}
-.exp-container .exp-content textarea {
-  resize: none;
-  padding: 5px 4px 3px 4px;
-  width: 81.5%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  margin-left: 15px;
-  line-height: 1.5rem;
 }
 .insert-container {
   padding: 15px;
@@ -234,7 +192,7 @@ header .user-info .info p.greeting {
 }
 .insert-container .form-container {
   width: 100%;
-  height: 75%;
+  height: 77%;
   overflow: scroll;
 }
 .insert-container .form-container .info-basic,
@@ -243,6 +201,60 @@ header .user-info .info p.greeting {
   width: 60%;
   margin: 0 auto;
   position: relative;
+}
+.insert-container .form-container .info-experience {
+  width: 45%;
+}
+.insert-container .form-container .info-experience .exp-transition-enter-active,
+.insert-container .form-container .info-experience .exp-transition-leave-active {
+  transition: all 0.4s;
+}
+.insert-container .form-container .info-experience .exp-transition-enter,
+.insert-container .form-container .info-experience .exp-transition-leave {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.insert-container .form-container .info-experience .exp-container {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 15px;
+  position: relative;
+}
+.insert-container .form-container .info-experience .exp-container .exp-title {
+  text-align: center;
+  color: #777;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+  margin: 5px 0 15px;
+}
+.insert-container .form-container .info-experience .exp-container .exp-content {
+  margin: 10px 0;
+}
+.insert-container .form-container .info-experience .exp-container .exp-content .exp-inp {
+  margin-left: 15px;
+  width: 35%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px 4px 3px 4px;
+}
+.insert-container .form-container .info-experience .exp-container .exp-content .exp-inp[name*="Start"] {
+  margin-right: 5px;
+}
+.insert-container .form-container .info-experience .exp-container .exp-content .exp-inp[name*="End"] {
+  margin-left: 5px;
+}
+.insert-container .form-container .info-experience .exp-container .exp-content .exp-info-title-descp {
+  vertical-align: top;
+}
+.insert-container .form-container .info-experience .exp-container .exp-content textarea {
+  resize: none;
+  padding: 5px 4px 3px 4px;
+  width: 83.5%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-left: 15px;
+  line-height: 1.5rem;
 }
 .insert-container .form-container .info-container {
   width: 85%;
@@ -272,6 +284,7 @@ header .user-info .info p.greeting {
   display: inline-block;
   margin-left: 15px;
   width: 80%;
+  vertical-align: text-top;
 }
 .insert-container .form-container .info-container .content-container .info-inp {
   padding: 5px 4px 3px 4px;
@@ -312,17 +325,20 @@ header .user-info .info p.greeting {
   border-radius: 5px;
   color: #fff;
   border: none;
+  float: right;
+}
+.insert-container .form-container .btn1.upload {
+  float: left;
 }
 .insert-container .form-container .btn2 {
-  margin-top: 15px;
+  margin-left: 15px;
+  margin-bottom: 20px;
   padding: 5px 15px;
   border: none;
   background: #33a8ed;
   border-radius: 5px;
   color: #fff;
-  position: absolute;
-  bottom: -30px;
-  right: 100px;
+  float: right;
 }
 .insert-container .form-container .btn2:focus {
   outline: none;

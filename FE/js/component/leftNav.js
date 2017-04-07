@@ -44,7 +44,8 @@ define(function (require, exports) {
                 else if (/^\/course/i.test(to.fullPath)) {
                     this.p = 2;
                     this.rights['course'] == 1 ? this.isManager = true
-                                               : this.isManager = false;                }
+                                               : this.isManager = false;
+                }
                 else if (/^\/work/i.test(to.fullPath)) {
                     this.p = 3;
                     this.rights['work'] == 1 ? this.isManager = true
@@ -72,7 +73,6 @@ define(function (require, exports) {
                 }
                 console.log(to);
                 console.log(this.p);
-console.log(cookie.getCookie('Markey'));
             }
         },
         created: function () {

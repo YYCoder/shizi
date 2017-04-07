@@ -22,7 +22,7 @@
                 <p class="form-p">
                     <label class="form-label">
                         <span class="form-span">密码</span>/
-                        <input v-model="logData.pw" @focus="focused" @blur="blured" type="password" name="pw">
+                        <input v-model="logData.pw" @focus="focused" @blur="blured" type="password" name="pw" autocomplete="off">
                     </label>
                 </p>
                 <button id="submit" type="submit" @click="login">登录</button>
@@ -79,17 +79,16 @@
             </p>
         </div>
     </div>
-    <footer>whyCoder&nbsp;&copy;版权所有</footer>
+    <footer>Markey&nbsp;&copy;版权所有</footer>
     <script type="text/javascript" src="<?php echo $base_url ?>/node_modules/requirejs/require.js"></script>
     <script type="text/javascript" src="<?php echo $base_url ?>/FE/js/login.js"></script>
     <script type="text/javascript">
-    'use strict'
+    'use strict';
     // 全局require配置
     require.config({
         baseUrl: 'http://www.yyteacher.com/FE',
         paths: {
             'vue': './dep/vue/dist/vue',
-            'bootstrap': './dep/bootstrap/dist/js/bootstrap',
             'jquery': './dep/jquery-2.2.0.min',
             'layer': './dep/layer/layer',
             'moment': './dep/moment/moment',
