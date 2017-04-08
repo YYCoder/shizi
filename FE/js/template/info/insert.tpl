@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="info-container">
-                <span class="info-name">头像</span>
+                <span class="info-name avatar-span">头像</span>
                 <i class="require-icon" v-if="requires.avatar">*</i>
                 <div class="content-container">
                     <input type="file" name="avatar" id="avatar"
@@ -127,12 +127,11 @@
         <!-- 个人信息 -->
         <div class="info-personal" v-show="curPage == 2">
             <div class="info-container">
-                <span class="info-name">年龄</span>
-                <i class="require-icon" v-if="requires.age">*</i>
+                <span class="info-name">生日</span>
+                <i class="require-icon" v-if="requires.birthday">*</i>
                 <div class="content-container">
-                    <input class="info-inp" type="number" name="age"
-                        max=100 min="0"
-                        v-model="formData.age"
+                    <input class="info-inp" type="date" name="birthday"
+                        v-model="formData.birthday"
                     >
                 </div>
             </div>
@@ -210,6 +209,15 @@
                     <input class="info-inp" type="number" name="teachYear"
                         max=20 min="0"
                         v-model="formData.teachYear"
+                    >
+                </div>
+            </div>
+            <div class="info-container">
+                <span class="info-name">入职时间</span>
+                <i class="require-icon" v-if="requires.entry">*</i>
+                <div class="content-container">
+                    <input class="info-inp" type="date" name="entry"
+                        v-model="formData.entry"
                     >
                 </div>
             </div>

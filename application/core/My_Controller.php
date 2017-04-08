@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class My_Controller extends CI_Controller
 {
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -17,9 +17,9 @@ class My_Controller extends CI_Controller
 
     /**
      * 返回json
-     * @param  [array]  $data       
+     * @param  [array]  $data
      */
-    public function return_json($data)
+    protected function return_json($data)
     {
         header('Content-Type:application/json; charset=utf-8');
         exit(json_encode($data, JSON_UNESCAPED_UNICODE));
@@ -29,7 +29,7 @@ class My_Controller extends CI_Controller
      * 返回数据
      * @param  [array]||[string](若为string, 则默认为'msg'字段)
      */
-    public function return_data($inp = '')
+    protected function return_data($inp = '')
     {
         $data = array(
             'code' => 0,
@@ -45,7 +45,7 @@ class My_Controller extends CI_Controller
             // !empty($inp['msg']) && ($data['msg'] = $inp['msg']);
             $data['data'] = $inp;
         }
-        
+
         $this->return_json($data);
     }
 
@@ -53,7 +53,7 @@ class My_Controller extends CI_Controller
      * 返回错误信息
      * @param  [array]||[string](若为string, 则默认为'msg'字段)
      */
-    public function return_error($inp = '')
+    protected function return_error($inp = '')
     {
         $data = array(
             'code' => 1,
@@ -68,15 +68,15 @@ class My_Controller extends CI_Controller
         {
             $data['data'] = $inp;
         }
-        
+
         $this->return_json($data);
     }
 
     /**
      * 上传头像
-     * @param  
+     * @param
      */
-    public function uploadImg()
+    protected function uploadImg()
     {
         $config = array(
             'upload_path' => './uploads/img/',
@@ -103,7 +103,7 @@ class My_Controller extends CI_Controller
     /**
      * 判断登录方法
      */
-    public function is_login()
+    protected function is_login()
     {
         if (!empty($_SESSION['user']))
         {
@@ -114,6 +114,26 @@ class My_Controller extends CI_Controller
             return FALSE;
         }
     }
+
+    /**
+     * 一些通用的验证方法
+     * @param   [Array]  [data]  [所有要验证是否为空的字段数组]
+     * @return  [Array]  =>   [status][所有的验证都通过返回TRUE, 否则返回FALSE]
+     *                   =>   [name][验证失败的字段名, 验证通过则不传]
+     */
+    protected function has_empty($data = array())
+    {
+        $res = array('status' => FALSE);
+        foreach ($data as $k => $v) {
+            if (empty($v)) {
+                $res['name'] = $k;
+                return $res;
+            }
+        }
+        $res['status'] = TRUE;
+        return $res;
+    }
+
 
 
 

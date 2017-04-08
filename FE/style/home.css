@@ -210,7 +210,7 @@ header .user-info .info p.greeting {
   transition: all 0.4s;
 }
 .insert-container .form-container .info-experience .exp-transition-enter,
-.insert-container .form-container .info-experience .exp-transition-leave {
+.insert-container .form-container .info-experience .exp-transition-leave-active {
   opacity: 0;
   transform: translateY(20px);
 }
@@ -232,7 +232,7 @@ header .user-info .info p.greeting {
 }
 .insert-container .form-container .info-experience .exp-container .exp-content .exp-inp {
   margin-left: 15px;
-  width: 35%;
+  width: 33%;
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 5px 4px 3px 4px;
@@ -249,7 +249,7 @@ header .user-info .info p.greeting {
 .insert-container .form-container .info-experience .exp-container .exp-content textarea {
   resize: none;
   padding: 5px 4px 3px 4px;
-  width: 83.5%;
+  width: 82.1%;
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -271,6 +271,9 @@ header .user-info .info p.greeting {
 .insert-container .form-container .info-container .info-name.self-desc {
   vertical-align: top;
 }
+.insert-container .form-container .info-container .info-name.avatar-span {
+  vertical-align: top;
+}
 .insert-container .form-container .info-container .require-icon {
   color: red;
   font-style: normal;
@@ -284,7 +287,7 @@ header .user-info .info p.greeting {
   display: inline-block;
   margin-left: 15px;
   width: 80%;
-  vertical-align: text-top;
+  vertical-align: middle;
 }
 .insert-container .form-container .info-container .content-container .info-inp {
   padding: 5px 4px 3px 4px;
@@ -292,6 +295,9 @@ header .user-info .info p.greeting {
   border-radius: 5px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+}
+.insert-container .form-container .info-container .content-container .info-inp[type=date] {
+  width: 50%;
 }
 .insert-container .form-container .info-container .content-container #avatar {
   display: none;

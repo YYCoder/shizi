@@ -8,6 +8,7 @@ define(function (require, exports) {
 
     var render = require('text!../../template/info/insert.tpl');
     var ui = require('ui');
+    var util = require('util');
 
     var insert = {
         template: render,
@@ -16,8 +17,8 @@ define(function (require, exports) {
                 curPage: 1,
                 requires: {
                     'name': true,
-                    'age': false,
-                    'self': true,
+                    'birthday': false,
+                    'self': false,
                     'avatar': true,
                     'sex': true,
                     'major': true,
@@ -26,18 +27,19 @@ define(function (require, exports) {
                     'direction': false,
                     'graduation': true,
                     'direction': false,
-                    'postcode': true,
+                    'postcode': false,
                     'teachYear': false,
                     'marriage': false,
                     'mobile': true,
                     'address': false,
                     'salary': true,
-                    'idCode': true
+                    'idCode': true,
+                    'entry': true
                 },
                 formData: {
                     'name': '',
                     'self': '',
-                    'age': 0,
+                    'birthday': '',
                     'avatar': '',
                     'sex': '0',
                     'major': '',
@@ -52,9 +54,9 @@ define(function (require, exports) {
                     'address': '',
                     'salary': 0.00,
                     'idCode': '',
+                    'entry': '',
                     'exps': [
                         {
-                            'expNumber': 0,
                             'expCollege': '',
                             'expStart': '',
                             'expEnd': '',
@@ -63,8 +65,8 @@ define(function (require, exports) {
                     ]
                 },
                 disables: {
-                    'personal': false,
-                    'experience': false
+                    'personal': true,
+                    'experience': true
                 },
                 majors: []
             };
@@ -74,34 +76,101 @@ define(function (require, exports) {
         },
         methods: {
             'submit': function () {
-                console.log(this.validatePage3());
+                var data = util['deepClone'](this.formData);
+                if (this.validatePage1() && this.validatePage2() && this.validatePage3()) {
+                    data['exps'].forEach((exp, index) => {
+                        var timespan = Math.floor((Date.parse(exp['expEnd']) - Date.parse(exp['expStart'])) / (1000 * 60 * 60 * 24 * 365));
+                        data['expCollege' + (index + 1)] = exp['expCollege'];
+                        data['expDescp' + (index + 1)] = exp['expDescp'];
+                        data['expTime' + (index + 1)] = timespan;
+                    });
+                    data['sex'] = parseInt(data['sex']);
+                    delete data['exps'];
+                    ui.loading();
+                    $.ajax({
+                        url: location.origin + '/index.php/info/add_teacher',
+                        data: data,
+                        dataType: 'json',
+                        type: 'post'
+                    }).done(function (res) {
+                        ui.closeAll('loading');
+                        if (res.code == 0) {
+                            ui.msgRight(res.msg);
+                        }
+                        else {
+                            ui.msgError(res.msg);
+                        }
+                    }).fail(function (res) {
+                        ui.closeAll('loading');
+                        ui.msgError(res.msg);
+                    });
+                    // console.log(data);
+                }
+            },
+            'notValid': function (opt) {
+                this.curPage !== opt.page && (this.curPage = opt.page);
+                setTimeout(function () {
+                    ui.tips({msg: opt.msg, follow: opt.sel});
+                }, 0);
             },
             'validatePage1': function () {
                 var isValied = false,
                     idReg = /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i;
                 if (this.formData['name'].length === 0) {
-                    ui.tips({msg: '请输入您的姓名', follow: 'input[name="name"]'});
+                    this.notValid({
+                        page: 1,
+                        msg: '请输入姓名',
+                        sel: 'input[name="name"]'
+                    });
                 }
                 else if (this.formData['idCode'].length === 0) {
-                    ui.tips({msg: '请输入您的身份证号', follow: 'input[name="idCode"]'});
+                    this.notValid({
+                        page: 1,
+                        msg: '请输入身份证号',
+                        sel: 'input[name="idCode"]'
+                    });
                 }
                 else if (!idReg.test(this.formData['idCode'])) {
-                    ui.tips({msg: '请输入正确的身份证号', follow: 'input[name="idCode"]'});
+                    this.notValid({
+                        page: 1,
+                        msg: '请输入正确的身份证号',
+                        sel: 'input[name="idCode"]'
+                    });
                 }
                 else if (this.formData['avatar'].length === 0) {
-                    ui.tips({msg: '请输上传您的头像', follow: 'label[for="avatar"]'});
+                    this.notValid({
+                        page: 1,
+                        msg: '请上传头像',
+                        sel: 'label[for="avatar"]'
+                    });
                 }
                 else if (this.formData['sex'] === '0') {
-                    ui.tips({msg: '请选择您的性别', follow: 'input[name="sex"]'});
+                    this.notValid({
+                        page: 1,
+                        msg: '请选择性别',
+                        sel: 'input[name="sex"]'
+                    });
                 }
                 else if (this.formData['major'].length === 0) {
-                    ui.tips({msg: '请选择您所属的专业', follow: 'input[name="major"]'});
+                    this.notValid({
+                        page: 1,
+                        msg: '请选择所属的专业',
+                        sel: 'input[name="major"]'
+                    });
                 }
                 else if (this.formData['title'].length === 0) {
-                    ui.tips({msg: '请输入您的职称', follow: 'input[name="title"]'});
+                    this.notValid({
+                        page: 1,
+                        msg: '请输入职称',
+                        sel: 'input[name="title"]'
+                    });
                 }
                 else if (this.formData['graduation'].length === 0) {
-                    ui.tips({msg: '请输入您的毕业院校', follow: 'input[name="graduation"]'});
+                    this.notValid({
+                        page: 1,
+                        msg: '请输入毕业院校',
+                        sel: 'input[name="graduation"]'
+                    });
                 }
                 else {
                     isValied = true;
@@ -110,20 +179,47 @@ define(function (require, exports) {
             },
             'validatePage2': function () {
                 var isValied = false;
-                if (this.formData['age'] <= 20) {
-                    ui.tips({msg: '您的年龄太小啦', follow: 'input[name="age"]'});
+                if (this.formData['birthday'].length > 0 && Date.parse(this.formData['birthday']) > Date.UTC('1995', '1')) {
+                    this.notValid({
+                        page: 2,
+                        msg: '年龄太小啦',
+                        sel: 'input[name="birthday"]'
+                    });
+                }
+                else if (this.formData['birthday'].length > 0 && Date.parse(this.formData['birthday']) < Date.UTC('1962', '1')) {
+                    this.notValid({
+                        page: 2,
+                        msg: '年龄太大啦',
+                        sel: 'input[name="birthday"]'
+                    });
                 }
                 else if (this.formData['mobile'].length === 0) {
-                    ui.tips({msg: '请输入您的手机号', follow: 'input[name="mobile"]'});
+                    this.notValid({
+                        page: 2,
+                        msg: '请输入手机号',
+                        sel: 'input[name="mobile"]'
+                    });
                 }
                 else if (!/^1[13578]{1}\d{9}$/.test(this.formData['mobile'])) {
-                    ui.tips({msg: '请输入正确的手机号', follow: 'input[name="mobile"]'});
-                }
-                else if (this.formData['self'].length === 0) {
-                    ui.tips({msg: '请输入您的自我描述', follow: 'textarea[name="self"]'});
+                    this.notValid({
+                        page: 2,
+                        msg: '请输入正确的手机号',
+                        sel: 'input[name="mobile"]'
+                    });
                 }
                 else if (this.formData['salary'] === 0) {
-                    ui.tips({msg: '请输入您的薪资', follow: 'input[name="salary"]'});
+                    this.notValid({
+                        page: 2,
+                        msg: '请输入薪资',
+                        sel: 'input[name="salary"]'
+                    });
+                }
+                else if (this.formData['entry'].length === 0) {
+                    this.notValid({
+                        page: 2,
+                        msg: '请输入入职时间',
+                        sel: 'input[name="entry"]'
+                    });
                 }
                 else {
                     isValied = true;
@@ -182,6 +278,7 @@ define(function (require, exports) {
                 else {
                     formData = new FormData();
                     formData.append('avatar', file);
+                    ui.loading();
                     $.ajax({
                         url: location.origin + '/index.php/upload_avatar',
                         data: formData,
@@ -190,6 +287,7 @@ define(function (require, exports) {
                         contentType: false,
                         processData: false,
                         success: function (res) {
+                            ui.closeAll('loading');
                             if (res.code === 0) {
                                 vm.formData['avatar'] = res.data['avatar'];
                                 img.src = res.data['avatar'];
@@ -225,6 +323,7 @@ define(function (require, exports) {
                 }
             },
             'afterAdd': function () {
+                // console.log('triggered');
                 var exps = this.formData.exps;
                 if (exps.length >= 3) {
                     $('.add').css('display', 'none');

@@ -30,7 +30,7 @@ class User_Model extends CI_Model
     /**
      * 添加用户信息
      * @param    data(必传)[array]: 用户信息(邮箱|手机&密码&姓名)
-     * @return   status[string]: 插入个数(未成功为0, 成功为1) 
+     * @return   status[string]: 状态(未成功为0, 成功为1)
      */
     public function add_user($data = array())
     {
@@ -49,7 +49,7 @@ class User_Model extends CI_Model
     /**
      * 修改用户信息
      * @param    data(必传)[array]: 要修改的用户信息(id[必须]|邮箱|手机|密码|姓名|头像)
-     * @return   status[string]: 修改状态(未成功为0, 成功为1) 
+     * @return   status[string]: 修改状态(未成功为0, 成功为1)
      */
     public function modify($data = array())
     {

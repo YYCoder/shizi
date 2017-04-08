@@ -44,7 +44,7 @@
             .exp-transition-enter-active, .exp-transition-leave-active {
               transition: all 0.4s;
             }
-            .exp-transition-enter, .exp-transition-leave {
+            .exp-transition-enter, .exp-transition-leave-active {
               opacity: 0;
               transform: translateY(20px);
             }
@@ -64,7 +64,7 @@
                     margin: 10px 0;
                     .exp-inp {
                         margin-left: 15px;
-                        width: 35%;
+                        width: 33%;
                         border-radius: 5px;
                         border: 1px solid #ccc;
                         padding: 5px 4px 3px 4px;
@@ -81,7 +81,7 @@
                     textarea {
                         resize: none;
                         padding: 5px 4px 3px 4px;
-                        width: 83.5%;
+                        width: 82.1%;
                         border-radius: 5px;
                         border: 1px solid #ccc;
                         box-sizing: border-box;
@@ -104,6 +104,9 @@
                 &.self-desc {
                     vertical-align: top;
                 }
+                &.avatar-span {
+                    vertical-align: top;
+                }
             }
             .require-icon {
                 color: red;
@@ -118,13 +121,16 @@
                 display: inline-block;
                 margin-left: 15px;
                 width: 80%;
-                vertical-align: text-top;
+                vertical-align: middle;
                 .info-inp {
                     padding: 5px 4px 3px 4px;
                     width: 100%;
                     border-radius: 5px;
                     border: 1px solid #ccc;
                     box-sizing: border-box;
+                    &[type=date] {
+                        width: 50%;
+                    }
                 }
                 #avatar {
                     display: none;
