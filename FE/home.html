@@ -17,6 +17,7 @@
         ), JSON_UNESCAPED_UNICODE);
         $name = $_SESSION['user']['name'];
         $avatar = $_SESSION['user']['avatar'];
+        $id = $_SESSION['user']['id'];
     ?>
     <script type="text/javascript">
     // 用户信息
@@ -24,7 +25,8 @@
         type: '<?php echo $type ?>',
         rights: JSON.parse('<?php echo $rights ?>'),
         name: '<?php echo $name ?>',
-        avatar: '<?php echo $avatar ?>'
+        avatar: '<?php echo $avatar ?>',
+        id: '<?php echo $id ?>'
     };
     </script>
 </head>

@@ -55,10 +55,12 @@ $route['translate_uri_dashes'] = FALSE;
 
 // 自定义路由
 $route['login'] = 'Login_Controller/do_login';
+$route['add_teacher'] = 'Login_Controller/insert_teacher';
 $route['register'] = 'Login_Controller/register';
 $route['change_avatar'] = 'Login_Controller/change_avatar';
 // 首页
 $route['home'] = 'Index_Controller/index';
+$route['check_info'] = 'Index_Controller/check_info';
 // 档案管理
 $route['info'] = 'Info_Controller/index';
 $route['info/insert'] = 'Info_Controller/index';

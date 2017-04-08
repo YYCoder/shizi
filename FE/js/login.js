@@ -8,6 +8,7 @@ define('login', function (require, exports) {
     var Vue = require('vue');
     var $ = require('jquery');
     var ui = require('ui');
+    var util = require('util');
 
     /*var c = document.getElementsByTagName('canvas')[0],
         x = c.getContext('2d'),
@@ -66,7 +67,8 @@ define('login', function (require, exports) {
                 'name': '',
                 'pw': '',
                 'confirmPw': '',
-                'email': ''
+                'email': '',
+                'avatar': ''
             },
             'regURL': location.origin + '/index.php/register',
             'logURL': location.origin + '/index.php/login',
@@ -211,18 +213,14 @@ define('login', function (require, exports) {
                         success: function (res) {
                             if (res.code === 0) {
                                 // 若选择了图片则更换头像
-                                var file = $('#avatar')[0].files;
+                                var file = $('#avatar')[0].files,
+                                    teacherData;
                                 if (file.length !== 0) {
-                                    vSelf.upload(res.data.id);
+                                    vSelf.upload(res.data['id']);
                                 }
                                 else {
-                                    ui.closeAll('loading');
-                                    ui.msgRight({
-                                        'msg': res.msg,
-                                        'fun': function () {
-                                            location.href = vSelf.homeURL;
-                                        }
-                                    });
+                                    // 默认用户为教师身份, 向教师表添加记录
+                                    vSelf.addTeacher(res.data['id']);
                                 }
                             }
                             else {
@@ -273,22 +271,47 @@ define('login', function (require, exports) {
                     timeout: 10000,
                     success: function (res) {
                         if (res.code === 0) {
-                            ui.msgRight({
-                                'msg': res.msg,
-                                'fun': function () {
-                                    location.href = vSelf.homeURL;
-                                }
-                            });
+                            // 上传了头像, 则修改avatar为头像的地址
+                            vSelf.regData['avatar'] = res.data['avatar'];
+                            // 默认用户为教师身份, 向教师表添加记录
+                            vSelf.addTeacher(id);
                         }
                         else {
                             ui.msgError(res.msg);
                         }
-                        ui.closeAll('loading');
                     },
                     error: function (res) {
                         ui.closeAll('loading');
                         ui.msgError();
                     }
+                });
+            },
+            'addTeacher': function (id) {
+                var teacherData = util['deepClone'](this.regData),
+                    self = this;
+                delete teacherData['pw'];
+                delete teacherData['email'];
+                delete teacherData['confirmPw'];
+                if (teacherData['avatar'].length === 0) {
+                    delete teacherData['avatar'];
+                }
+                teacherData['uid'] = id;
+                $.ajax({
+                    url: location.origin + '/index.php/add_teacher',
+                    data: teacherData,
+                    dataType: 'json',
+                    type: 'post'
+                }).done(function (res) {
+                    ui.closeAll('loading');
+                    ui.msgRight({
+                        'msg': res.msg,
+                        'fun': function () {
+                            location.href = self.homeURL;
+                        }
+                    });
+                }).fail(function (res) {
+                    ui.closeAll('loading');
+                    ui.msgError(res.msg);
                 });
             }
         }

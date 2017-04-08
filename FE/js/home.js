@@ -148,6 +148,7 @@ define('home', function (require, exports) {
             }
             // 为了开发,先写死档案管理权限
             this.user.rights['info'] = 1;
+            this.checkInfo();
         },
         router: router,
         data: {
@@ -155,12 +156,35 @@ define('home', function (require, exports) {
                 type: window.user.type,
                 rights: window.user.rights,
                 avatar: window.user.avatar,
-                name: window.user.name
+                name: window.user.name,
+                id: window.user.id
             },
             page: 0
         },
         methods: {
-
+            // 检查用户的档案是否完整, 不完整提示前往档案管理完善
+            'checkInfo': function () {
+                $.ajax({
+                    url: location.origin + '/index.php/check_info',
+                    dataType: 'json',
+                    type: 'get'
+                }).done(function (res) {
+                    if (res.data.status == 0) {
+                        ui.info({
+                            title : '嘿 !',
+                            msg: '您的档案不完整',
+                            yes: function () {
+                                console.log('点击确定');
+                            },
+                            cancel: function () {
+                                console.log('点击取消');
+                            }
+                        });
+                    }
+                }).fail(function (res) {
+                    ui.msgError(res.msg);
+                });
+            }
         }
 
     });

@@ -91,7 +91,7 @@ class Info_Controller extends My_Controller
             'entry'     =>        $data['entry']
         );
         $not_empty_res = $this->has_empty($not_empty_items);
-        if (!$not_empty_res['status']) {
+        if ($not_empty_res['status']) {
             $error_msg;
             switch ($not_empty_items['name']) {
                 case 'name': $error_msg = '姓名不能为空';

@@ -54,15 +54,25 @@ define(function (require, exports) {
 
     /**
      * 信息弹层(需点击确认)
-     * @param title(String): 提示信息标题(默认为false,即没有标题)
+     * @param title(String): 提示信息标题(默认为false, 即没有标题)
      * @param msg(String): 提示信息内容
-     * 注: 也可以只传字符串,则为没有标题的信息弹层
+     * @param yes(Function): 点击确定的回调函数
+     * @param cancel(Function): 点击关闭按钮的回调函数
+     * 注: 也可以只传字符串, 则为没有标题的信息弹层
      */
     function info(opt) {
         if (util.isObject(opt) && opt.msg) {
             layer.open({
                 title: opt.title || false,
-                content: opt.msg
+                content: opt.msg,
+                yes: function (index, layerDOM) {
+                    opt.yes && opt.yes();
+                    layer.close(index);
+                },
+                cancel: function (index, layerDOM) {
+                    opt.cancel && opt.cancel();
+                    layer.close(index);
+                }
             });
         }
         else if (typeof(opt) === 'string') {
@@ -90,7 +100,7 @@ define(function (require, exports) {
         if (util.isObject(opt) && opt.msg) {
             layer.msg(opt.msg, param, function () {
                 typeof(opt.fun) === 'function' && opt.fun();
-            }); 
+            });
         }
         else if (typeof(opt) === 'string') {
             layer.msg(opt, param);
@@ -114,7 +124,7 @@ define(function (require, exports) {
         if (util.isObject(opt) && opt.msg) {
             layer.msg(opt.msg, param, function () {
                 typeof(opt.fun) === 'function' && opt.fun();
-            }); 
+            });
         }
         else if (typeof(opt) === 'string') {
             layer.msg(opt, param);

@@ -116,21 +116,21 @@ class My_Controller extends CI_Controller
     }
 
     /**
-     * 一些通用的验证方法
+     * 验证所有元素是否有为空的
      * @param   [Array]  [data]  [所有要验证是否为空的字段数组]
-     * @return  [Array]  =>   [status][所有的验证都通过返回TRUE, 否则返回FALSE]
+     * @return  [Array]  =>   [status][有为空的字段则TRUE, 否则返回FALSE]
      *                   =>   [name][验证失败的字段名, 验证通过则不传]
      */
     protected function has_empty($data = array())
     {
-        $res = array('status' => FALSE);
+        $res = array('status' => TRUE);
         foreach ($data as $k => $v) {
             if (empty($v)) {
                 $res['name'] = $k;
                 return $res;
             }
         }
-        $res['status'] = TRUE;
+        $res['status'] = FALSE;
         return $res;
     }
 

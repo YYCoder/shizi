@@ -10,6 +10,7 @@ class Login_Controller extends My_Controller
     {
         parent::__construct();
         $this->load->model('User_Model');
+        $this->load->model('Info_Model');
     }
 
     public function index()
@@ -84,7 +85,7 @@ class Login_Controller extends My_Controller
         $user;
         $data = array();
         $flag = !empty($_POST['mobile']) &&
-                !empty($_POST['name'])   && 
+                !empty($_POST['name'])   &&
                 !empty($_POST['pw'])     &&
                 !empty($_POST['confirmPw']);
         if ($flag)
@@ -101,12 +102,12 @@ class Login_Controller extends My_Controller
             ($_POST['pw'] !== $_POST['confirmPw']) &&
             $this->return_error('两次密码输入不一致');
 
-            // 验证手机是否重复注册           
+            // 验证手机是否重复注册
             $user = $this->User_Model->get_user(array('mobile' => $_POST['mobile']));
             !empty($user) &&
             $this->return_error('该手机号已被注册');
 
-            // 验证昵称是否重复注册           
+            // 验证昵称是否重复注册
             $user = $this->User_Model->get_user(array('name' => $_POST['name']));
             !empty($user) &&
             $this->return_error('该昵称已被注册');
@@ -152,7 +153,30 @@ class Login_Controller extends My_Controller
     }
 
     /**
+     * 注册后添加教师信息
+     * @return  [String]        [成功为1, 失败为0]
+     */
+    public function insert_teacher()
+    {
+        // var_dump($data);
+        $data = $_POST;
+        if (empty($data['avatar'])) {
+            $data['avatar'] = $this->config->item('base_url').'/FE/img/user.png';
+        }
+        $teacherRes = $this->Info_Model->add($data);
+        if ($teacherRes['status'] == 1) {
+            $this->return_data(array(
+                'id'  =>  $teacherRes['id']
+            ));
+        }
+        else {
+            $this->return_error('添加教师信息失败');
+        }
+    }
+
+    /**
      * 修改用户头像
+     * @return   [Array] => [avatar]  [头像图片地址]
      */
     public function change_avatar()
     {
@@ -161,7 +185,7 @@ class Login_Controller extends My_Controller
             $res = $this->uploadImg();
             $param = array(
                 'id' => $_POST['id'],
-                'avatar' => str_replace('/Users/bjhl/myServer/shizi', $this->config->item('base_url'), $res['full_path'])
+                'avatar' => str_replace('G:/study/shizi', $this->config->item('base_url'), $res['full_path'])
             );
             // 修改数据库
             $status = $this->User_Model->modify($param);
@@ -171,7 +195,9 @@ class Login_Controller extends My_Controller
                 $user_info = $this->User_Model
                                   ->get_user(array('id' => $_POST['id']));
                 $_SESSION['user'] = $user_info[0];
-                $this->return_data();
+                $this->return_data(array(
+                    'avatar'  =>   $param['avatar']
+                ));
             }
             else
             {

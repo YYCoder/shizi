@@ -29,6 +29,21 @@ class Info_Model extends CI_Model
 		);
 	}
 
+	/**
+	 * 获取老师档案
+	 * @param   string   $id||$uid   [教师id||用户id]
+	 * @return  [Array]  [档案信息]
+	 */
+	public function get_info($id)
+	{
+		$res = $this->db
+								->from('teacher')
+								->where('id = '.$id.' OR uid = '.$id)
+								->get()
+								->row();
+		return $res;
+	}
+
 
 
 
