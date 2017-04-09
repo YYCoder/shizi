@@ -168,6 +168,32 @@ class Info_Controller extends My_Controller
         }
     }
 
+
+    /**
+     * 获取用户的档案信息
+     * @return [Array] [该用户的档案信息]
+     */
+    public function get_info()
+    {
+        $uid = $_SESSION['user']['id'];
+        $res = $this->Info_Model->get_info($uid);
+        if (!empty($res)) {
+            $this->return_data(array(
+                'data' => $res
+            ));
+        }
+        else {
+            $this->return_error('获取用户档案失败');
+        }
+    }
+
+
+
+
+
+
+
+
 }
 
 

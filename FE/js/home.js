@@ -173,11 +173,10 @@ define('home', function (require, exports) {
                         ui.info({
                             title : '嘿 !',
                             msg: '您的档案不完整',
+                            btn: ['前往完善', '下次再说'],
                             yes: function () {
                                 console.log('点击确定');
-                            },
-                            cancel: function () {
-                                console.log('点击取消');
+                                router.push('/info/update');
                             }
                         });
                     }

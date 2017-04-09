@@ -1,1 +1,3 @@
-<h1>我是档案修改</h1>
+<div class="update">
+	<insert :form-data="info"></insert>
+</div>

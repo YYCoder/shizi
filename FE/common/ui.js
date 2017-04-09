@@ -56,15 +56,20 @@ define(function (require, exports) {
      * 信息弹层(需点击确认)
      * @param title(String): 提示信息标题(默认为false, 即没有标题)
      * @param msg(String): 提示信息内容
+     * @param btn(Array||String) [若为Array则表示多个按钮, 从第一个到最后一个为文案; 若为String则默认为只有一个按钮]
+     * @param btn(2,3....n)[Function] [从第二个按钮开始的回调函数, 第一个按钮是yes]
      * @param yes(Function): 点击确定的回调函数
      * @param cancel(Function): 点击关闭按钮的回调函数
-     * 注: 也可以只传字符串, 则为没有标题的信息弹层
+     * 注: (1)也可以只传字符串, 则为没有标题的信息弹层;
+     *     (2)若有多个btn, btn2开始的回调必须在cancel和yes回调的后面设置, 否则点击后触发的回调会不对, 原因未知.
      */
     function info(opt) {
+        var config;
         if (util.isObject(opt) && opt.msg) {
-            layer.open({
+            config = {
                 title: opt.title || false,
                 content: opt.msg,
+                btn: opt.btn,
                 yes: function (index, layerDOM) {
                     opt.yes && opt.yes();
                     layer.close(index);
@@ -73,7 +78,17 @@ define(function (require, exports) {
                     opt.cancel && opt.cancel();
                     layer.close(index);
                 }
-            });
+            };
+            // 多个按钮的回调函数
+            for (var k in opt) {
+                if (/^btn\d+/.test(k) && typeof(opt[k]) === 'function') {
+                    config[k] = function (index, layerDOM) {
+                        opt[k]();
+                        layer.close(index);
+                    };
+                }
+            }
+            layer.open(config);
         }
         else if (typeof(opt) === 'string') {
             layer.open({

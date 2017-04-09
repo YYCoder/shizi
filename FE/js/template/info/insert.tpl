@@ -49,7 +49,7 @@
                         @change="changeAvatar"
                     >
                     <label class="btn1 upload" for="avatar">点击上传头像</label>
-                    <img src="http://www.yyteacher.com/FE/img/user.png" class="avatar">
+                    <img :src="formData.avatar" class="avatar">
                 </div>
             </div>
             <div class="info-container">

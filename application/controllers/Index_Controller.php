@@ -29,7 +29,7 @@ class Index_Controller extends My_Controller
     }
 
     /**
-     * 获取用户的档案(教师)信息
+     * 判断用户的档案(教师)是否完整
      * @return [String] [0档案不全, 1档案完整]
      */
     public function check_info()

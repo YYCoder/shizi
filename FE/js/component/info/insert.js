@@ -36,40 +36,47 @@ define(function (require, exports) {
                     'idCode': true,
                     'entry': true
                 },
-                formData: {
-                    'name': '',
-                    'self': '',
-                    'birthday': '',
-                    'avatar': '',
-                    'sex': '0',
-                    'major': '',
-                    'nationality': '中国',
-                    'title': '',
-                    'graduation': '',
-                    'direction': '无',
-                    'postcode': 0,
-                    'teachYear': 0,
-                    'marriage': 0,
-                    'mobile': '',
-                    'address': '',
-                    'salary': 0.00,
-                    'idCode': '',
-                    'entry': '',
-                    'exps': [
-                        {
-                            'expCollege': '',
-                            'expStart': '',
-                            'expEnd': '',
-                            'expDescp': ''
-                        }
-                    ]
-                },
                 disables: {
                     'personal': true,
                     'experience': true
                 },
                 majors: []
             };
+        },
+        props: {
+            formData: {
+                type: Object,
+                default: function () {
+                    return {
+                        'name': '',
+                        'self': '',
+                        'birthday': '',
+                        'avatar': 'http://www.yyteacher.com/FE/img/user.png',
+                        'sex': '0',
+                        'major': '',
+                        'nationality': '中国',
+                        'title': '',
+                        'graduation': '',
+                        'direction': '无',
+                        'postcode': 0,
+                        'teachYear': 0,
+                        'marriage': 0,
+                        'mobile': '',
+                        'address': '',
+                        'salary': 0.00,
+                        'idCode': '',
+                        'entry': '',
+                        'exps': [
+                            {
+                                'expCollege': '',
+                                'expStart': '',
+                                'expEnd': '',
+                                'expDescp': ''
+                            }
+                        ]
+                    }
+                }
+            }
         },
         created: function () {
             this.getMajors();
@@ -290,7 +297,6 @@ define(function (require, exports) {
                             ui.closeAll('loading');
                             if (res.code === 0) {
                                 vm.formData['avatar'] = res.data['avatar'];
-                                img.src = res.data['avatar'];
                             }
                             else {
                                 ui.msgError('上传头像失败');

@@ -65,6 +65,7 @@ $route['check_info'] = 'Index_Controller/check_info';
 $route['info'] = 'Info_Controller/index';
 $route['info/insert'] = 'Info_Controller/index';
 $route['info/update'] = 'Info_Controller/index';
+$route['info/get_info'] = 'Info_Controller/get_info';
 $route['info/add_teacher'] = 'Info_Controller/add_teacher';
 $route['upload_avatar'] = 'Info_Controller/upload_avatar';
 $route['get_majors'] = 'Info_Controller/get_majors';
