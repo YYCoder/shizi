@@ -78,6 +78,12 @@ define('home', function (require, exports) {
                         components: {
                             'insert': main.components.insert
                         }
+                    },
+                    {
+                        path: 'infoList',
+                        components: {
+                            'infoList': main.components.infoList
+                        }
                     }
                 ]
             },

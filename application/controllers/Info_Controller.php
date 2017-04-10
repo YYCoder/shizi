@@ -71,12 +71,14 @@ class Info_Controller extends My_Controller
         }
     }
 
+
     /**
-     * 添加老师
+     * 验证并处理档案数据, 并返回处理后的数据(内部验证不通过直接退出并报错)
+     * @param  [Array] $data [处理前的数据]
+     * @return [Array]       [处理后的数据]
      */
-    public function add_teacher()
+    private function handle_info($data)
     {
-        $data = $_POST;
         // 非空字段验证
         $not_empty_items = array(
             'name'      =>        $data['name'],
@@ -93,6 +95,7 @@ class Info_Controller extends My_Controller
         $not_empty_res = $this->has_empty($not_empty_items);
         if ($not_empty_res['status']) {
             $error_msg;
+            // 懒得验证别的乱七八糟的了, 干脆就验证非空, 前端大部分都验证过了
             switch ($not_empty_items['name']) {
                 case 'name': $error_msg = '姓名不能为空';
                       break;
@@ -156,6 +159,16 @@ class Info_Controller extends My_Controller
         unset($data['expDescp1']);
         unset($data['expDescp2']);
         unset($data['expDescp3']);
+
+        return $data;
+    }
+
+    /**
+     * 添加老师
+     */
+    public function add_teacher()
+    {
+        $data = $this->handle_info($_POST);
         $res = $this->Info_Model->add($data);
         // var_dump($data);
         if ($res['status'] == 1) {
@@ -168,6 +181,23 @@ class Info_Controller extends My_Controller
         }
     }
 
+    /**
+     * 修改老师档案
+     * @return [Array] => status[true或false]
+     */
+    public function mod_teacher()
+    {
+        $data = $this->handle_info($_POST);
+        $res = $this->Info_Model->mod_info($data);
+        if ($res == 1) {
+            $this->return_data(array(
+                'status' => $res
+            ));
+        }
+        else {
+            $this->return_error('修改老师档案失败');
+        }
+    }
 
     /**
      * 获取用户的档案信息
@@ -177,6 +207,9 @@ class Info_Controller extends My_Controller
     {
         $uid = $_SESSION['user']['id'];
         $res = $this->Info_Model->get_info($uid);
+        // 处理值为时间戳的字段
+        $res->entry_time = date('Y-m-d', $res->entry_time);
+        $res->birthday = date('Y-m-d', $res->birthday);
         if (!empty($res)) {
             $this->return_data(array(
                 'data' => $res

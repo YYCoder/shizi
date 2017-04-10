@@ -44,8 +44,18 @@ class Info_Model extends CI_Model
 		return $res;
 	}
 
-
-
+	/**
+	 * 修改老师档案
+	 * @param  [String]    $data  	[档案信息, 必须包括档案id]
+   * @return [Boolean] 	 修改状态
+	 */
+	public function mod_info($data)
+	{
+		$res = $this->db
+								->where('id', $data['id'])
+								->update('teacher', $data);
+		return $res;
+	}
 
 
 

@@ -17,6 +17,18 @@
 .hide {
   display: none;
 }
+.border-pointer {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 5px solid rgba(255, 255, 255, 0);
+  border-top-color: #666;
+}
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 header {
   background: #37afea;
   height: 60px;
@@ -148,7 +160,7 @@ header .user-info .info p.greeting {
   transition: background 0.3s ease;
 }
 .left-nav ul .left-item .left-btn.active {
-  background: #27303d;
+  background: #0a0a0a;
 }
 .main-container {
   height: 100%;
@@ -164,6 +176,7 @@ header .user-info .info p.greeting {
   box-sizing: border-box;
   background: #fff;
   border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
 }
 .insert-container .title {
   font-size: 1.5rem;
@@ -349,4 +362,143 @@ header .user-info .info p.greeting {
 }
 .insert-container .form-container .btn2:focus {
   outline: none;
+}
+.info-list-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+}
+.info-list-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.info-list-container .controls .right-control {
+  display: inline-block;
+  float: right;
+}
+.info-list-container .controls .right-control .search-inp {
+  padding: 5px 4px 3px 4px;
+  width: 240px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+.info-list-container .controls .right-control .search {
+  background: #4fbfaa;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  line-height: 29px;
+  padding: 0 15px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+.info-list-container .controls .right-control .search:focus {
+  outline: none;
+}
+.info-list-container .controls .left-control {
+  display: inline-block;
+}
+.info-list-container .controls .left-control .drop {
+  display: inline-block;
+  max-width: 90px;
+  position: relative;
+  text-align: center;
+  background: #4fbfaa;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #fff;
+  margin-right: 15px;
+  padding: 3px 10px;
+}
+.info-list-container .controls .left-control .drop .border-pointer {
+  vertical-align: -2px;
+}
+.info-list-container .controls .left-control .drop .selection {
+  position: absolute;
+  width: 100%;
+  border-radius: 4px;
+  background: #4fbfaa;
+  margin-top: 3px;
+  left: 0;
+  display: none;
+}
+.info-list-container .controls .left-control .drop .selection .option {
+  padding: 2px 0;
+  border-top: 1px solid #fff;
+  font-size: 13px;
+}
+.info-list-container .controls .left-control .drop .selection .option:hover {
+  background: #74cdbc;
+}
+.info-list-container .controls .left-control .tips {
+  color: #999;
+  font-size: 13px;
+}
+.info-list-container .info-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+.info-list-container .info-list-ul .title-list {
+  border-radius: 3px;
+  color: #fff;
+  background: #344152;
+}
+.info-list-container .info-list-ul .title-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.info-list-container .info-list-ul .info-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+.info-list-container .info-list-ul .info-list:hover {
+  background: #eee;
+  cursor: pointer;
+}
+.info-list-container .info-list-ul .info-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+.info-list-container .info-list-ul .info-list span .avatar-img {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+.info-list-container .info-list-ul .avatar,
+.info-list-container .info-list-ul .checkbox,
+.info-list-container .info-list-ul .age,
+.info-list-container .info-list-ul .sex {
+  width: 3%;
+}
+.info-list-container .info-list-ul .entry {
+  width: 9%;
+}
+.info-list-container .info-list-ul .code,
+.info-list-container .info-list-ul .title,
+.info-list-container .info-list-ul .control {
+  width: 7%;
+}
+.info-list-container .info-list-ul .major,
+.info-list-container .info-list-ul .mobile {
+  width: 10%;
+}
+.info-list-container .info-list-ul .id-code,
+.info-list-container .info-list-ul .address {
+  width: 12%;
+}
+.info-list-container .info-list-ul .name {
+  width: 5%;
 }

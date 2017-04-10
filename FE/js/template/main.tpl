@@ -5,5 +5,6 @@
     <!-- 档案管理模块 -->
     <router-view name="insert"></router-view>
     <router-view name="update"></router-view>
+    <router-view name="infoList"></router-view>
 
 </div>

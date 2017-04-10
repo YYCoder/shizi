@@ -20,7 +20,7 @@
 @mainBtnActiveBg:#329bd8;
 // 左导航
 @leftBg:rgb(52, 65, 82);
-@leftBtnActiveBg:rgb(39, 48, 61);
+@leftBtnActiveBg:rgb(10, 10, 10);
 // 详情顶导航
 @detailBtnBg:rgb(192, 203, 203);
 // 按钮
@@ -35,6 +35,18 @@
 }
 .hide {
     display: none;
+}
+.border-pointer {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 5px solid rgba(255, 255, 255, 0);
+    border-top-color: #666;
+}
+.single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 

@@ -71,8 +71,8 @@ define(function (require, exports) {
                     this.rights['user'] == 1 ? this.isManager = true
                                              : this.isManager = false;
                 }
-                console.log(to);
-                console.log(this.p);
+                // console.log(to);
+                // console.log(this.p);
             }
         },
         created: function () {

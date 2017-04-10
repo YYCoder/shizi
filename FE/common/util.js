@@ -41,7 +41,19 @@ define(function (require, exports) {
       return res;
     }
 
+    /**
+     * 将下划线格式转成驼峰格式
+     * @param  {String} str [要转换的字符串]
+     * @return {String}     [转换完成的字符串]
+     */
+    function toCamel(str) {
+    	return str.replace(/_\w/g, function (match) {
+    		return match.slice(1).toUpperCase();
+    	});
+    }
+
 
     exports.isObject = isObject;
     exports.deepClone = deepClone;
+    exports.toCamel = toCamel;
 });

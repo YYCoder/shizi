@@ -44,6 +44,10 @@ define(function (require, exports) {
             };
         },
         props: {
+            tid: {
+                type: String,
+                default: ''
+            },
             formData: {
                 type: Object,
                 default: function () {
@@ -82,9 +86,30 @@ define(function (require, exports) {
             this.getMajors();
         },
         methods: {
+            // 提交数据
+            'submitData': function (url, data) {
+                $.ajax({
+                    url: url,
+                    data: data,
+                    dataType: 'json',
+                    type: 'post'
+                }).done(function (res) {
+                    ui.closeAll('loading');
+                    if (res.code == 0) {
+                        ui.msgRight(res.msg);
+                    }
+                    else {
+                        ui.msgError(res.msg);
+                    }
+                }).fail(function (res) {
+                    ui.closeAll('loading');
+                    ui.msgError(res.msg);
+                });
+            },
             'submit': function () {
                 var data = util['deepClone'](this.formData);
                 if (this.validatePage1() && this.validatePage2() && this.validatePage3()) {
+                    // 用ES6箭头函数玩一下
                     data['exps'].forEach((exp, index) => {
                         var timespan = Math.floor((Date.parse(exp['expEnd']) - Date.parse(exp['expStart'])) / (1000 * 60 * 60 * 24 * 365));
                         data['expCollege' + (index + 1)] = exp['expCollege'];
@@ -94,24 +119,15 @@ define(function (require, exports) {
                     data['sex'] = parseInt(data['sex']);
                     delete data['exps'];
                     ui.loading();
-                    $.ajax({
-                        url: location.origin + '/index.php/info/add_teacher',
-                        data: data,
-                        dataType: 'json',
-                        type: 'post'
-                    }).done(function (res) {
-                        ui.closeAll('loading');
-                        if (res.code == 0) {
-                            ui.msgRight(res.msg);
-                        }
-                        else {
-                            ui.msgError(res.msg);
-                        }
-                    }).fail(function (res) {
-                        ui.closeAll('loading');
-                        ui.msgError(res.msg);
-                    });
-                    // console.log(data);
+                    // 若存在tid(档案id, 从父组件传入), 则请求修改档案的接口
+                    if (this.tid.length > 0) {
+                        data['id'] = this.tid;
+                        this.submitData(location.origin + '/index.php/info/mod_teacher', data);
+                    }
+                    else {
+                        this.submitData(location.origin + '/index.php/info/add_teacher', data);
+                        // console.log(data);
+                    }
                 }
             },
             'notValid': function (opt) {

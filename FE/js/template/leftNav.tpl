@@ -14,12 +14,10 @@
         <li class="left-item" v-if="p == 1 && isManager">
             <router-link to="/info/insert" class="left-btn">档案录入</router-link>
         </li>
-        <!-- <li class="left-item" v-if="p == 1 && isManager">
-            <router-link to="/info/info1" class="left-btn">档案查看</router-link>
-        </li>
         <li class="left-item" v-if="p == 1 && isManager">
-            <router-link to="/info/info3" class="left-btn">档案删除</router-link>
-        </li> -->
+            <router-link to="/info/infoList" class="left-btn">全部档案</router-link>
+        </li>
+
     </ul>
 
 </div>
