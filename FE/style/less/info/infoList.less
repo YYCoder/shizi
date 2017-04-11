@@ -1,3 +1,5 @@
+@import '../common/pager.less';
+
 .info-list-container {
 	padding: 15px;
   height: 100%;
@@ -42,6 +44,12 @@
 		    background: @btn1;
 				.border-pointer {
 					vertical-align: -2px;
+					transition: all 0.4s ease-in-out;
+			    transform-origin: center 25%;
+			    border-top-color: #eee;
+					&.rotated {
+						transform: rotateZ(180deg);
+					}
 				}
 				.selection {
 					position: absolute;
@@ -51,23 +59,32 @@
 				  margin-top: 3px;
 				  left: 0;
 				  overflow: hidden;
-			  	transition: all 0.4s ease-in-out;
-			  	height: 66px;
+			  	transition: all 0.3s ease-in-out;
+			  	&.item {
+				  	height: 66px;
+			  	}
+			  	&.type {
+			  		height: 44px;
+			  	}
+				  &.item-enter-active, &.item-leave {
+						height: 66px;
+				  }
+				  &.type-enter-active, &.type-leave {
+				  	height: 44px;
+				  }
+				  &.item-enter, &.item-leave-active, &.type-enter, &.type-leave-active {
+						height: 0;
+				  }
 				  .option {
 				  	padding: 2px 0;
 				  	border-top: 1px solid #fff;
 				  	font-size: 13px;
+				  	transition: all 0.3s ease-in-out;
 				  	&:hover {
-				  		background: lighten(@btn1, 10%)
+				  		background: lighten(@btn1, 20%);
 				  	}
 				  }
 				}
-			  .item-enter-active, .item-leave {
-					height: 66px;
-			  }
-			  .item-enter, .item-leave-active {
-					height: 0;
-			  }
   		}
   		.tips {
 		    color: #999;
@@ -132,68 +149,16 @@
     .major, .mobile {
     	width: 10%;
     }
-   	.id-code, .address {
+   	.id-code {
 			width: 12%;
     }
+    .address {
+			width: 15%;
+    }
     .name {
-    	width: 5%;
+    	width: 7%;
     }
   }
 }
 
-.pager-container {
-	.page-control {
-		display: inline-block;
-		overflow: hidden;
-		div {
-			display: inline-block;
-			float: left;
-	    border: 1px solid @btn2;
-	    color: @btn2;
-	    transition: all 0.4s ease;
-	    &:hover, &.active {
-	    	background: @btn2;
-	    	color: #fff;
-	    }
-			&.prev, &.next {
-		    padding: 3px 10px;
-		    cursor: pointer;
-			}
-			&.prev {
-		    border-bottom-left-radius: 5px;
-		    border-top-left-radius: 5px;
-		    border-right: none;
-			}
-			&.next {
-		    border-bottom-right-radius: 5px;
-		    border-top-right-radius: 5px;
-			}
-			&.page {
-				cursor: pointer;
-				padding: 3px 10px;
-				border-right: none;
-			}
-			&.disabled {
-				background: #eee;
-				color: #aaa;
-				border-color: #aaa;
-				cursor: not-allowed;
-			}
-		}
-	}
-	.leap-control {
-		margin-left: 15px;
-		display: inline-block;
-		overflow: hidden;
-		.page-inp {
-	    width: 20px;
-	    margin: 0 5px;
-	    padding: 2px 5px;
-	    font-size: 14px;
-		}
-		.leap {
-			padding: 3px 10px;
-			background: @btn2;
-		}
-	}
-}
+

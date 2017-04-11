@@ -220,7 +220,16 @@ class Info_Controller extends My_Controller
         }
     }
 
-
+    /**
+     * 获取全部档案, 或按条件搜索档案
+     * @return [Array]  [获取到的全部档案数据]
+     */
+    public function get_all_info()
+    {
+        $param = $_GET;
+        // var_dump($param);
+        $res = $this->Info_Model->get_all();
+    }
 
 
 

@@ -11,24 +11,34 @@
 				<span class="selected"
 							@click.self="itemShow = !itemShow"
 				>字段名</span>
-				<span class="border-pointer"></span>
+				<span class="border-pointer"
+						  :class="{ rotated: itemShow }"
+						  @click.self="itemShow = !itemShow"
+			  ></span>
 				<transition name="item">
-					<div class="selection" v-show="itemShow">
-						<div class="option">编号</div>
-						<div class="option">年龄</div>
-						<div class="option">入职时间</div>
+					<div class="selection item" v-show="itemShow">
+						<div class="option" @click="sortItem = 'code'">编号</div>
+						<div class="option" @click="sortItem = 'age'">年龄</div>
+						<div class="option" @click="sortItem = 'entry'">入职时间</div>
 					</div>
 				</transition>
 			</div>
 			<div class="drop btn" >
-				<span class="selected" @click="typeShow = !typeShow">方式</span>
-				<span class="border-pointer"></span>
-				<div class="selection">
-					<div class="option">升序</div>
-					<div class="option">降序</div>
-				</div>
+				<span class="selected"
+							@click.self="typeShow = !typeShow"
+				>方式</span>
+				<span class="border-pointer"
+							:class="{ rotated: typeShow }"
+						  @click.self="typeShow = !typeShow"
+				></span>
+				<transition name="type">
+					<div class="selection type" v-show="typeShow">
+						<div class="option" @click="sortType = 'asc'">升序</div>
+						<div class="option" @click="sortType = 'desc'">降序</div>
+					</div>
+				</transition>
 			</div>
-			<span class="tips">您可以选择数据的排序方式</span>
+			<span class="tips">您可以选择数据的排序方式, 默认是按编号的升序排列</span>
 		</div>
 	</div>
 	<div class="info-list-wrap">
@@ -49,7 +59,7 @@
 				<span class="control" v-if="!isHome">操作</span>
 			</li>
 
-			<li class="info-list">
+			<li class="info-list" v-for="item in list">
 				<span class="checkbox">
 					<input type="checkbox">
 				</span>
@@ -259,27 +269,38 @@
 					<a href="javascript:alert('点击删除');">删除</a>
 				</span>
 			</li>
+			<li class="info-list">
+				<span class="checkbox">
+					<input type="checkbox">
+				</span>
+				<span class="avatar">
+					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
+				</span>
+				<span class="name single-line">袁野</span>
+				<span class="sex">男</span>
+				<span class="code single-line">102400</span>
+				<span class="mobile single-line">15811152743</span>
+				<span class="major single-line">信息管理及信息系统</span>
+				<span class="age">22</span>
+				<span class="title single-line">教师</span>
+				<span class="entry">2017-04-11</span>
+				<span class="id-code single-line">150424199505100071</span>
+				<span class="address single-line">河北省沧州市任丘市</span>
+				<span class="control">
+					<a href="javascript:alert('点击删除');">删除</a>
+				</span>
+			</li>
 		</ul>
 	</div>
 	<div class="controls bottom-controls">
 		<div class="left-control">
-			<button class="btn delete-all">批量删除</button>
+			<button class="btn delete-all" v-if="!isHome">批量删除</button>
 		</div>
 		<div class="right-control">
-			<div class="pager-container">
-				<div class="page-control">
-					<div class="prev disabled">上一页</div>
-					<div class="page active">1</div>
-					<div class="page">2</div>
-					<div class="page">3</div>
-					<div class="page">4</div>
-					<div class="next">下一页</div>
-				</div>
-				<div class="leap-control">
-					跳转到<input type="text" class="page-inp">页, 共有<span class="page-number">4</span>页
-					<div class="leap btn">跳转</div>
-				</div>
-			</div>
+			<pager :pageNumber="pageNumber"
+						 :curPage="curPage"
+						 @page-change="pageChange"
+			></pager>
 		</div>
 	</div>
 
