@@ -4,7 +4,8 @@
  * @date    2017-01-30
  */
 define(function (require, exports) {
-    'use strict'
+    'use strict';
+
     var layer = require('layer');
     var util = require('util');
 

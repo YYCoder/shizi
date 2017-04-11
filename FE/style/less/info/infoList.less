@@ -22,14 +22,9 @@
 		    font-size: 15px;
   		}
 			.search {
-				background: @btn1;
-				border: none;
-		    border-radius: 5px;
-		    color: #fff;
-		    line-height: 29px;
-		    padding: 0 15px;
-		    cursor: pointer;
 		    margin-left: 15px;
+		    line-height: 29px;
+		    background: @btn1;
 		    &:focus {
 		    	outline: none;
 		    }
@@ -38,17 +33,13 @@
   	.left-control {
   		display: inline-block;
   		.drop {
-  			display: inline-block;
   			max-width: 90px;
   			position: relative;
   			text-align: center;
-  			background: @btn1;
-				border-radius: 3px;
-				cursor: pointer;
 				font-size: 15px;
-				color: #fff;
 				margin-right: 15px;
 				padding: 3px 10px;
+		    background: @btn1;
 				.border-pointer {
 					vertical-align: -2px;
 				}
@@ -59,7 +50,9 @@
 				  background: @btn1;
 				  margin-top: 3px;
 				  left: 0;
-				  display: none;
+				  overflow: hidden;
+			  	transition: all 0.4s ease-in-out;
+			  	height: 66px;
 				  .option {
 				  	padding: 2px 0;
 				  	border-top: 1px solid #fff;
@@ -69,11 +62,26 @@
 				  	}
 				  }
 				}
+			  .item-enter-active, .item-leave {
+					height: 66px;
+			  }
+			  .item-enter, .item-leave-active {
+					height: 0;
+			  }
   		}
   		.tips {
 		    color: #999;
 		    font-size: 13px;
   		}
+  		.delete-all {
+  			line-height: 29px;
+		    background: @btn1;
+  		}
+  	}
+  }
+  .bottom-controls {
+  	.right-control {
+  		max-width: 92%;
   	}
   }
   .info-list-ul {
@@ -131,4 +139,61 @@
     	width: 5%;
     }
   }
+}
+
+.pager-container {
+	.page-control {
+		display: inline-block;
+		overflow: hidden;
+		div {
+			display: inline-block;
+			float: left;
+	    border: 1px solid @btn2;
+	    color: @btn2;
+	    transition: all 0.4s ease;
+	    &:hover, &.active {
+	    	background: @btn2;
+	    	color: #fff;
+	    }
+			&.prev, &.next {
+		    padding: 3px 10px;
+		    cursor: pointer;
+			}
+			&.prev {
+		    border-bottom-left-radius: 5px;
+		    border-top-left-radius: 5px;
+		    border-right: none;
+			}
+			&.next {
+		    border-bottom-right-radius: 5px;
+		    border-top-right-radius: 5px;
+			}
+			&.page {
+				cursor: pointer;
+				padding: 3px 10px;
+				border-right: none;
+			}
+			&.disabled {
+				background: #eee;
+				color: #aaa;
+				border-color: #aaa;
+				cursor: not-allowed;
+			}
+		}
+	}
+	.leap-control {
+		margin-left: 15px;
+		display: inline-block;
+		overflow: hidden;
+		.page-inp {
+	    width: 20px;
+	    margin: 0 5px;
+	    padding: 2px 5px;
+	    font-size: 14px;
+		}
+		.leap {
+			padding: 3px 10px;
+			background: @btn2;
+		}
+	}
 }

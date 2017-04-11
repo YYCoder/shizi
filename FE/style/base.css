@@ -26,3 +26,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.btn {
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 0 15px;
+  cursor: pointer;
+  display: inline-block;
+}

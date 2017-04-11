@@ -29,6 +29,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.btn {
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 0 15px;
+  cursor: pointer;
+  display: inline-block;
+}
 header {
   background: #37afea;
   height: 60px;
@@ -388,14 +396,9 @@ header .user-info .info p.greeting {
   font-size: 15px;
 }
 .info-list-container .controls .right-control .search {
-  background: #4fbfaa;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  line-height: 29px;
-  padding: 0 15px;
-  cursor: pointer;
   margin-left: 15px;
+  line-height: 29px;
+  background: #4fbfaa;
 }
 .info-list-container .controls .right-control .search:focus {
   outline: none;
@@ -404,17 +407,13 @@ header .user-info .info p.greeting {
   display: inline-block;
 }
 .info-list-container .controls .left-control .drop {
-  display: inline-block;
   max-width: 90px;
   position: relative;
   text-align: center;
-  background: #4fbfaa;
-  border-radius: 3px;
-  cursor: pointer;
   font-size: 15px;
-  color: #fff;
   margin-right: 15px;
   padding: 3px 10px;
+  background: #4fbfaa;
 }
 .info-list-container .controls .left-control .drop .border-pointer {
   vertical-align: -2px;
@@ -426,7 +425,9 @@ header .user-info .info p.greeting {
   background: #4fbfaa;
   margin-top: 3px;
   left: 0;
-  display: none;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  height: 66px;
 }
 .info-list-container .controls .left-control .drop .selection .option {
   padding: 2px 0;
@@ -436,9 +437,24 @@ header .user-info .info p.greeting {
 .info-list-container .controls .left-control .drop .selection .option:hover {
   background: #74cdbc;
 }
+.info-list-container .controls .left-control .drop .item-enter-active,
+.info-list-container .controls .left-control .drop .item-leave {
+  height: 66px;
+}
+.info-list-container .controls .left-control .drop .item-enter,
+.info-list-container .controls .left-control .drop .item-leave-active {
+  height: 0;
+}
 .info-list-container .controls .left-control .tips {
   color: #999;
   font-size: 13px;
+}
+.info-list-container .controls .left-control .delete-all {
+  line-height: 29px;
+  background: #4fbfaa;
+}
+.info-list-container .bottom-controls .right-control {
+  max-width: 92%;
 }
 .info-list-container .info-list-ul {
   list-style: none;
@@ -501,4 +517,60 @@ header .user-info .info p.greeting {
 }
 .info-list-container .info-list-ul .name {
   width: 5%;
+}
+.pager-container .page-control {
+  display: inline-block;
+  overflow: hidden;
+}
+.pager-container .page-control div {
+  display: inline-block;
+  float: left;
+  border: 1px solid #33a8ed;
+  color: #33a8ed;
+  transition: all 0.4s ease;
+}
+.pager-container .page-control div:hover,
+.pager-container .page-control div.active {
+  background: #33a8ed;
+  color: #fff;
+}
+.pager-container .page-control div.prev,
+.pager-container .page-control div.next {
+  padding: 3px 10px;
+  cursor: pointer;
+}
+.pager-container .page-control div.prev {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-right: none;
+}
+.pager-container .page-control div.next {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.pager-container .page-control div.page {
+  cursor: pointer;
+  padding: 3px 10px;
+  border-right: none;
+}
+.pager-container .page-control div.disabled {
+  background: #eee;
+  color: #aaa;
+  border-color: #aaa;
+  cursor: not-allowed;
+}
+.pager-container .leap-control {
+  margin-left: 15px;
+  display: inline-block;
+  overflow: hidden;
+}
+.pager-container .leap-control .page-inp {
+  width: 20px;
+  margin: 0 5px;
+  padding: 2px 5px;
+  font-size: 14px;
+}
+.pager-container .leap-control .leap {
+  padding: 3px 10px;
+  background: #33a8ed;
 }

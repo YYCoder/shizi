@@ -208,8 +208,8 @@ class Info_Controller extends My_Controller
         $uid = $_SESSION['user']['id'];
         $res = $this->Info_Model->get_info($uid);
         // 处理值为时间戳的字段
-        $res->entry_time = date('Y-m-d', $res->entry_time);
-        $res->birthday = date('Y-m-d', $res->birthday);
+        $res->entry_time = !empty($res->entry_time) ? date('Y-m-d', $res->entry_time) : '';
+        $res->birthday = !empty($res->birthday) ? date('Y-m-d', $res->birthday) : '';
         if (!empty($res)) {
             $this->return_data(array(
                 'data' => $res
