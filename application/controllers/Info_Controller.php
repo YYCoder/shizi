@@ -222,18 +222,82 @@ class Info_Controller extends My_Controller
 
     /**
      * 获取全部档案, 或按条件搜索档案
-     * @return [Array]  [获取到的全部档案数据]
+     * @param  [array] $_GET  => sortType[String](ASC按升序排列, DESC按降序排列)
+     *                        => sortItem[String](code按编号排列, age按年龄排列, entry按入职时间排列)
+     *                        => where[String](模糊匹配姓名,编号,专业,手机)
+     *                        => page[String](要前往的页数)
+     *                        => limit[String](每页显示多少个,默认为10)
+     * @return [Array]  [获取到的全部档案数据,二维数组]
      */
     public function get_all_info()
     {
-        $param = $_GET;
+        $param = array(
+            'type' => !empty($_GET['sortType']) ? $_GET['sortType'] : 'ASC',
+            'page' => $_GET['page'],
+            'where'=> $_GET['where']
+        );
+        $res = array();
+
+        // 处理item字段为跟数据库中字段名一致,在模型中可以直接使用
+        if (empty($_GET['sortItem']) || $_GET['sortItem'] == 'code') {
+            $param['item'] = 'id';
+        }
+        elseif ($_GET['sortItem'] == 'age') {
+            $param['item'] = 'birthday';
+        }
+        elseif ($_GET['sortItem'] == 'entry') {
+            $param['item'] = 'entry_time';
+        }
+        // 处理limit相关字段
+        $param['limit'] = array(
+            'number'  =>  (int)($_GET['page'] - 1) * (int)$_GET['limit'],
+            'count'   =>  (int)$_GET['limit']
+        );
+
         // var_dump($param);
-        $res = $this->Info_Model->get_all();
+        $res['data'] = $this->Info_Model->get_all($param);
+        $page_count = $this->Info_Model->get_page_count((int)$param['limit']['count']);
+        $res['page'] = array(
+            'page_count'    =>  $page_count,
+            'current_page'  =>  $param['page']
+        );
+        if (!empty($res['data']) && $page_count > 0) {
+            foreach ($res['data'] as $k => $v) {
+                // birthday字段改成年龄
+                if (!empty($v['birthday'])) {
+                    $age = floor((time() - (int)$v['birthday']) / (60*60*24*365));
+                    $res['data'][$k]['age'] = $age;
+                }
+                else {
+                    $res['data'][$k]['age'] = '未知';
+                }
+                // entry_time字段,改成2017-04-10格式的时间字符串
+                $res['data'][$k]['entry_time'] = date('Y-m-d', $v['entry_time']);
+                // sex字段改成'男','女'或'未知''
+                $res['data'][$k]['sex'] = $v['sex'] == 0 ? '未知' :
+                                          $v['sex'] == 1 ? '男' : '女';
+                // address为空改成'未知'
+                $res['data'][$k]['address'] = empty($v['address']) ? '未知' : $v['address'];
+            }
+            $this->return_data($res);
+        }
+        else {
+            $this->return_error('未查询到相关数据');
+        }
     }
 
 
-
-
+    /**
+     * 获取所有数据可显示的页数
+     * @param  $_GET   =>  limit[Number]  每页显示的记录个数(默认为10)
+     * @return [Number]    能显示的页数
+     */
+    public function get_page_count()
+    {
+        $limit_number = (int)$_GET['limit'] || 10;
+        $count = $this->Info_Model->get_page_count($limit_number);
+        $this->return_data($count);
+    }
 
 
 }

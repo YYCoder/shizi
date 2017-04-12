@@ -3,8 +3,9 @@
 	<hr>
 	<div class="controls">
 		<div class="right-control">
-			<input type="text" placeholder="可搜索姓名,编号,年龄,专业,手机" class="search-inp">
-			<button class="search btn">搜 索</button>
+			<input type="text" placeholder="可搜索姓名,编号,专业,手机" class="search-inp"
+						 v-model="getParam.where">
+			<button class="search btn" @click="getData">搜 索</button>
 		</div>
 		<div class="left-control">
 			<div class="drop btn">
@@ -17,9 +18,12 @@
 			  ></span>
 				<transition name="item">
 					<div class="selection item" v-show="itemShow">
-						<div class="option" @click="sortItem = 'code'">编号</div>
-						<div class="option" @click="sortItem = 'age'">年龄</div>
-						<div class="option" @click="sortItem = 'entry'">入职时间</div>
+						<div class="option" @mouseup="sortItem = 'code'"
+																@click="getData">编号</div>
+						<div class="option" @mouseup="sortItem = 'age'"
+																@click="getData">年龄</div>
+						<div class="option" @mouseup="sortItem = 'entry'"
+																@click="getData">入职时间</div>
 					</div>
 				</transition>
 			</div>
@@ -33,8 +37,10 @@
 				></span>
 				<transition name="type">
 					<div class="selection type" v-show="typeShow">
-						<div class="option" @click="sortType = 'asc'">升序</div>
-						<div class="option" @click="sortType = 'desc'">降序</div>
+						<div class="option" @mouseup="sortType = 'ASC'"
+																@click="getData">升序</div>
+						<div class="option" @mouseup="sortType = 'DESC'"
+																@click="getData">降序</div>
 					</div>
 				</transition>
 			</div>
@@ -59,237 +65,31 @@
 				<span class="control" v-if="!isHome">操作</span>
 			</li>
 
-			<li class="info-list" v-for="item in list">
+			<li class="info-list" v-for="item in list"
+														:class="{ checked: item.checked }"
+														:key="item.id"
+														@click="item.checked = !item.checked">
 				<span class="checkbox">
-					<input type="checkbox">
+					<input type="checkbox" v-model="item.checked">
 				</span>
 				<span class="avatar">
 					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
 				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
+				<span class="name single-line">{{item.name}}</span>
+				<span class="sex">{{item.sex}}</span>
+				<span class="code single-line">{{item.id}}</span>
+				<span class="mobile single-line">{{item.mobile}}</span>
+				<span class="major single-line">{{item.major}}</span>
+				<span class="age">{{item.age}}</span>
+				<span class="title single-line">{{item.title}}</span>
+				<span class="entry">{{item.entry_time}}</span>
+				<span class="id-code single-line">{{item.id_code}}</span>
+				<span class="address single-line">{{item.address}}</span>
 				<span class="control" v-if="!isHome">
 					<a href="javascript:alert('点击删除');">删除</a>
 				</span>
 			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
-			<li class="info-list">
-				<span class="checkbox">
-					<input type="checkbox">
-				</span>
-				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
-				</span>
-				<span class="name single-line">袁野</span>
-				<span class="sex">男</span>
-				<span class="code single-line">102400</span>
-				<span class="mobile single-line">15811152743</span>
-				<span class="major single-line">信息管理及信息系统</span>
-				<span class="age">22</span>
-				<span class="title single-line">教师</span>
-				<span class="entry">2017-04-11</span>
-				<span class="id-code single-line">150424199505100071</span>
-				<span class="address single-line">河北省沧州市任丘市</span>
-				<span class="control">
-					<a href="javascript:alert('点击删除');">删除</a>
-				</span>
-			</li>
+
 		</ul>
 	</div>
 	<div class="controls bottom-controls">

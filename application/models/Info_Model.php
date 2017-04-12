@@ -46,27 +46,48 @@ class Info_Model extends CI_Model
 
 	/**
 	 * 查询所有符合条件的数据, 并排序
-	 * @param  [object] $param => type[String](asc按升序排列, desc按降序排列)
-	 *                         => item[String](code按编号排列, age按年龄排列, entry按入职时间排列)
-	 *                         => where[String](模糊匹配姓名,出生年月(时间戳),编号,专业,手机)
-	 * @return [array]         [所有查询到的数据]
+	 * @param  [array] $param => type[String](ASC按升序排列, DESC按降序排列)
+	 *                        => item[String](id按编号排列, birthday按出生年月排列, entry_time按入职时间排列)
+	 *                        => where[String](模糊匹配姓名,编号,专业,手机)
+	 *                        => limit[Array] => number[Number](要从第几条数据开始返回)
+	 *                         								=> count[Number](每页显示多少个)
+	 * @return [array]        [所有查询到的数据]
 	 */
 	public function get_all($param)
 	{
+		// var_dump($param);die;
 		$res = array();
 		if (!empty($param)) {
 			$this->db->from('teacher')
- 							 ->join('major', 'teacher.mid = major.id');
+ 							 ->join('major', 'teacher.mid = major.id')
+ 							 ->select('teacher.id, teacher.name, uid, avatar, birthday, sex, mid, entry_time, mobile, address, title, id_code, major.name AS major');
 
-			if (!empty($param->where)) {
-				$this->db->where('teacher.id', $param->where)
-								 ->or_where('teacher.mobile', $param->where)
-								 ->or_where('teacher.birthday', $param->where)
-								 ->like('teahcer.name', $param->where)
-								 ->or_like('major.name', $param->where);
+			if (!empty($param['where'])) {
+				$this->db->where('teacher.id', $param['where'])
+								 ->or_where('teacher.mobile', $param['where'])
+								 ->like('teahcer.name', $param['where'])
+								 ->or_like('major.name', $param['where']);
 			}
+			$res = $this->db->order_by('teacher.'.$param['item'], $param['type'])
+											// 参数顺序跟sql中的LIMIT子句的参数顺序相反...
+											->limit($param['limit']['count'], $param['limit']['number'])
+											->get()
+											->result_array();
 		}
 		return $res;
+	}
+
+
+	/**
+	 * 获取所有数据可显示的页数
+	 * @param  $limit[Number]  每页显示的记录个数(默认为10)
+	 * @return [Number] 			 能显示的页数
+	 */
+	public function get_page_count($limit = 10)
+	{
+		$count = $this->db->count_all('teacher');
+		$count = ceil($count/$limit);
+		return $count;
 	}
 
 

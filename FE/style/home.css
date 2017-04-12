@@ -555,6 +555,9 @@ header .user-info .info p.greeting {
   background: #eee;
   cursor: pointer;
 }
+.info-list-container .info-list-ul .info-list.checked {
+  background: #eee;
+}
 .info-list-container .info-list-ul .info-list span {
   display: inline-block;
   line-height: 30px;

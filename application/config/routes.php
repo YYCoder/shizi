@@ -67,6 +67,7 @@ $route['info/insert'] = 'Info_Controller/index';
 $route['info/update'] = 'Info_Controller/index';
 $route['info/infoList'] = 'Info_Controller/index';
 $route['info/get_info'] = 'Info_Controller/get_info';
+$route['info/get_all_info'] = 'Info_Controller/get_all_info';
 $route['info/add_teacher'] = 'Info_Controller/add_teacher';
 $route['info/mod_teacher'] = 'Info_Controller/mod_teacher';
 $route['upload_avatar'] = 'Info_Controller/upload_avatar';
