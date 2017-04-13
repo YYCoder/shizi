@@ -227,7 +227,10 @@ class Info_Controller extends My_Controller
      *                        => where[String](模糊匹配姓名,编号,专业,手机)
      *                        => page[String](要前往的页数)
      *                        => limit[String](每页显示多少个,默认为10)
-     * @return [Array]  [获取到的全部档案数据,二维数组]
+     *
+     * @return [Array] => data [获取到的全部档案数据,二维数组]
+     *                 => page     => page_count(数据可显示的页面数)
+     *                             => current_page(当前所在页面数)
      */
     public function get_all_info()
     {
@@ -255,8 +258,9 @@ class Info_Controller extends My_Controller
         );
 
         // var_dump($param);
-        $res['data'] = $this->Info_Model->get_all($param);
-        $page_count = $this->Info_Model->get_page_count((int)$param['limit']['count']);
+        $res_temp = $this->Info_Model->get_all($param);
+        $res['data'] = $res_temp['data'];
+        $page_count = ceil($res_temp['count']/$param['limit']['count']);
         $res['page'] = array(
             'page_count'    =>  $page_count,
             'current_page'  =>  $param['page']

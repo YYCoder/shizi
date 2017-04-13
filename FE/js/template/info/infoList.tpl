@@ -18,12 +18,9 @@
 			  ></span>
 				<transition name="item">
 					<div class="selection item" v-show="itemShow">
-						<div class="option" @mouseup="sortItem = 'code'"
-																@click="getData">编号</div>
-						<div class="option" @mouseup="sortItem = 'age'"
-																@click="getData">年龄</div>
-						<div class="option" @mouseup="sortItem = 'entry'"
-																@click="getData">入职时间</div>
+						<div class="option" @click="changeSortItem('code')">编号</div>
+						<div class="option" @click="changeSortItem('age')">年龄</div>
+						<div class="option" @click="changeSortItem('entry')">入职时间</div>
 					</div>
 				</transition>
 			</div>
@@ -37,10 +34,8 @@
 				></span>
 				<transition name="type">
 					<div class="selection type" v-show="typeShow">
-						<div class="option" @mouseup="sortType = 'ASC'"
-																@click="getData">升序</div>
-						<div class="option" @mouseup="sortType = 'DESC'"
-																@click="getData">降序</div>
+						<div class="option" @click="changeSortType('ASC')">升序</div>
+						<div class="option" @click="changeSortType('DESC')">降序</div>
 					</div>
 				</transition>
 			</div>
@@ -86,7 +81,7 @@
 				<span class="id-code single-line">{{item.id_code}}</span>
 				<span class="address single-line">{{item.address}}</span>
 				<span class="control" v-if="!isHome">
-					<a href="javascript:alert('点击删除');">删除</a>
+					<a href="javDESCript:alert('点击删除');">删除</a>
 				</span>
 			</li>
 

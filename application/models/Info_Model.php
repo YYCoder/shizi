@@ -51,28 +51,38 @@ class Info_Model extends CI_Model
 	 *                        => where[String](模糊匹配姓名,编号,专业,手机)
 	 *                        => limit[Array] => number[Number](要从第几条数据开始返回)
 	 *                         								=> count[Number](每页显示多少个)
-	 * @return [array]        [所有查询到的数据]
+	 * @return [array]  =>  data     [所有查询到的数据]
+	 *                  =>	count    [满足条件的数据行数]
 	 */
 	public function get_all($param)
 	{
-		// var_dump($param);die;
+		// var_dump($param);
 		$res = array();
+		// 先清空缓存的SQL
+		$this->db->flush_cache();
+
 		if (!empty($param)) {
-			$this->db->from('teacher')
+			$this->db->start_cache()
+							 ->from('teacher')
  							 ->join('major', 'teacher.mid = major.id')
  							 ->select('teacher.id, teacher.name, uid, avatar, birthday, sex, mid, entry_time, mobile, address, title, id_code, major.name AS major');
 
 			if (!empty($param['where'])) {
 				$this->db->where('teacher.id', $param['where'])
 								 ->or_where('teacher.mobile', $param['where'])
-								 ->like('teahcer.name', $param['where'])
+								 ->or_like('teacher.name', $param['where'])
 								 ->or_like('major.name', $param['where']);
 			}
-			$res = $this->db->order_by('teacher.'.$param['item'], $param['type'])
-											// 参数顺序跟sql中的LIMIT子句的参数顺序相反...
-											->limit($param['limit']['count'], $param['limit']['number'])
-											->get()
-											->result_array();
+			$res['data'] = $this->db->stop_cache()
+															->order_by('teacher.'.$param['item'], $param['type'])
+															// 参数顺序跟sql中的LIMIT子句的参数顺序相反...
+															->limit($param['limit']['count'], $param['limit']['number'])
+															// ->get_compiled_select();
+															->get()
+															->result_array();
+			// 利用CI的查询构造器缓存,获取满足条件的数据行数
+			$res['count'] = $this->db->get()
+															 ->num_rows();
 		}
 		return $res;
 	}
