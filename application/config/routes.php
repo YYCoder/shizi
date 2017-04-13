@@ -60,6 +60,9 @@ $route['register'] = 'Login_Controller/register';
 $route['change_avatar'] = 'Login_Controller/change_avatar';
 // 首页
 $route['home'] = 'Index_Controller/index';
+$route['home/list'] = 'Index_Controller/index';
+$route['home/detail'] = 'Index_Controller/index';
+$route['home/detail/:num'] = 'Index_Controller/index';
 $route['check_info'] = 'Index_Controller/check_info';
 // 档案管理
 $route['info'] = 'Info_Controller/index';
@@ -70,6 +73,8 @@ $route['info/get_info'] = 'Info_Controller/get_info';
 $route['info/get_all_info'] = 'Info_Controller/get_all_info';
 $route['info/add_teacher'] = 'Info_Controller/add_teacher';
 $route['info/mod_teacher'] = 'Info_Controller/mod_teacher';
+$route['info/delete_info'] = 'Info_Controller/delete_info';
+$route['info/delete_mult'] = 'Info_Controller/delete_mult_info';
 $route['upload_avatar'] = 'Info_Controller/upload_avatar';
 $route['get_majors'] = 'Info_Controller/get_majors';
 

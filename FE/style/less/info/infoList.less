@@ -90,9 +90,13 @@
 		    color: #999;
 		    font-size: 13px;
   		}
-  		.delete-all {
+  		.delete-all, .check-all {
   			line-height: 29px;
 		    background: @btn1;
+		    margin-right: 15px;
+		    &:focus {
+		    	outline: none;
+		    }
   		}
   	}
   }
@@ -132,11 +136,12 @@
 		    box-sizing: border-box;
 		    text-align: center;
 		    overflow: hidden;
-		    .avatar-img {
-    	    width: 50px;
+		    .img-wrap {
+		    	width: 50px;
 			    height: 50px;
 			    vertical-align: middle;
 			    border-radius: 50%;
+			    overflow: hidden;
 		    }
 		  }
     }

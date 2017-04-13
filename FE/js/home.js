@@ -50,7 +50,12 @@ define('home', function (require, exports) {
                         path: 'detail',
                         components: {
                             'teacherDetail': main.components.detail
-                        }
+                        },
+                        children: [
+                            {
+                                path: ':id'
+                            }
+                        ]
                     }
                 ]
             },

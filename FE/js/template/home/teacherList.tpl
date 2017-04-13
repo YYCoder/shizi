@@ -1,9 +1,6 @@
-<ul>
-	<li>老师1</li>
-	<li>老师2</li>
-	<li>老师3</li>
-	<li>老师4</li>
-	<li>老师5</li>
-	<li>老师6</li>
-	<li>老师7</li>
-</ul>
+<div class="teacher-list-container">
+	<info-list :isHome="isHome">
+		<!-- 顶部组件标题 -->
+		<h1 class="title" slot="title">教师列表</h1>
+	</info-list>
+</div>

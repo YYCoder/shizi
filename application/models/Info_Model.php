@@ -114,8 +114,34 @@ class Info_Model extends CI_Model
 		return $res;
 	}
 
+	/**
+	 * 删除指定id的档案
+	 * @param  [String] $id [档案id]
+   * @return [String] [1表示删除成功,0删除失败]
+	 */
+	public function delete_info($id)
+	{
+		$res = $this->db->where('id', $id)
+										->delete('teacher');
+		return $res;
+	}
 
-
+	/**
+	 * 删除多项记录
+	 * @param  [Array] $ids [要删除的记录id数组]
+	 * @return [String]     [1删除成功,0失败]
+	 */
+	public function delete_mult_info($ids)
+	{
+		$ids_str = '';
+		foreach ($ids as $k => $v) {
+			$ids_str .= $v.',';
+		}
+		$ids_str = rtrim($ids_str, ',');
+		$res = $this->db->where("id IN (".$ids_str.")")
+										->delete('teacher');
+		return $res;
+	}
 
 
 

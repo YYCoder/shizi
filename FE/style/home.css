@@ -178,6 +178,21 @@ header .user-info .info p.greeting {
   padding: 15px;
   background: #f3f3f3;
 }
+.teacher-list-container {
+  height: 100%;
+}
+.teacher-detail-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+}
+.teacher-detail-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
 .insert-container {
   padding: 15px;
   height: 100%;
@@ -524,9 +539,15 @@ header .user-info .info p.greeting {
   color: #999;
   font-size: 13px;
 }
-.info-list-container .controls .left-control .delete-all {
+.info-list-container .controls .left-control .delete-all,
+.info-list-container .controls .left-control .check-all {
   line-height: 29px;
   background: #4fbfaa;
+  margin-right: 15px;
+}
+.info-list-container .controls .left-control .delete-all:focus,
+.info-list-container .controls .left-control .check-all:focus {
+  outline: none;
 }
 .info-list-container .bottom-controls .right-control {
   max-width: 92%;
@@ -565,11 +586,12 @@ header .user-info .info p.greeting {
   text-align: center;
   overflow: hidden;
 }
-.info-list-container .info-list-ul .info-list span .avatar-img {
+.info-list-container .info-list-ul .info-list span .img-wrap {
   width: 50px;
   height: 50px;
   vertical-align: middle;
   border-radius: 50%;
+  overflow: hidden;
 }
 .info-list-container .info-list-ul .avatar,
 .info-list-container .info-list-ul .checkbox,

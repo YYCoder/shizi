@@ -1,5 +1,7 @@
 <div class="info-list-container">
-	<h1 class="title">全部档案</h1>
+	<slot name="title">
+		<h1 class="title">全部档案</h1>
+	</slot>
 	<hr>
 	<div class="controls">
 		<div class="right-control">
@@ -57,7 +59,7 @@
 				<span class="entry">入职时间</span>
 				<span class="id-code">身份证</span>
 				<span class="address">住址</span>
-				<span class="control" v-if="!isHome">操作</span>
+				<span class="control">操作</span>
 			</li>
 
 			<li class="info-list" v-for="item in list"
@@ -65,10 +67,13 @@
 														:key="item.id"
 														@click="item.checked = !item.checked">
 				<span class="checkbox">
-					<input type="checkbox" v-model="item.checked">
+					<input type="checkbox" v-model="item.checked"
+																 @click.stop="">
 				</span>
 				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/XxAkIoUwvabMVZCK.png" alt="用户头像" class="avatar-img">
+					<div class="img-wrap">
+						<img :data-src="item.avatar" alt="用户头像" class="avatar-img">
+					</div>
 				</span>
 				<span class="name single-line">{{item.name}}</span>
 				<span class="sex">{{item.sex}}</span>
@@ -81,7 +86,10 @@
 				<span class="id-code single-line">{{item.id_code}}</span>
 				<span class="address single-line">{{item.address}}</span>
 				<span class="control" v-if="!isHome">
-					<a href="javDESCript:alert('点击删除');">删除</a>
+					<a href="javascript:;" @click="deleteItem(item.id)">删除</a>
+				</span>
+				<span class="control" v-if="isHome">
+					<a href="javascript:;" @click="toDetail(item.id)">查看详情</a>
 				</span>
 			</li>
 
@@ -89,7 +97,10 @@
 	</div>
 	<div class="controls bottom-controls">
 		<div class="left-control">
-			<button class="btn delete-all" v-if="!isHome">批量删除</button>
+			<button class="btn check-all" v-if="!isHome"
+																		@click="checkAll">全选</button>
+			<button class="btn delete-all" v-if="!isHome"
+																		 @click="deleteAll">批量删除</button>
 		</div>
 		<div class="right-control">
 			<pager :pageNumber="pageNumber"

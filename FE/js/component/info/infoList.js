@@ -36,6 +36,10 @@ define(function (require, exports) {
 					// 前往第几页
 					page: 1
 				},
+				// 全选flag
+				checkedAll: false,
+				// 重新加载数据绑定并更新DOM flag
+				ready: true,
 				list: []
 			}
 		},
@@ -48,6 +52,14 @@ define(function (require, exports) {
 		created: function () {
 			this.getParam.page = 1;
 			this.getData();
+		},
+		updated: function () {
+			console.log('vue updated');
+			if (this.ready) {
+				lazyLoadImage.init();
+				lazyLoadImage.reload();
+				this.ready = false;
+			}
 		},
 		methods: {
 			'pageChange': function (p) {
@@ -84,9 +96,14 @@ define(function (require, exports) {
 					vm.itemShow = false;
 					vm.typeShow = false;
 					if (res.code == 0 && res.data['data'].length > 0) {
+						// 处理所有数据,添上checked字段,用于批量删除操作
+						res.data['data'].forEach((elem) => {
+							elem['checked'] = false;
+						});
 						vm.list = res.data['data'];
 						vm.curPage = parseInt(res.data['page']['current_page']);
 						vm.pageNumber = parseInt(res.data['page']['page_count']);
+						vm.ready = true;
 					}
 					else {
 						ui.msgError('未获取到数据');
@@ -97,8 +114,86 @@ define(function (require, exports) {
 					ui.msgError(res.msg);
 				});
 			},
-			'deleteItem': function () {
-
+			'deleteItem': function (id) {
+				var vm = this;
+				ui.info({
+					msg: '确定要删除吗',
+					yes: function () {
+						$.ajax({
+							url: location.origin + '/index.php/info/delete_info',
+							data: {id: id},
+							dataType: 'json',
+							type: 'post'
+						})
+						.done((res) => {
+							if (res.code == 0) {
+								vm.getData();
+								ui.msgRight('删除成功');
+							}
+							else {
+								ui.msgError(res.msg);
+							}
+						})
+						.fail((res) => {
+							ui.msgError(res.msg);
+						});
+					}
+				});
+			},
+			'deleteAll': function () {
+				var vm = this,
+						ids = [];
+				vm.list.forEach((elem) => {
+					if (elem['checked']) {
+						ids.push(elem['id']);
+					}
+				});
+				if (ids.length === 0) {
+					ui.msgError('请先选择要删除的数据');
+				}
+				else {
+					ui.info({
+						msg: '确定要删除选中的数据吗',
+						yes: function () {
+							$.ajax({
+								url: location.origin + '/index.php/info/delete_mult',
+								data: {ids: ids},
+								dataType: 'json',
+								type: 'post'
+							})
+							.done((res) => {
+								if (res.code == 0) {
+									vm.getData();
+									ui.msgRight('删除成功');
+								}
+								else {
+									ui.msgError(res.msg);
+								}
+							})
+							.fail((res) => {
+								ui.msgError(res.msg);
+							});
+						}
+					});
+				}
+			},
+			'checkAll': function () {
+				this.checkedAll = !this.checkedAll;
+				var checkedAll = this.checkedAll;
+				if (checkedAll) {
+					this.list.forEach((elem) => {
+						elem['checked'] = true;
+					});
+				}
+				else {
+					this.list.forEach((elem) => {
+						elem['checked'] = false;
+					});
+				}
+			},
+			// 只在教师列表组件中用到,触发事件跳转到教师详情组件
+			'toDetail': function (id) {
+				this.$router.push('/home/detail/'+id);
 			}
 		}
 	}

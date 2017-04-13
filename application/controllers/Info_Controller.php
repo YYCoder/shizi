@@ -221,6 +221,44 @@ class Info_Controller extends My_Controller
     }
 
     /**
+     * 删除指定id的项
+     * @param  $_GET => id[String]  [要删除项的id]
+     */
+    public function delete_info()
+    {
+        $id = $_POST['id'];
+        if (!empty($id)) {
+            $res = $this->Info_Model->delete_info($id);
+            if ($res == 1) {
+                $this->return_data('删除成功');
+            }
+            else {
+                $this->return_error('删除失败');
+            }
+        }
+        else {
+            $this->return_error('请选择要删除的项');
+        }
+    }
+
+    /**
+     * 删除多项记录
+     * @param $_POST  =>  ids[Array] [要删除的记录id数组]
+     */
+    public function delete_mult_info()
+    {
+        $ids = $_POST['ids'];
+        $res = $this->Info_Model->delete_mult_info($ids);
+        if ($res == 1) {
+            $this->return_data('删除成功');
+        }
+        else {
+            $this->return_error('删除失败');
+        }
+    }
+
+
+    /**
      * 获取全部档案, 或按条件搜索档案
      * @param  [array] $_GET  => sortType[String](ASC按升序排列, DESC按降序排列)
      *                        => sortItem[String](code按编号排列, age按年龄排列, entry按入职时间排列)
