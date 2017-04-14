@@ -40,7 +40,7 @@ class My_Controller extends CI_Controller
         {
             $data['msg'] = $inp;
         }
-        else if (is_array($inp))
+        else if (is_array($inp) || is_object($inp))
         {
             // !empty($inp['msg']) && ($data['msg'] = $inp['msg']);
             $data['data'] = $inp;

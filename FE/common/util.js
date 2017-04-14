@@ -53,7 +53,21 @@ define(function (require, exports) {
     }
 
 
+    /**
+     * 以'/'将url分段,返回url中除域名之外的指定段的字符串,从1开始,未获取到返回空字符串
+     * @param  {String} num [指定的url段的索引]
+     * @return {String}     [指定的url段]
+     */
+    function segment(num) {
+      var url_arr = location.pathname.split('/');
+      // 去掉域名
+      url_arr.shift();
+      return url_arr[num - 1] || '';
+    }
+
+
     exports.isObject = isObject;
     exports.deepClone = deepClone;
     exports.toCamel = toCamel;
+    exports.segment = segment;
 });

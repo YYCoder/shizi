@@ -40,7 +40,22 @@ class Info_Model extends CI_Model
 								->from('teacher')
 								->where('id = '.$id.' OR uid = '.$id)
 								->get()
-								->row();
+								->row_array();
+		return $res;
+	}
+
+	/**
+	 * 通过uid获取对应的档案
+	 * @param  [string] $uid [用户id]
+	 * @return [array]       [档案信息]
+	 */
+	public function get_info_by_uid($uid)
+	{
+		$res = $this->db
+								->from('teacher')
+								->where('uid = '.$uid)
+								->get()
+								->row_array();
 		return $res;
 	}
 

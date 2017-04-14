@@ -193,6 +193,45 @@ header .user-info .info p.greeting {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
+.teacher-detail-container .detail-table {
+  border-collapse: collapse;
+  width: 85%;
+  height: 82%;
+  margin-top: 10px;
+}
+.teacher-detail-container .detail-table caption {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+}
+.teacher-detail-container .detail-table .avatar {
+  max-width: 100%;
+  max-height: 100%;
+}
+.teacher-detail-container .detail-table tr.first-row {
+  height: 0;
+}
+.teacher-detail-container .detail-table tr.first-row > td {
+  border: none;
+}
+.teacher-detail-container .detail-table td {
+  width: 130px;
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px 0;
+}
+.teacher-detail-container .detail-table td.title-td {
+  font-weight: bold;
+}
+.teacher-detail-container .detail-table td.avatar-td {
+  height: 190px;
+}
+.teacher-detail-container .detail-table td.mock {
+  color: #da2;
+}
+.teacher-detail-container .detail-table td.info {
+  color: #666;
+}
 .insert-container {
   padding: 15px;
   height: 100%;
