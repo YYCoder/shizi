@@ -1,6 +1,7 @@
 <div class="teacher-detail-container">
 	<h1 class="title">教师详情</h1>
 	<hr>
+	<div class="download btn" @click.stop="download">下载excel表格</div>
 	<table class="detail-table" align="center">
 		<caption>教师信息表</caption>
 		<tr class="first-row">
@@ -71,28 +72,28 @@
 		</tr>
 		<tr>
 			<td rowspan="4" class="title-td mock">家庭情况</td>
-			<td class="mock" colspan="3" class="title-td mock">姓名</td>
-			<td class="mock" colspan="3" class="title-td mock">与本人关系</td>
-			<td class="mock" colspan="3" class="title-td mock">工作单位</td>
-			<td class="mock" colspan="3" class="title-td mock">职务</td>
+			<td colspan="3" class="title-td mock">姓名</td>
+			<td colspan="3" class="title-td mock">与本人关系</td>
+			<td colspan="3" class="title-td mock">工作单位</td>
+			<td colspan="3" class="title-td mock">职务</td>
 		</tr>
 		<tr>
-			<td class="info" colspan="3">{{info.home[0].name}}</td>
-			<td class="info" colspan="3">{{info.home[0].relation}}</td>
-			<td class="info" colspan="3">{{info.home[0].dep}}</td>
-			<td class="info" colspan="3">{{info.home[0].job}}</td>
+			<td class="info" colspan="3">{{home[0].name}}</td>
+			<td class="info" colspan="3">{{home[0].relation}}</td>
+			<td class="info" colspan="3">{{home[0].dep}}</td>
+			<td class="info" colspan="3">{{home[0].job}}</td>
 		</tr>
 		<tr>
-			<td class="info" colspan="3">{{info.home[1].name}}</td>
-			<td class="info" colspan="3">{{info.home[1].relation}}</td>
-			<td class="info" colspan="3">{{info.home[1].dep}}</td>
-			<td class="info" colspan="3">{{info.home[1].job}}</td>
+			<td class="info" colspan="3">{{home[1].name}}</td>
+			<td class="info" colspan="3">{{home[1].relation}}</td>
+			<td class="info" colspan="3">{{home[1].dep}}</td>
+			<td class="info" colspan="3">{{home[1].job}}</td>
 		</tr>
 		<tr>
-			<td class="info" colspan="3">{{info.home[2].name}}</td>
-			<td class="info" colspan="3">{{info.home[2].relation}}</td>
-			<td class="info" colspan="3">{{info.home[2].dep}}</td>
-			<td class="info" colspan="3">{{info.home[2].job}}</td>
+			<td class="info" colspan="3">{{home[2].name}}</td>
+			<td class="info" colspan="3">{{home[2].relation}}</td>
+			<td class="info" colspan="3">{{home[2].dep}}</td>
+			<td class="info" colspan="3">{{home[2].job}}</td>
 		</tr>
 		<tr>
 			<td rowspan="4" class="title-td">教学经验</td>

@@ -15,7 +15,7 @@ define(function (require, exports) {
         data: function () {
         	return {
         		info: {},
-        		home: [
+        		homes: [
         			[
         				{
         					name: '张三',
@@ -82,6 +82,9 @@ define(function (require, exports) {
         computed: {
         	marriage: function () {
         		return this.info['marriage'] == 0 ? '否' : '是';
+        	},
+        	home: function () {
+        		return this.homes[Math.floor(Math.random()*3)]
         	}
         },
         created: function () {
@@ -98,10 +101,7 @@ define(function (require, exports) {
         	.then(function (res) {
         		ui.closeAll('loading');
         		if (res.code == 0) {
-        			res.data['home'] = vm.home[Math.floor(Math.random()*3)];
 	        		vm.info = res.data;
-	        		// vm.info['home'] = vm.home[Math.floor(Math.random()*3)];
-	        		console.log(vm.info['home']);
         		}
         		else {
         			ui.msgError(res.msg);
@@ -110,6 +110,24 @@ define(function (require, exports) {
         		ui.closeAll('loading');
         		ui.msgError(res.msg);
         	});
+        },
+        methods: {
+        	'download': function () {
+        		var vm = this;
+        		ui.msgRight('点击下载!');
+        		$.ajax({
+        			url: location.origin + '/index.php/download_info',
+        			type: 'post',
+        			data: {data: vm.info},
+        			dataType: 'json'
+        		})
+        		.done((res) => {
+        			location.href = res.data['url'];
+        		})
+        		.fail((res) => {
+        			ui.msgError(res.msg);
+        		});
+        	}
         }
     }
 

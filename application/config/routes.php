@@ -65,6 +65,7 @@ $route['home/detail'] = 'Index_Controller/index';
 $route['home/detail/:num'] = 'Index_Controller/index';
 $route['check_info'] = 'Index_Controller/check_info';
 $route['info_detail'] = 'Index_Controller/info_detail';
+$route['download_info'] = 'Index_Controller/download';
 // 档案管理
 $route['info'] = 'Info_Controller/index';
 $route['info/insert'] = 'Info_Controller/index';
