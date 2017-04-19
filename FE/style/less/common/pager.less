@@ -1,0 +1,57 @@
+.pager-container {
+	.page-control {
+		display: inline-block;
+		overflow: hidden;
+		div {
+			display: inline-block;
+			float: left;
+	    border: 1px solid @btn2;
+	    color: @btn2;
+	    transition: all 0.4s ease;
+      user-select: none;
+      &:hover, &.active {
+	    	background: @btn2;
+	    	color: #fff;
+	    }
+			&.prev, &.next {
+		    padding: 3px 10px;
+		    cursor: pointer;
+			}
+			&.prev {
+		    border-bottom-left-radius: 5px;
+		    border-top-left-radius: 5px;
+		    border-right: none;
+			}
+			&.next {
+		    border-bottom-right-radius: 5px;
+		    border-top-right-radius: 5px;
+			}
+			&.page {
+				cursor: pointer;
+				padding: 3px 10px;
+				border-right: none;
+			}
+			&.disabled {
+				background: #eee;
+				color: #aaa;
+				border-color: #aaa;
+				cursor: not-allowed;
+			}
+		}
+	}
+	.leap-control {
+		margin-left: 15px;
+		display: inline-block;
+		overflow: hidden;
+		.page-inp {
+	    width: 30px;
+	    margin: 0 5px;
+	    padding: 2px 5px;
+	    font-size: 14px;
+		}
+		.leap {
+			padding: 3px 10px;
+			background: @btn2;
+		}
+	}
+}
