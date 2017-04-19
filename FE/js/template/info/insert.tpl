@@ -75,7 +75,6 @@
                     <input type="list" list="majors" name="major" v-model="formData.major">
                     <datalist id="majors">
                         <option v-for="major in majors" :value="major.id" :label="major.name">
-                        </template>
                     </datalist>
                     <span class="tip">专业编号或专业名称</span>
                 </div>

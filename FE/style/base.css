@@ -34,3 +34,52 @@
   cursor: pointer;
   display: inline-block;
 }
+.drop {
+  max-width: 90px;
+  position: relative;
+  text-align: center;
+  font-size: 15px;
+  margin-right: 15px;
+  padding: 3px 10px;
+  background: #4fbfaa;
+}
+.drop .selected {
+  user-select: none;
+}
+.drop .border-pointer {
+  vertical-align: -2px;
+  transition: all 0.2s ease-in-out;
+  transform-origin: center 25%;
+  border-top-color: #eee;
+}
+.drop .border-pointer.rotated {
+  transform: rotateZ(180deg);
+}
+.drop .selection {
+  position: absolute;
+  width: 100%;
+  border-radius: 4px;
+  background: #4fbfaa;
+  margin-top: 3px;
+  left: 0;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  transform-origin: top;
+}
+.drop .selection.item-enter-active,
+.drop .selection.item-leave {
+  transform: scaleY(1);
+}
+.drop .selection.item-enter,
+.drop .selection.item-leave-active {
+  transform: scaleY(0);
+}
+.drop .selection .option {
+  padding: 2px 0;
+  border-top: 1px solid #fff;
+  font-size: 13px;
+  transition: all 0.3s ease-in-out;
+}
+.drop .selection .option:hover {
+  background: #9adace;
+}

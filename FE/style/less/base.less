@@ -56,6 +56,53 @@
     cursor: pointer;
     display: inline-block;
 }
-
+// 下拉菜单
+.drop {
+    max-width: 90px;
+    position: relative;
+    text-align: center;
+    font-size: 15px;
+    margin-right: 15px;
+    padding: 3px 10px;
+    background: @btn1;
+    .selected {
+        user-select: none;
+    }
+    .border-pointer {
+        vertical-align: -2px;
+        transition: all 0.2s ease-in-out;
+        transform-origin: center 25%;
+        border-top-color: #eee;
+        &.rotated {
+            transform: rotateZ(180deg);
+        }
+    }
+    .selection {
+        position: absolute;
+        width: 100%;
+        border-radius: 4px;
+        background: @btn1;
+        margin-top: 3px;
+        left: 0;
+        overflow: hidden;
+        transition: all 0.2s ease-in-out;
+        transform-origin: top;
+        &.item-enter-active, &.item-leave {
+            transform: scaleY(1);
+        }
+        &.item-enter, &.item-leave-active {
+            transform: scaleY(0);
+        }
+        .option {
+            padding: 2px 0;
+            border-top: 1px solid #fff;
+            font-size: 13px;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                background: lighten(@btn1, 20%);
+            }
+        }
+    }
+}
 
 

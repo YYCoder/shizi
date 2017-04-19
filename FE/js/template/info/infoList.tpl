@@ -26,7 +26,7 @@
 					</div>
 				</transition>
 			</div>
-			<div class="drop btn" >
+			<div class="drop btn">
 				<span class="selected"
 							@click.self="typeShow = !typeShow"
 				>方式</span>
@@ -34,7 +34,7 @@
 							:class="{ rotated: typeShow }"
 						  @click.self="typeShow = !typeShow"
 				></span>
-				<transition name="type">
+				<transition name="item">
 					<div class="selection type" v-show="typeShow">
 						<div class="option" @click="changeSortType('ASC')">升序</div>
 						<div class="option" @click="changeSortType('DESC')">降序</div>

@@ -17,6 +17,22 @@
         <li class="left-item" v-if="p == 1 && isManager">
             <router-link to="/info/infoList" class="left-btn">全部档案</router-link>
         </li>
+        <!-- 课程管理模块 -->
+        <li class="left-item" v-if="p == 2 && !isManager">
+            <router-link to="/course/class" class="left-btn">我的课表</router-link>
+        </li>
+        <li class="left-item" v-if="p == 2 && !isManager">
+            <router-link to="/course/demand" class="left-btn">申请调课</router-link>
+        </li>
+        <li class="left-item" v-if="p == 2 && isManager">
+            <router-link to="/course/all" class="left-btn">全部课程</router-link>
+        </li>
+        <li class="left-item" v-if="p == 2 && isManager">
+            <router-link to="/course/insert" class="left-btn">录入排课</router-link>
+        </li>
+        <li class="left-item" v-if="p == 2 && isManager">
+            <router-link to="/course/examine" class="left-btn">审核申请</router-link>
+        </li>
 
     </ul>
 

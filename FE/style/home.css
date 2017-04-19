@@ -37,6 +37,55 @@
   cursor: pointer;
   display: inline-block;
 }
+.drop {
+  max-width: 90px;
+  position: relative;
+  text-align: center;
+  font-size: 15px;
+  margin-right: 15px;
+  padding: 3px 10px;
+  background: #4fbfaa;
+}
+.drop .selected {
+  user-select: none;
+}
+.drop .border-pointer {
+  vertical-align: -2px;
+  transition: all 0.2s ease-in-out;
+  transform-origin: center 25%;
+  border-top-color: #eee;
+}
+.drop .border-pointer.rotated {
+  transform: rotateZ(180deg);
+}
+.drop .selection {
+  position: absolute;
+  width: 100%;
+  border-radius: 4px;
+  background: #4fbfaa;
+  margin-top: 3px;
+  left: 0;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  transform-origin: top;
+}
+.drop .selection.item-enter-active,
+.drop .selection.item-leave {
+  transform: scaleY(1);
+}
+.drop .selection.item-enter,
+.drop .selection.item-leave-active {
+  transform: scaleY(0);
+}
+.drop .selection .option {
+  padding: 2px 0;
+  border-top: 1px solid #fff;
+  font-size: 13px;
+  transition: all 0.3s ease-in-out;
+}
+.drop .selection .option:hover {
+  background: #9adace;
+}
 header {
   background: #37afea;
   height: 60px;
@@ -525,63 +574,6 @@ header .user-info .info p.greeting {
 .info-list-container .controls .left-control {
   display: inline-block;
 }
-.info-list-container .controls .left-control .drop {
-  max-width: 90px;
-  position: relative;
-  text-align: center;
-  font-size: 15px;
-  margin-right: 15px;
-  padding: 3px 10px;
-  background: #4fbfaa;
-}
-.info-list-container .controls .left-control .drop .border-pointer {
-  vertical-align: -2px;
-  transition: all 0.2s ease-in-out;
-  transform-origin: center 25%;
-  border-top-color: #eee;
-}
-.info-list-container .controls .left-control .drop .border-pointer.rotated {
-  transform: rotateZ(180deg);
-}
-.info-list-container .controls .left-control .drop .selection {
-  position: absolute;
-  width: 100%;
-  border-radius: 4px;
-  background: #4fbfaa;
-  margin-top: 3px;
-  left: 0;
-  overflow: hidden;
-  transition: all 0.2s ease-in-out;
-}
-.info-list-container .controls .left-control .drop .selection.item {
-  height: 66px;
-}
-.info-list-container .controls .left-control .drop .selection.type {
-  height: 44px;
-}
-.info-list-container .controls .left-control .drop .selection.item-enter-active,
-.info-list-container .controls .left-control .drop .selection.item-leave {
-  height: 66px;
-}
-.info-list-container .controls .left-control .drop .selection.type-enter-active,
-.info-list-container .controls .left-control .drop .selection.type-leave {
-  height: 44px;
-}
-.info-list-container .controls .left-control .drop .selection.item-enter,
-.info-list-container .controls .left-control .drop .selection.item-leave-active,
-.info-list-container .controls .left-control .drop .selection.type-enter,
-.info-list-container .controls .left-control .drop .selection.type-leave-active {
-  height: 0;
-}
-.info-list-container .controls .left-control .drop .selection .option {
-  padding: 2px 0;
-  border-top: 1px solid #fff;
-  font-size: 13px;
-  transition: all 0.3s ease-in-out;
-}
-.info-list-container .controls .left-control .drop .selection .option:hover {
-  background: #9adace;
-}
 .info-list-container .controls .left-control .tips {
   color: #999;
   font-size: 13px;
@@ -666,4 +658,30 @@ header .user-info .info p.greeting {
 }
 .info-list-container .info-list-ul .name {
   width: 7%;
+}
+.class-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.class-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.insert-course-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.insert-course-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
 }

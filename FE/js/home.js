@@ -92,33 +92,33 @@ define('home', function (require, exports) {
                     }
                 ]
             },
-            // {
-            //     path: '/course',
-            //     components: {
-            //         'leftNav': leftNav,
-            //         'main': main
-            //     },
-            //     children: [
-            //         {
-            //             path: '',
-            //             components: {
-            //                 'info1': main.components.info1
-            //             }
-            //         },
-            //         {
-            //             path: 'info1',
-            //             components: {
-            //                 'info1': main.components.info1
-            //             }
-            //         },
-            //         {
-            //             path: 'info2',
-            //             components: {
-            //                 'info2': main.components.info2
-            //             }
-            //         }
-            //     ]
-            // }
+            {
+                path: '/course',
+                components: {
+                    'leftNav': leftNav,
+                    'main': main
+                },
+                children: [
+                    {
+                        path: '',
+                        components: {
+                            'class': main.components.class
+                        }
+                    },
+                    {
+                        path: 'class',
+                        components: {
+                            'class': main.components.class
+                        }
+                    },
+                    {
+                        path: 'insert',
+                        components: {
+                            'insertClass': main.components.insertClass
+                        }
+                    }
+                ]
+            }
         ]
     });
     // 定义顶级VM对象
@@ -157,8 +157,8 @@ define('home', function (require, exports) {
             else if (/^\/user/i.test(route.fullPath)) {
                 this.page = 7;
             }
-            // 为了开发,先写死档案管理权限
-            this.user.rights['info'] = 1;
+            // 为了开发,先写死课程管理权限
+            this.user.rights['course'] = 1;
             this.checkInfo();
         },
         router: router,

@@ -6,5 +6,7 @@
     <router-view name="insert"></router-view>
     <router-view name="update"></router-view>
     <router-view name="infoList"></router-view>
-
+    <!-- 课程管理 -->
+		<router-view name="class"></router-view>
+		<router-view name="insertClass"></router-view>
 </div>
