@@ -9,8 +9,18 @@ define(function (require, exports) {
 	var render = require('text!../../template/course/class.tpl');
 
 	var courseClass = {
-		template: render
+		template: render,
+		data: function () {
+			return {
 
+			};
+		},
+		created: function () {
+
+		},
+		methods: {
+
+		}
 	};
 
 	return courseClass;

@@ -65,9 +65,33 @@ define(function (require, exports) {
       return url_arr[num - 1] || '';
     }
 
+    /**
+     * 验证传入的数组||对象是否有空('', null, undefined)
+     * @param  {arr}[Array||Object]           [要验证的数组||对象]
+     * @return {res}[String||Boolean]         [有则返回为空的字段, 没有则返回false]
+     */
+    function hasEmpty(arg) {
+      if (arg instanceof Array) {
+        for (var i = 0; i < arg.length; i++) {
+          if (arg[i] === '' || arg[i] === undefined || arg[i] === null) {
+            return i;
+          }
+        }
+      }
+      else if (typeof(arg) == 'object') {
+        for(var k in arg) {
+          if (arg[k] === '' || arg[k] === undefined || arg[k] === null) {
+            return k;
+          }
+        }
+      }
+    }
+
+
 
     exports.isObject = isObject;
     exports.deepClone = deepClone;
     exports.toCamel = toCamel;
     exports.segment = segment;
+    exports.hasEmpty = hasEmpty;
 });

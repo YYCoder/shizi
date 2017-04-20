@@ -130,7 +130,7 @@
         if (elem instanceof Element) {
             parent = elem.parentElement || elem.parentNode;
             if (typeof(selector) === 'string') {
-                while (parent !== document.documentElement) {
+                while (parent !== document.documentElement && parent !== null) {
                     isMatched = (parent.matchesSelector && parent.matchesSelector(selector))
                              || (parent.matches && parent.matches(selector));
                     if (isMatched) {

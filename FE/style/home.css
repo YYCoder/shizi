@@ -38,7 +38,6 @@
   display: inline-block;
 }
 .drop {
-  max-width: 90px;
   position: relative;
   text-align: center;
   font-size: 15px;
@@ -68,6 +67,7 @@
   overflow: hidden;
   transition: all 0.2s ease-in-out;
   transform-origin: top;
+  z-index: 100;
 }
 .drop .selection.item-enter-active,
 .drop .selection.item-leave {
@@ -672,6 +672,28 @@ header .user-info .info p.greeting {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
+.class-container .class-table-container table {
+  margin: 20px auto;
+  width: 60%;
+  text-align: center;
+}
+.class-container .class-table-container table caption {
+  margin: 15px;
+  font-size: 25px;
+  color: #999;
+}
+.class-container .class-table-container table td {
+  border: 1px solid #ccc;
+  line-height: 35px;
+  transition: all 0.3s ease;
+}
+.class-container .class-table-container table td:hover {
+  background: #c1e6f9;
+}
+.class-container .class-table-container table td.title {
+  background: #37afea;
+  color: #fff;
+}
 .insert-course-container {
   padding: 15px;
   height: 100%;
@@ -684,4 +706,131 @@ header .user-info .info p.greeting {
 .insert-course-container > .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
+}
+.insert-course-container .form-container {
+  width: 50%;
+  height: 75%;
+  overflow-y: scroll;
+  margin: 20px auto;
+  position: relative;
+}
+.insert-course-container .form-container .info {
+  text-align: center;
+  font-size: 20px;
+  color: #999;
+}
+.insert-course-container .form-container .class-2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+.insert-course-container .form-container .class-enter,
+.insert-course-container .form-container .class-leave-active {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.insert-course-container .form-container .class-enter-active,
+.insert-course-container .form-container .class-leave-active {
+  transition: all 0.3s ease;
+}
+.insert-course-container .form-container .class-time-container {
+  position: relative;
+  z-index: 2;
+}
+.insert-course-container .form-container .info-container {
+  width: 85%;
+  display: inline-block;
+  margin-bottom: 15px;
+  position: relative;
+}
+.insert-course-container .form-container .info-container .info-name {
+  display: inline-block;
+  width: 15%;
+  text-align: right;
+  margin-right: -2px;
+}
+.insert-course-container .form-container .info-container .info-name.self-desc {
+  vertical-align: top;
+}
+.insert-course-container .form-container .info-container .info-name.avatar-span {
+  vertical-align: top;
+}
+.insert-course-container .form-container .info-container .require-icon {
+  color: red;
+  font-style: normal;
+  position: absolute;
+  top: 5px;
+}
+.insert-course-container .form-container .info-container textarea {
+  resize: none;
+}
+.insert-course-container .form-container .info-container .content-container {
+  display: inline-block;
+  margin-left: 15px;
+  width: 80%;
+  vertical-align: middle;
+}
+.insert-course-container .form-container .info-container .content-container.pick-time {
+  width: 30%;
+}
+.insert-course-container .form-container .info-container .content-container .info-inp {
+  padding: 5px 4px 3px 4px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.insert-course-container .form-container .info-container .content-container .info-inp[type=date] {
+  width: 50%;
+}
+.insert-course-container .form-container .info-container .content-container #avatar {
+  display: none;
+}
+.insert-course-container .form-container .info-container .content-container .avatar {
+  width: 100px;
+  height: 80px;
+  vertical-align: middle;
+  float: right;
+  border-radius: 5px;
+}
+.insert-course-container .form-container .info-container .content-container .tip {
+  font-size: 12px;
+  color: #999;
+}
+.insert-course-container .form-container .info-container .content-container .salary-icon {
+  position: absolute;
+  top: 5px;
+  margin-left: 4px;
+}
+.insert-course-container .form-container .info-container .content-container input[type=number] {
+  width: 50%;
+}
+.insert-course-container .form-container .info-container .content-container input[type=number][name=salary] {
+  padding-left: 20px;
+}
+.insert-course-container .form-container .btn-container {
+  position: relative;
+  height: 90px;
+}
+.insert-course-container .form-container .btn-container .btn1 {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: #4fbfaa;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  float: right;
+  margin-right: 15px;
+}
+.insert-course-container .form-container .btn-container .btn2 {
+  padding: 5px 15px;
+  border: none;
+  background: #33a8ed;
+  border-radius: 5px;
+  color: #fff;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+.insert-course-container .form-container .btn-container .btn2:focus {
+  outline: none;
 }

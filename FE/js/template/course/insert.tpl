@@ -2,6 +2,8 @@
 	<h1 class="title">录入排课</h1>
 	<hr>
 	<div class="form-container">
+    <p class="info">填写排课基本信息</p>
+    <hr>
 		<div class="info-container">
       <span class="info-name">授课教师</span>
       <i class="require-icon" v-if="requires.teacher">*</i>
@@ -49,35 +51,74 @@
         <span class="tip">选择课程</span>
       </div>
     </div>
-
+    <hr>
+  	<p class="info">选择上课时间及地点</p>
     <div class="class-time-container">
-    	<p class="info">选择上课时间及地点</p>
     	<div class="class-1">
 				<div class="info-container">
 		      <span class="info-name">选择上课时间</span>
-		      <i class="require-icon" v-if="requires.teacher">*</i>
-		      <div class="content-container">
-							<div class="drop btn">
-								<span class="selected"
-											@click.self="itemShow = !itemShow"
-								>字段名</span>
-								<span class="border-pointer"
-										  :class="{ rotated: itemShow }"
-										  @click.self="itemShow = !itemShow"
-							  ></span>
-								<transition name="item">
-									<div class="selection item" v-show="itemShow">
-										<div class="option" @click="changeSortItem('code')">编号</div>
-										<div class="option" @click="changeSortItem('age')">年龄</div>
-										<div class="option" @click="changeSortItem('entry')">入职时间</div>
-									</div>
-								</transition>
-							</div>
+		      <i class="require-icon" v-if="requires.time_1">*</i>
+		      <div class="content-container pick-time time_1">
+							<drop :items="drop.classTime"
+                    :dropName="drop.classTimeName"
+                    @drop-click="dropClickTime1"></drop>
 		      </div>
+          <span class="info-name">选择上课日期</span>
+          <i class="require-icon" v-if="requires.week_1">*</i>
+          <div class="content-container pick-time week_1">
+              <drop :items="drop.classWeek"
+                    :dropName="drop.classWeekName"
+                    @drop-click="dropClickWeek1"></drop>
+          </div>
 		    </div>
+        <div class="info-container">
+          <span class="info-name">输入上课教室</span>
+          <i class="require-icon" v-if="requires.room_1">*</i>
+          <div class="content-container">
+            <input class="info-inp" type="number" name="room_1"
+                   maxlength=20
+                   v-model="formData.room_1">
+          </div>
+        </div>
     	</div>
+      <!-- 可选添加排课 -->
+      <transition name="class">
+        <div class="class-2" v-show="hasAddClass">
+          <div class="info-container">
+            <span class="info-name">选择上课时间</span>
+            <i class="require-icon" v-if="requires.time_2">*</i>
+            <div class="content-container pick-time time_2">
+                <drop :items="drop.classTime"
+                      :dropName="drop.classTimeName"
+                      @drop-click="dropClickTime2"></drop>
+            </div>
+            <span class="info-name">选择上课日期</span>
+            <i class="require-icon" v-if="requires.week_2">*</i>
+            <div class="content-container pick-time week_2">
+                <drop :items="drop.classWeek"
+                      :dropName="drop.classWeekName"
+                      @drop-click="dropClickWeek2"></drop>
+            </div>
+          </div>
+          <div class="info-container">
+            <span class="info-name">输入上课教室</span>
+            <i class="require-icon" v-if="requires.room_2">*</i>
+            <div class="content-container">
+              <input class="info-inp" type="number" name="room_2"
+                     maxlength=20
+                     v-model="formData.room_2">
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
 
+    <div class="btn-container">
+      <button class="btn1" @click="hasAddClass = true">添加本周排课次数</button>
+      <button class="btn1" @click="hasAddClass = false">删除本周排课次数</button>
+      <br>
+      <button class="submit btn2" @click="submit">提交</button>
+    </div>
 
 	</div>
 </div>

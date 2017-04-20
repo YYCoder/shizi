@@ -10,7 +10,30 @@
     font-size: 1.5rem;
     margin: 10px 0 15px;
   }
-
+  .class-table-container {
+    table {
+      margin: 20px auto;
+      width: 60%;
+      text-align: center;
+      caption {
+        margin: 15px;
+        font-size: 25px;
+        color: #999;
+      }
+      td {
+        border: 1px solid #ccc;
+        line-height: 35px;
+        transition: all 0.3s ease;
+        &:hover {
+          background: lighten(@mainBtnBg, 30%);
+        }
+        &.title {
+          background: @mainBtnBg;
+          color: #fff;
+        }
+      }
+  }
+  }
 
 
 

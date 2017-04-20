@@ -83,6 +83,9 @@ $route['get_majors'] = 'Info_Controller/get_majors';
 $route['course'] = 'Course_Controller/index';
 $route['course/class'] = 'Course_Controller/index';
 $route['course/insert'] = 'Course_Controller/index';
+$route['course/get_teachers'] = 'Course_Controller/get_teachers';
+$route['course/get_courses'] = 'Course_Controller/get_courses';
+$route['course/insert_data'] = 'Course_Controller/insert_data';
 
 
 
