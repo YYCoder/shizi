@@ -237,4 +237,70 @@ class Course_Controller extends My_Controller
     }
 
 
+    /**
+     * 多项删除
+     * @param $_POST  =>  ids[Array] [要删除的记录id数组]
+     */
+    public function delete_mult_class()
+    {
+        $ids = $_POST['ids'];
+        $res = $this->Course_Model->delete_mult_class($ids);
+        if ($res == 1) {
+            $this->return_data('删除成功');
+        }
+        else {
+            $this->return_error('删除失败');
+        }
+    }
+
+    /**
+     * 删除指定id的项
+     * @param  $_GET => id[String]  [要删除项的id]
+     */
+    public function delete_class()
+    {
+        $id = $_POST['id'];
+        if (!empty($id)) {
+            $res = $this->Course_Model->delete_class($id);
+            if ($res == 1) {
+                $this->return_data('删除成功');
+            }
+            else {
+                $this->return_error('删除失败');
+            }
+        }
+        else {
+            $this->return_error('请选择要删除的项');
+        }
+    }
+
+
+    /**
+     * 修改指定id的项
+     * @param $_GET => id[String]   [要修改的项的id]
+     *              => class[String](可选)
+     *              => time[String](可选)
+     *              => week[String](可选)
+     *              => room[String](可选)
+     */
+    public function FunctionName()
+    {
+        $data = $_GET;
+        if (!empty($data) && !empty($data['id'])) {
+            $res = $this->Course_Model->update($data);
+        }
+        if ($res['status'] == '1') {
+            $this->return_data();
+        }
+        else {
+            $this->return_error('修改排课失败');
+        }
+    }
+
+
+
+
+
+
+
 }

@@ -90,6 +90,8 @@ $route['course/insert_data'] = 'Course_Controller/insert_data';
 $route['course/get_class'] = 'Course_Controller/get_class';
 $route['download_course'] = 'Course_Controller/download';
 $route['course/get_all_class'] = 'Course_Controller/get_all_class';
+$route['course/delete_mult'] = 'Course_Controller/delete_mult_class';
+$route['course/delete_class'] = 'Course_Controller/delete_class';
 
 
 

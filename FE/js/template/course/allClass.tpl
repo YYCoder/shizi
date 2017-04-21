@@ -14,14 +14,14 @@
 			<li class="title-list">
 				<span class="checkbox"></span>
 				<span class="teacher">教师姓名</span>
-				<span class="tid" @click.stop="sort('tid')">教师编号
-					<span class="border-pointer" :class="{ desc: tidDesc }"></span>
+				<span class="tid" @click.stop="sort('tid')">
+					教师编号<i class="border-pointer" :class="{ desc: tidDesc }" />
 				</span>
-				<span class="start" @click.stop="sort('start')>开课时间
-					<span class="border-pointer" :class="{ desc: startDesc }"></span>
+				<span class="start" @click.stop="sort('start')">
+					开课时间<i class="border-pointer" :class="{ desc: startDesc }" />
 				</span>
-				<span class="end" @click.stop="sort('end')>结课时间
-					<span class="border-pointer" :class="{ desc: endDesc }"></span>
+				<span class="end" @click.stop="sort('end')">
+					结课时间<i class="border-pointer" :class="{ desc: endDesc }" />
 				</span>
 				<span class="class">授课班级</span>
 				<span class="course">课程名称</span>
@@ -40,8 +40,8 @@
 				</span>
 				<span class="teacher single-line">{{item.teacher}}</span>
 				<span class="tid single-line">{{item.tid}}</span>
-				<span class="start single-line">{{item.start}}</span>
-				<span class="end single-line">{{item.end}}</span>
+				<span class="start single-line">第{{item.start}}周</span>
+				<span class="end single-line">第{{item.end}}周</span>
 				<span class="class single-line">{{item.class}}</span>
 				<span class="course single-line">{{item.course}}</span>
 				<span class="time single-line">{{item.time}}</span>

@@ -9,6 +9,7 @@ define(function (require, exports) {
 	var render = require('text!../../template/course/allClass.tpl');
 	var ui = require('ui');
 	var pager = require('../common/pager');
+	var layer = require('layer');
 
 	var allClass = {
 		template: render,
@@ -68,7 +69,41 @@ define(function (require, exports) {
 				this.getData();
 			},
 			deleteAll() {
-
+				var vm = this,
+						ids = [];
+				vm.list.forEach((elem) => {
+					if (elem['checked']) {
+						ids.push(elem['id']);
+					}
+				});
+				if (ids.length === 0) {
+					ui.msgError('请先选择要删除的数据');
+				}
+				else {
+					ui.info({
+						msg: '确定要删除选中的数据吗',
+						yes: function () {
+							$.ajax({
+								url: location.origin + '/index.php/course/delete_mult',
+								data: {ids: ids},
+								dataType: 'json',
+								type: 'post'
+							})
+							.done((res) => {
+								if (res.code == 0) {
+									vm.getData();
+									ui.msgRight('删除成功');
+								}
+								else {
+									ui.msgError(res.msg);
+								}
+							})
+							.fail((res) => {
+								ui.msgError(res.msg);
+							});
+						}
+					});
+				}
 			},
 			checkAll() {
 				this.checkedAll = !this.checkedAll;
@@ -77,10 +112,36 @@ define(function (require, exports) {
 				});
 			},
 			deleteItem(id) {
-
+				var vm = this;
+				ui.info({
+					msg: '确定要删除吗',
+					yes: function () {
+						$.ajax({
+							url: location.origin + '/index.php/course/delete_class',
+							data: {id: id},
+							dataType: 'json',
+							type: 'post'
+						})
+						.done((res) => {
+							if (res.code == 0) {
+								vm.getData();
+								ui.msgRight('删除成功');
+							}
+							else {
+								ui.msgError(res.msg);
+							}
+						})
+						.fail((res) => {
+							ui.msgError(res.msg);
+						});
+					}
+				});
 			},
 			updateItem(id) {
-
+				layer.open({
+					type: 1,
+					content: ''
+				});
 			},
 			getData() {
 				ui.loading();
@@ -90,7 +151,7 @@ define(function (require, exports) {
 					dataType: 'json',
 					type: 'get'
 				}).done((res) => {
-					console.log(res);
+					// console.log(res);
 					ui.closeAll('loading');
 					if (res.code == 0) {
 						res.data['data'].forEach((elem) => {
@@ -99,6 +160,9 @@ define(function (require, exports) {
 						this.list = res.data['data'];
 						this.pageNumber = +res.data['page']['page_count'];
 						this.curPage = +res.data['page']['current_page'];
+					}
+					else {
+						ui.msgError('未获取到数据');
 					}
 				}).fail((res) => {
 					ui.closeAll('loading');
