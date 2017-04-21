@@ -83,3 +83,60 @@
 .drop .selection .option:hover {
   background: #9adace;
 }
+.pager-container .page-control {
+  display: inline-block;
+  overflow: hidden;
+}
+.pager-container .page-control div {
+  display: inline-block;
+  float: left;
+  border: 1px solid #33a8ed;
+  color: #33a8ed;
+  transition: all 0.4s ease;
+  user-select: none;
+}
+.pager-container .page-control div:hover,
+.pager-container .page-control div.active {
+  background: #33a8ed;
+  color: #fff;
+}
+.pager-container .page-control div.prev,
+.pager-container .page-control div.next {
+  padding: 3px 10px;
+  cursor: pointer;
+}
+.pager-container .page-control div.prev {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-right: none;
+}
+.pager-container .page-control div.next {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.pager-container .page-control div.page {
+  cursor: pointer;
+  padding: 3px 10px;
+  border-right: none;
+}
+.pager-container .page-control div.disabled {
+  background: #eee;
+  color: #aaa;
+  border-color: #aaa;
+  cursor: not-allowed;
+}
+.pager-container .leap-control {
+  margin-left: 15px;
+  display: inline-block;
+  overflow: hidden;
+}
+.pager-container .leap-control .page-inp {
+  width: 30px;
+  margin: 0 5px;
+  padding: 2px 5px;
+  font-size: 14px;
+}
+.pager-container .leap-control .leap {
+  padding: 3px 10px;
+  background: #33a8ed;
+}

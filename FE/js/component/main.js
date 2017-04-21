@@ -9,15 +9,16 @@ define(function (require, exports) {
     var mainRender = require('text!../template/main.tpl');
     // 子组件
     // 首页
-    var teacherList = require('./home/teacherList');
-    var teacherDetail = require('./home/teacherDetail');
+    var teacherList = require('./home/teacherList'),
+        teacherDetail = require('./home/teacherDetail'),
     // 档案管理
-    var insert = require('./info/insert');
-    var update = require('./info/update');
-    var infoList = require('./info/infoList');
+        insert = require('./info/insert'),
+        update = require('./info/update'),
+        infoList = require('./info/infoList'),
     // 课程管理
-    var courseClass = require('./course/class');
-    var insertClass = require('./course/insert');
+        courseClass = require('./course/class'),
+        insertClass = require('./course/insert'),
+        allClass = require('./course/allClass');
 
     var main = {
         template: mainRender,
@@ -30,7 +31,8 @@ define(function (require, exports) {
             infoList: infoList,
 
             class: courseClass,
-            insertClass: insertClass
+            insertClass: insertClass,
+            allClass: allClass
         }
     }
 

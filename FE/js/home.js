@@ -116,6 +116,12 @@ define('home', function (require, exports) {
                         components: {
                             'insertClass': main.components.insertClass
                         }
+                    },
+                    {
+                        path: 'allClass',
+                        components: {
+                            'allClass': main.components.allClass
+                        }
                     }
                 ]
             }

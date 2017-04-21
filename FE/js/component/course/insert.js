@@ -136,32 +136,47 @@ define(function (require, exports) {
 		methods: {
 			'dropClickTime1': function (item) {
 				this.formData['time_1'] = item.value;
-				console.log(item.value);
-				console.log(item.name);
 			},
 			'dropClickWeek1': function (item) {
 				this.formData['week_1'] = item.value;
-				console.log(item.value);
-				console.log(item.name);
 			},
 			'dropClickTime2': function (item) {
 				this.formData['time_2'] = item.value;
-				console.log(item.value);
-				console.log(item.name);
 			},
 			'dropClickWeek2': function (item) {
 				this.formData['week_2'] = item.value;
-				console.log(item.value);
-				console.log(item.name);
+			},
+			'deleteAddClass': function () {
+				this.hasAddClass = false;
+				this.formData['time_2'] = '';
+				this.formData['week_2'] = '';
+				this.formData['room_2'] = '';
 			},
 			'submit': function () {
-        var data = util['deepClone'](this.formData),
-            hasEmptyValue = util['hasEmpty'](data);
+        var formData = util['deepClone'](this.formData),
+            hasEmptyValue = util['hasEmpty'](formData);
         if (!hasEmptyValue) {
+        	var data1 = {
+        		time: formData['time_1'],
+        		week: formData['week_1'],
+        		room: formData['room_1']
+        	}, data2 = {
+						time: formData['time_2'],
+        		week: formData['week_2'],
+        		room: formData['room_2']
+    			};
+	        delete formData['time_1'];
+	        delete formData['time_2'];
+	        delete formData['week_1'];
+	        delete formData['week_2'];
+	        delete formData['room_1'];
+	        delete formData['room_2'];
+    			data1 = $.extend(true, data1, formData);
+    			data2 = $.extend(true, data2, formData);
         	ui.loading();
 					$.ajax({
         		url: location.origin + '/index.php/course/insert_data',
-        		data: {data: data},
+        		data: {data: [data1, data2]},
         		dataType: 'json',
         		type: 'post'
         	}).done((res) => {
@@ -225,12 +240,18 @@ define(function (require, exports) {
         else if(hasEmptyValue === 'time_2' || hasEmptyValue === 'week_2' || hasEmptyValue === 'room_2') {
         	// 懒得验证time_2这组了, 如果有一个为空, 则这组都不要了
         	ui.loading();
-        	delete data['time_2'];
-        	delete data['week_2'];
-        	delete data['room_2'];
+        	formData['time'] = formData['time_1'];
+        	formData['week'] = formData['week_1'];
+        	formData['room'] = formData['room_1'];
+        	delete formData['time_1'];
+        	delete formData['week_1'];
+        	delete formData['room_1'];
+        	delete formData['time_2'];
+        	delete formData['week_2'];
+        	delete formData['room_2'];
         	$.ajax({
         		url: location.origin + '/index.php/course/insert_data',
-        		data: {data: data},
+        		data: {data: formData},
         		dataType: 'json',
         		type: 'post'
         	}).done((res) => {

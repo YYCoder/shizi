@@ -86,6 +86,63 @@
 .drop .selection .option:hover {
   background: #9adace;
 }
+.pager-container .page-control {
+  display: inline-block;
+  overflow: hidden;
+}
+.pager-container .page-control div {
+  display: inline-block;
+  float: left;
+  border: 1px solid #33a8ed;
+  color: #33a8ed;
+  transition: all 0.4s ease;
+  user-select: none;
+}
+.pager-container .page-control div:hover,
+.pager-container .page-control div.active {
+  background: #33a8ed;
+  color: #fff;
+}
+.pager-container .page-control div.prev,
+.pager-container .page-control div.next {
+  padding: 3px 10px;
+  cursor: pointer;
+}
+.pager-container .page-control div.prev {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-right: none;
+}
+.pager-container .page-control div.next {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.pager-container .page-control div.page {
+  cursor: pointer;
+  padding: 3px 10px;
+  border-right: none;
+}
+.pager-container .page-control div.disabled {
+  background: #eee;
+  color: #aaa;
+  border-color: #aaa;
+  cursor: not-allowed;
+}
+.pager-container .leap-control {
+  margin-left: 15px;
+  display: inline-block;
+  overflow: hidden;
+}
+.pager-container .leap-control .page-inp {
+  width: 30px;
+  margin: 0 5px;
+  padding: 2px 5px;
+  font-size: 14px;
+}
+.pager-container .leap-control .leap {
+  padding: 3px 10px;
+  background: #33a8ed;
+}
 header {
   background: #37afea;
   height: 60px;
@@ -482,63 +539,6 @@ header .user-info .info p.greeting {
 .insert-container .form-container .btn2:focus {
   outline: none;
 }
-.pager-container .page-control {
-  display: inline-block;
-  overflow: hidden;
-}
-.pager-container .page-control div {
-  display: inline-block;
-  float: left;
-  border: 1px solid #33a8ed;
-  color: #33a8ed;
-  transition: all 0.4s ease;
-  user-select: none;
-}
-.pager-container .page-control div:hover,
-.pager-container .page-control div.active {
-  background: #33a8ed;
-  color: #fff;
-}
-.pager-container .page-control div.prev,
-.pager-container .page-control div.next {
-  padding: 3px 10px;
-  cursor: pointer;
-}
-.pager-container .page-control div.prev {
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  border-right: none;
-}
-.pager-container .page-control div.next {
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
-}
-.pager-container .page-control div.page {
-  cursor: pointer;
-  padding: 3px 10px;
-  border-right: none;
-}
-.pager-container .page-control div.disabled {
-  background: #eee;
-  color: #aaa;
-  border-color: #aaa;
-  cursor: not-allowed;
-}
-.pager-container .leap-control {
-  margin-left: 15px;
-  display: inline-block;
-  overflow: hidden;
-}
-.pager-container .leap-control .page-inp {
-  width: 30px;
-  margin: 0 5px;
-  padding: 2px 5px;
-  font-size: 14px;
-}
-.pager-container .leap-control .leap {
-  padding: 3px 10px;
-  background: #33a8ed;
-}
 .info-list-container {
   padding: 15px;
   height: 100%;
@@ -668,9 +668,20 @@ header .user-info .info p.greeting {
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
 }
+.class-container .download {
+  position: absolute;
+  right: 15px;
+  top: 25px;
+  line-height: 30px;
+  background: #4fbfaa;
+}
 .class-container > .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
+}
+.class-container .class-table-container {
+  height: 85%;
+  overflow-y: scroll;
 }
 .class-container .class-table-container table {
   margin: 20px auto;
@@ -693,6 +704,10 @@ header .user-info .info p.greeting {
 .class-container .class-table-container table td.title {
   background: #37afea;
   color: #fff;
+}
+.class-container .class-table-container table td p {
+  margin: 5px 0;
+  line-height: 23px;
 }
 .insert-course-container {
   padding: 15px;
@@ -833,4 +848,139 @@ header .user-info .info p.greeting {
 }
 .insert-course-container .form-container .btn-container .btn2:focus {
   outline: none;
+}
+.all-class-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.all-class-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.all-class-container .controls .right-control {
+  display: inline-block;
+  float: right;
+}
+.all-class-container .controls .left-control {
+  display: inline-block;
+}
+.all-class-container .controls .left-control .search-inp {
+  padding: 5px 4px 3px 4px;
+  width: 240px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+.all-class-container .controls .left-control .search {
+  margin-left: 15px;
+  line-height: 29px;
+  background: #4fbfaa;
+}
+.all-class-container .controls .left-control .search:focus {
+  outline: none;
+}
+.all-class-container .controls .left-control .tips {
+  color: #999;
+  font-size: 13px;
+  margin-left: 10px;
+}
+.all-class-container .controls .left-control .delete-all,
+.all-class-container .controls .left-control .check-all {
+  line-height: 29px;
+  background: #4fbfaa;
+  margin-right: 15px;
+}
+.all-class-container .controls .left-control .delete-all:focus,
+.all-class-container .controls .left-control .check-all:focus {
+  outline: none;
+}
+.all-class-container .bottom-controls .right-control {
+  max-width: 92%;
+}
+.all-class-container .info-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+.all-class-container .info-list-ul .title-list {
+  border-radius: 3px;
+  color: #fff;
+  background: #344152;
+}
+.all-class-container .info-list-ul .title-list > span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.all-class-container .info-list-ul .title-list > span:not(.checkbox):hover {
+  background: #526681;
+  cursor: pointer;
+}
+.all-class-container .info-list-ul .title-list > span .border-pointer {
+  border-top-color: #eee;
+  vertical-align: -3px;
+  position: relative;
+  left: 7%;
+  transition: transform 0.3s ease;
+  transform-origin: center 25%;
+}
+.all-class-container .info-list-ul .title-list > span .border-pointer.desc {
+  transform: rotate(180deg);
+}
+.all-class-container .info-list-ul .info-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+.all-class-container .info-list-ul .info-list:hover {
+  background: #eee;
+  cursor: pointer;
+}
+.all-class-container .info-list-ul .info-list.checked {
+  background: #eee;
+}
+.all-class-container .info-list-ul .info-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+.all-class-container .info-list-ul .info-list span .img-wrap {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.all-class-container .info-list-ul .checkbox {
+  width: 3%;
+}
+.all-class-container .info-list-ul .room {
+  width: 5%;
+}
+.all-class-container .info-list-ul .teacher {
+  width: 8%;
+}
+.all-class-container .info-list-ul .start,
+.all-class-container .info-list-ul .end,
+.all-class-container .info-list-ul .tid {
+  width: 7%;
+}
+.all-class-container .info-list-ul .class,
+.all-class-container .info-list-ul .course {
+  width: 17%;
+}
+.all-class-container .info-list-ul .time {
+  width: 14%;
+}
+.all-class-container .info-list-ul .control {
+  width: 10%;
 }

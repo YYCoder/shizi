@@ -115,7 +115,7 @@
 
     <div class="btn-container">
       <button class="btn1" @click="hasAddClass = true">添加本周排课次数</button>
-      <button class="btn1" @click="hasAddClass = false">删除本周排课次数</button>
+      <button class="btn1" @click="deleteAddClass">删除本周排课次数</button>
       <br>
       <button class="submit btn2" @click="submit">提交</button>
     </div>

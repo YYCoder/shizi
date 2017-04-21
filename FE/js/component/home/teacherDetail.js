@@ -114,7 +114,6 @@ define(function (require, exports) {
         methods: {
         	'download': function () {
         		var vm = this;
-        		ui.msgRight('点击下载!');
         		$.ajax({
         			url: location.origin + '/index.php/download_info',
         			type: 'post',
