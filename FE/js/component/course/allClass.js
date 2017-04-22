@@ -9,12 +9,14 @@ define(function (require, exports) {
 	var render = require('text!../../template/course/allClass.tpl');
 	var ui = require('ui');
 	var pager = require('../common/pager');
+	var drop = require('../common/drop');
 	var layer = require('layer');
 
 	var allClass = {
 		template: render,
 		components: {
-			'pager': pager
+			'pager': pager,
+			'drop': drop
 		},
 		data: function () {
 			return {
@@ -28,11 +30,77 @@ define(function (require, exports) {
 					// ASC, DESC
 					type: 'ASC',
 					// limit
-					limit: 10,
+					limit: 15,
 					// where
 					where: '',
 					// 前往第几页
 					page: 1
+				},
+				// 下拉菜单组件用的数据
+				drop: {
+					'classTimeName': '选择第几节上课',
+					'classTime': [
+						{
+							value: '1',
+							name: '一二节'
+						},
+						{
+							value: '2',
+							name: '三四节'
+						},
+						{
+							value: '3',
+							name: '五六节'
+						},
+						{
+							value: '4',
+							name: '七八节'
+						},
+						{
+							value: '5',
+							name: '九十节'
+						}
+					],
+					'classWeekName': '选择周几上课',
+					'classWeek': [
+						{
+							value: '1',
+							name: '周一'
+						},
+						{
+							value: '2',
+							name: '周二'
+						},
+						{
+							value: '3',
+							name: '周三'
+						},
+						{
+							value: '4',
+							name: '周四'
+						},
+						{
+							value: '5',
+							name: '周五'
+						},
+						{
+							value: '6',
+							name: '周六'
+						},
+						{
+							value: '7',
+							name: '周日'
+						},
+					]
+				},
+				// 点击修改的数据绑定
+				update: {
+					id: '',
+					start: '',
+					end: '',
+					time: '',
+					week: '',
+					room: ''
 				},
 				// 全选flag
 				checkedAll: false,
@@ -138,9 +206,25 @@ define(function (require, exports) {
 				});
 			},
 			updateItem(id) {
+				var vm = this;
+				// 将现有数据显示到弹层中
+				this.list.forEach((elem) => {
+					if (elem.id == id) {
+						this.update.id = id;
+						this.update.start = elem.start;
+						this.update.end = elem.end;
+						this.update.room = elem.room;
+					}
+				});
 				layer.open({
 					type: 1,
-					content: ''
+					area: '420px',
+					title: false,
+					content: $('.update-content'),
+					cancel: function () {
+						vm.update.id = '';
+						vm.updateReset();
+					}
 				});
 			},
 			getData() {
@@ -168,6 +252,54 @@ define(function (require, exports) {
 					ui.closeAll('loading');
 					ui.msgError(res.msg);
 				});
+			},
+			// 下拉组件点击触发的函数
+			weekClick(item) {
+				this.update.week = item.value;
+			},
+			timeClick(item) {
+				this.update.time = item.value;
+			},
+			// 修改数据弹层点击提交或重置函数
+			updateSubmit() {
+				var param = {},
+						update = this.update;
+				ui.loading();
+				// 请求用要修改的字段
+				for(var k in update) {
+					if (update[k] !== '') {
+						param[k] = update[k];
+					}
+				}
+				$.ajax({
+					url: location.origin + '/index.php/course/update',
+					data: param,
+					type: 'post'
+				}).done((res) => {
+					if (res.code == 0) {
+						ui.closeAll();
+						ui.msgRight('修改成功');
+						this.update.id = '';
+						this.updateReset();
+						// 更新页面数据
+						this.getData();
+					}
+					else {
+						ui.closeAll('loading');
+						ui.msgError(res.msg);
+					}
+				}).fail((res) => {
+					ui.closeAll('loading');
+					ui.msgError(res.msg);
+				});
+			},
+			updateReset() {
+				var update = this.update;
+				for(var k in update) {
+					if (k != 'id') {
+						update[k] = '';
+					}
+				}
 			}
 		}
 	}

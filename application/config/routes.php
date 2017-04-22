@@ -84,6 +84,8 @@ $route['course'] = 'Course_Controller/index';
 $route['course/class'] = 'Course_Controller/index';
 $route['course/insert'] = 'Course_Controller/index';
 $route['course/allClass'] = 'Course_Controller/index';
+$route['course/demand'] = 'Course_Controller/index';
+$route['course/examine'] = 'Course_Controller/index';
 $route['course/get_teachers'] = 'Course_Controller/get_teachers';
 $route['course/get_courses'] = 'Course_Controller/get_courses';
 $route['course/insert_data'] = 'Course_Controller/insert_data';
@@ -92,6 +94,12 @@ $route['download_course'] = 'Course_Controller/download';
 $route['course/get_all_class'] = 'Course_Controller/get_all_class';
 $route['course/delete_mult'] = 'Course_Controller/delete_mult_class';
 $route['course/delete_class'] = 'Course_Controller/delete_class';
+$route['course/update'] = 'Course_Controller/update_item';
+$route['course/demand_course'] = 'Course_Controller/update_item';
+$route['course/agree_items'] = 'Course_Controller/update_items';
+$route['course/deny_items'] = 'Course_Controller/update_items';
+$route['course/get_own_class'] = 'Course_Controller/get_own_class';
+$route['course/get_all_demand'] = 'Course_Controller/get_all_demand';
 
 
 

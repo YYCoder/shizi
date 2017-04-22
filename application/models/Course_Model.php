@@ -131,7 +131,92 @@ class Course_Model extends CI_Model
 		return $res;
 	}
 
+	/**
+	 * 更新指定id的数据
+	 * @param  [array] $data  [必须包括id]
+	 * @return [string]       [受影响行数]
+	 */
+	public function update($data)
+	{
+		$res = $this->db
+								->where('id', $data['id'])
+								->update('course-teacher', $data);
+		return $res;
+	}
 
+	/**
+	 * 批量更新数据
+	 * @param  [array] $data  [数据数组]
+	 * @return [string]       [受影响行数]
+	 */
+	public function update_items($data)
+	{
+		$res = $this->db
+								->update_batch('course-teacher', $data, 'id');
+		return $res;
+	}
+
+
+	/**
+	 * 获取指定用户id的老师的所有排课
+	 * @param  [String] $uid [用户id]
+	 * @return [array]       [该老师的所有排课]
+	 */
+	public function get_own_class($uid)
+	{
+		$data = $this->db->select('course-teacher.id AS id, time, week, room, course.name AS course, is_demand')
+										 ->from('course-teacher')
+										 ->join('course', 'course.id = course-teacher.cid')
+										 ->join('teacher', 'teacher.id = course-teacher.tid')
+										 ->where('teacher.uid', $uid)
+										 ->get()
+										 ->result_array();
+	  return $data;
+	}
+
+
+	/**
+	 * 获取所有满足条件的申请, 并排序
+	 * @param  [array] $param => type[String](ASC按升序排列, DESC按降序排列)
+	 *                        => item[String](按申请时间排序demand_time, 按time, new_time或week, new_week排列)
+	 *                        => where[String](模糊教师姓名,编号)
+	 *                        => limit[Array] => number[Number](要从第几条数据开始返回)
+	 *                         								=> count[Number](每页显示多少个)
+	 * @return [array]  =>  data     [所有查询到的数据]
+	 *                  =>	count    [满足条件的数据行数]
+	 */
+	public function get_all_demand($param)
+	{
+		$res = array();
+		// 先清空缓存的SQL
+		$this->db->flush_cache();
+
+		if (!empty($param)) {
+			$this->db->start_cache()
+							 ->from('course-teacher')
+ 							 ->join('teacher', 'course-teacher.tid = teacher.id')
+ 							 ->join('course', 'course-teacher.cid = course.id')
+ 							 ->select('course-teacher.id AS id, demand_time, teacher.name AS teacher, course.name AS course, class, new_time, new_week, new_room, time, week, room')
+ 							 ->where('is_demand', 1);
+			if (!empty($param['where'])) {
+				$this->db->group_start()
+								 ->where('tid', $param['where'])
+								 ->or_like('teacher.name', $param['where'])
+								 ->group_end();
+			}
+			$res['data'] = $this->db->stop_cache()
+															->order_by('course-teacher.'.$param['item'], $param['type'])
+															// 参数顺序跟sql中的LIMIT子句的参数顺序相反...
+															->limit($param['limit']['count'], $param['limit']['number'])
+															// ->get_compiled_select();
+															->get()
+															->result_array();
+			// 利用CI的查询构造器缓存,获取满足条件的数据行数
+			$res['count'] = $this->db->get()
+															 ->num_rows();
+		}
+		return $res;
+	}
 
 
 

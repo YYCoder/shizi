@@ -25,7 +25,7 @@
             <router-link to="/course/demand" class="left-btn">申请调课</router-link>
         </li>
         <li class="left-item" v-if="p == 2 && isManager">
-            <router-link to="/course/allClass" class="left-btn">全部课程</router-link>
+            <router-link to="/course/allClass" class="left-btn">全部排课</router-link>
         </li>
         <li class="left-item" v-if="p == 2 && isManager">
             <router-link to="/course/insert" class="left-btn">录入排课</router-link>

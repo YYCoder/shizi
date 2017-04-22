@@ -9,5 +9,7 @@
     <!-- 课程管理 -->
 	<router-view name="class"></router-view>
     <router-view name="insertClass"></router-view>
-	<router-view name="allClass"></router-view>
+    <router-view name="allClass"></router-view>
+    <router-view name="demand"></router-view>
+	<router-view name="examine"></router-view>
 </div>

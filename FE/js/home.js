@@ -122,6 +122,18 @@ define('home', function (require, exports) {
                         components: {
                             'allClass': main.components.allClass
                         }
+                    },
+                    {
+                        path: 'demand',
+                        components: {
+                            'demand': main.components.demand
+                        }
+                    },
+                    {
+                        path: 'examine',
+                        components: {
+                            'examine': main.components.examine
+                        }
                     }
                 ]
             }

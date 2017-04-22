@@ -18,7 +18,9 @@ define(function (require, exports) {
     // 课程管理
         courseClass = require('./course/class'),
         insertClass = require('./course/insert'),
-        allClass = require('./course/allClass');
+        allClass = require('./course/allClass'),
+        demand = require('./course/demand'),
+        examine = require('./course/examine');
 
     var main = {
         template: mainRender,
@@ -32,7 +34,9 @@ define(function (require, exports) {
 
             class: courseClass,
             insertClass: insertClass,
-            allClass: allClass
+            allClass: allClass,
+            demand: demand,
+            examine: examine
         }
     }
 

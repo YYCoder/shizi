@@ -984,3 +984,266 @@ header .user-info .info p.greeting {
 .all-class-container .info-list-ul .control {
   width: 10%;
 }
+.all-class-container .update-content {
+  background: #eee;
+  padding: 15px 15px 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.all-class-container .update-content.none {
+  display: none;
+}
+.all-class-container .update-content .title {
+  color: #888;
+}
+.all-class-container .update-content input {
+  padding: 5px 4px 3px 4px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.all-class-container .update-content .item-name {
+  vertical-align: 2px;
+  margin-left: -10px;
+  color: #666;
+}
+.all-class-container .update-content .submit-container {
+  margin-top: 15px;
+}
+.all-class-container .update-content .submit-container .submit,
+.all-class-container .update-content .submit-container .reset {
+  background: #33a8ed;
+  line-height: 30px;
+}
+.all-class-container .update-content .submit-container .reset {
+  margin-left: 15px;
+}
+.demand-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.demand-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.demand-container .form-container {
+  width: 50%;
+  height: 75%;
+  margin: 20px auto;
+  position: relative;
+}
+.demand-container .form-container .info {
+  text-align: center;
+  font-size: 20px;
+  color: #999;
+}
+.demand-container .form-container .info-container {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.demand-container .form-container .info-container .info-name {
+  display: inline-block;
+  width: 25%;
+  text-align: right;
+  margin-right: -2px;
+}
+.demand-container .form-container .info-container .content-container {
+  display: inline-block;
+  margin-left: 15px;
+  width: 70%;
+  vertical-align: middle;
+}
+.demand-container .form-container .info-container .content-container .info-inp {
+  padding: 5px 4px 3px 4px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.demand-container .form-container .info-container .content-container .tips {
+  font-size: 14px;
+  color: #999;
+}
+.demand-container .form-container .btn-container {
+  position: relative;
+  height: 90px;
+}
+.demand-container .form-container .btn-container .btn2 {
+  padding: 5px 15px;
+  border: none;
+  background: #33a8ed;
+  border-radius: 5px;
+  color: #fff;
+  float: right;
+  margin-right: 15px;
+}
+.demand-container .form-container .btn-container .btn2:focus {
+  outline: none;
+}
+.examine-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.examine-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.examine-container .controls .right-control {
+  display: inline-block;
+  float: right;
+}
+.examine-container .controls .left-control {
+  display: inline-block;
+}
+.examine-container .controls .left-control .search-inp {
+  padding: 5px 4px 3px 4px;
+  width: 240px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+.examine-container .controls .left-control .search {
+  margin-left: 15px;
+  line-height: 29px;
+  background: #4fbfaa;
+}
+.examine-container .controls .left-control .search:focus {
+  outline: none;
+}
+.examine-container .controls .left-control .tips {
+  color: #999;
+  font-size: 13px;
+  margin-left: 10px;
+}
+.examine-container .controls .left-control .delete-all,
+.examine-container .controls .left-control .check-all {
+  line-height: 29px;
+  background: #4fbfaa;
+  margin-right: 15px;
+}
+.examine-container .controls .left-control .delete-all:focus,
+.examine-container .controls .left-control .check-all:focus {
+  outline: none;
+}
+.examine-container .bottom-controls .right-control {
+  max-width: 92%;
+}
+.examine-container .info-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+.examine-container .info-list-ul .title-list {
+  border-radius: 3px;
+  color: #fff;
+  background: #344152;
+}
+.examine-container .info-list-ul .title-list > span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.examine-container .info-list-ul .title-list > span:not(.checkbox):hover {
+  background: #526681;
+  cursor: pointer;
+}
+.examine-container .info-list-ul .title-list > span .border-pointer {
+  border-top-color: #eee;
+  vertical-align: -3px;
+  position: relative;
+  left: 7%;
+  transition: transform 0.3s ease;
+  transform-origin: center 25%;
+}
+.examine-container .info-list-ul .title-list > span .border-pointer.desc {
+  transform: rotate(180deg);
+}
+.examine-container .info-list-ul .info-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+.examine-container .info-list-ul .info-list:hover {
+  background: #eee;
+  cursor: pointer;
+}
+.examine-container .info-list-ul .info-list.checked {
+  background: #eee;
+}
+.examine-container .info-list-ul .info-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+.examine-container .info-list-ul .info-list span .img-wrap {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.examine-container .info-list-ul .checkbox {
+  width: 3%;
+}
+.examine-container .info-list-ul .room,
+.examine-container .info-list-ul .control,
+.examine-container .info-list-ul .teacher {
+  width: 7%;
+}
+.examine-container .info-list-ul .week,
+.examine-container .info-list-ul .time {
+  width: 8%;
+}
+.examine-container .info-list-ul .demand-time {
+  width: 9%;
+}
+.examine-container .info-list-ul .class,
+.examine-container .info-list-ul .course {
+  width: 12%;
+}
+.examine-container .update-content {
+  background: #eee;
+  padding: 15px 15px 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.examine-container .update-content.none {
+  display: none;
+}
+.examine-container .update-content .title {
+  color: #888;
+}
+.examine-container .update-content input {
+  padding: 5px 4px 3px 4px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.examine-container .update-content .item-name {
+  vertical-align: 2px;
+  margin-left: -10px;
+  color: #666;
+}
+.examine-container .update-content .submit-container {
+  margin-top: 15px;
+}
+.examine-container .update-content .submit-container .submit,
+.examine-container .update-content .submit-container .reset {
+  background: #33a8ed;
+  line-height: 30px;
+}
+.examine-container .update-content .submit-container .reset {
+  margin-left: 15px;
+}

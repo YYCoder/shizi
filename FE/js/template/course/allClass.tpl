@@ -47,8 +47,8 @@
 				<span class="time single-line">{{item.time}}</span>
 				<span class="room single-line">{{item.room}}</span>
 				<span class="control">
-					<a href="javascript:;" @click="deleteItem(item.id)">删除</a>
-					<a href="javascript:;" @click="updateItem(item.id)">修改</a>
+					<a href="javascript:;" @click.stop="deleteItem(item.id)">删除</a>
+					<a href="javascript:;" @click.stop="updateItem(item.id)">修改</a>
 				</span>
 			</li>
 
@@ -65,6 +65,42 @@
 						 :curPage="curPage"
 						 @page-change="pageChange"
 			></pager>
+		</div>
+	</div>
+
+	<div class="update-content none">
+		<h2 class="title">请输入你想修改的信息</h2>
+		<hr>
+		<div class="content-container">
+			<h3 class="title">上课时间/上课日期</h3>
+			<div class="time-week">
+				<drop :dropName="drop.classTimeName"
+							:items="drop.classTime"
+							@drop-click="timeClick"></drop>
+				<drop :dropName="drop.classWeekName"
+							:items="drop.classWeek"
+							@drop-click="weekClick"></drop>
+			</div>
+			<h3 class="title">开课/结课时间</h3>
+			<div class="start-end">
+				<p>
+					<span class="item-name">开课时间:</span>
+					<input type="number" name="start" min=1 v-model="update.start">
+				</p>
+				<p>
+					<span class="item-name">结课时间:</span>
+					<input type="number" name="end" min=1 v-model="update.end">
+				</p>
+			</div>
+			<h3 class="title">上课教室</h3>
+			<div class="room">
+				<span class="item-name">上课教室:</span>
+				<input type="text" v-model="update.room">
+			</div>
+		</div>
+		<div class="submit-container">
+			<button class="submit btn" @click="updateSubmit">提 交</button>
+			<button class="reset btn" @click="updateReset">重 置</button>
 		</div>
 	</div>
 </div>
