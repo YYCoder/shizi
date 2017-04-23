@@ -10,6 +10,11 @@
 	<router-view name="class"></router-view>
     <router-view name="insertClass"></router-view>
     <router-view name="allClass"></router-view>
-    <router-view name="demand"></router-view>
-	<router-view name="examine"></router-view>
+    <router-view name="courseDemand"></router-view>
+	<router-view name="courseExamine"></router-view>
+    <!-- 工作量管理 -->
+    <!-- 培训管理 -->
+    <router-view name="trainDemand"></router-view>
+    <router-view name="trainApply"></router-view>
+
 </div>

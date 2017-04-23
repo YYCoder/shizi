@@ -1,0 +1,89 @@
+.apply-container {
+	padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+	& > .title {
+    font-size: 1.5rem;
+    margin: 10px 0 15px;
+  }
+	.info-list-ul {
+  	list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    .title-list {
+			border-radius: 3px;
+			color: #fff;
+			background: @leftBg;
+			& > span {
+				display: inline-block;
+				line-height: 30px;
+		    box-sizing: border-box;
+		    text-align: center;
+		    transition: background 0.3s ease;
+		    &:not(.checkbox):hover {
+		    	background: lighten(@leftBg, 15%);
+		    	cursor: pointer;
+		    }
+		    .border-pointer {
+    	    border-top-color: #eee;
+			    vertical-align: -3px;
+			    position: relative;
+			    left: 7%;
+			    transition: transform 0.3s ease;
+	        transform-origin: center 25%;
+			    &.desc {
+						transform: rotate(180deg);
+			    }
+		    }
+		  }
+    }
+    .info-list {
+	    padding: 5px 0;
+	    border-bottom: 1px solid #ccc;
+	    &:hover {
+	    	background: #eee;
+	    	cursor: pointer;
+	    }
+	    &.checked {
+	    	background: #eee;
+	    }
+			span {
+				display: inline-block;
+				line-height: 30px;
+		    box-sizing: border-box;
+		    text-align: center;
+		    overflow: hidden;
+		    .img-wrap {
+		    	width: 50px;
+			    height: 50px;
+			    vertical-align: middle;
+			    border-radius: 50%;
+			    overflow: hidden;
+		    }
+		  }
+    }
+		.title {
+			width: 15%;
+		}
+		.type, .state {
+			width: 10%;
+		}
+		.desc {
+			width: 29%;
+		}
+		.begin-time {
+			width: 8%;
+		}
+		.price, .control {
+			width: 5%;
+		}
+		.place {
+			width: 15%;
+		}
+	}
+
+}

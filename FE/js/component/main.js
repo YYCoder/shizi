@@ -19,8 +19,13 @@ define(function (require, exports) {
         courseClass = require('./course/class'),
         insertClass = require('./course/insert'),
         allClass = require('./course/allClass'),
-        demand = require('./course/demand'),
-        examine = require('./course/examine');
+        courseDemand = require('./course/demand'),
+        courseExamine = require('./course/examine'),
+    // 工作量管理
+    // 培训管理
+        trainDemand = require('./train/demand'),
+        trainApply = require('./train/apply');
+
 
     var main = {
         template: mainRender,
@@ -35,8 +40,11 @@ define(function (require, exports) {
             class: courseClass,
             insertClass: insertClass,
             allClass: allClass,
-            demand: demand,
-            examine: examine
+            courseDemand: courseDemand,
+            courseExamine: courseExamine,
+
+            trainDemand: trainDemand,
+            trainApply: trainApply
         }
     }
 

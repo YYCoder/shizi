@@ -33,6 +33,15 @@
         <li class="left-item" v-if="p == 2 && isManager">
             <router-link to="/course/examine" class="left-btn">审核申请</router-link>
         </li>
+        <!-- 工作量管理模块 -->
+        <!-- 培训管理模块 -->
+        <li class="left-item" v-if="p == 4 && !isManager">
+            <router-link to="/train/demand" class="left-btn">培训申请</router-link>
+        </li>
+        <li class="left-item" v-if="p == 4 && !isManager">
+            <router-link to="/train/apply" class="left-btn">我的申请</router-link>
+        </li>
+
 
     </ul>
 

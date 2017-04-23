@@ -100,6 +100,13 @@ $route['course/agree_items'] = 'Course_Controller/update_items';
 $route['course/deny_items'] = 'Course_Controller/update_items';
 $route['course/get_own_class'] = 'Course_Controller/get_own_class';
 $route['course/get_all_demand'] = 'Course_Controller/get_all_demand';
+// 工作量管理
+// 培训模块
+$route['train'] = 'Train_Controller/index';
+$route['train/demand'] = 'Train_Controller/index';
+$route['train/apply'] = 'Train_Controller/index';
+$route['train/insert_apply'] = 'Train_Controller/insert_apply';
+$route['train/get_my_apply'] = 'Train_Controller/get_my_apply';
 
 
 

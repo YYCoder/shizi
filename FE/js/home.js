@@ -126,13 +126,40 @@ define('home', function (require, exports) {
                     {
                         path: 'demand',
                         components: {
-                            'demand': main.components.demand
+                            'courseDemand': main.components.courseDemand
                         }
                     },
                     {
                         path: 'examine',
                         components: {
-                            'examine': main.components.examine
+                            'courseExamine': main.components.courseExamine
+                        }
+                    }
+                ]
+            },
+            {
+                path: '/train',
+                components: {
+                    'leftNav': leftNav,
+                    'main': main
+                },
+                children: [
+                    {
+                        path: '',
+                        components: {
+                            'trainDemand': main.components.trainDemand
+                        }
+                    },
+                    {
+                        path: 'demand',
+                        components: {
+                            'trainDemand': main.components.trainDemand
+                        }
+                    },
+                    {
+                        path: 'apply',
+                        components: {
+                            'trainApply': main.components.trainApply
                         }
                     }
                 ]

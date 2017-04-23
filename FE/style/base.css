@@ -75,7 +75,7 @@
   transform: scaleY(0);
 }
 .drop .selection .option {
-  padding: 2px 0;
+  padding: 2px 5px;
   border-top: 1px solid #fff;
   font-size: 13px;
   transition: all 0.3s ease-in-out;
