@@ -105,8 +105,17 @@ $route['course/get_all_demand'] = 'Course_Controller/get_all_demand';
 $route['train'] = 'Train_Controller/index';
 $route['train/demand'] = 'Train_Controller/index';
 $route['train/apply'] = 'Train_Controller/index';
+$route['train/feedback'] = 'Train_Controller/index';
+$route['train/myfeedback'] = 'Train_Controller/index';
 $route['train/insert_apply'] = 'Train_Controller/insert_apply';
 $route['train/get_my_apply'] = 'Train_Controller/get_my_apply';
+$route['train/get_my_feedback'] = 'Train_Controller/get_my_feedback';
+$route['train/update_item'] = 'Train_Controller/update_item';
+$route['train/update_feedback_item'] = 'Train_Controller/update_feedback_item';
+$route['train/get_passed_apply'] = 'Train_Controller/get_my_passed_apply';
+$route['train/upload_file'] = 'Train_Controller/upload_file';
+$route['train/insert_feedback'] = 'Train_Controller/insert_feedback';
+
 
 
 

@@ -1,15 +1,15 @@
 /**
- * 我的申请组件
+ * 我的反馈组件
  * @author  Markey
- * @date    2017-04-23
+ * @date    2017-04-24
  */
 define(function (require, exports) {
 	'use strict';
-	var render = require('text!../../template/train/apply.tpl');
-	var ui = require('ui');
-	var pager = require('../common/pager');
+	let render = require('text!../../template/train/myFeedback.tpl');
+	let ui = require('ui');
+	let pager = require('../common/pager');
 
-	var myApply = {
+	let myFeedback = {
 		template: render,
 		components: {
 			'pager': pager
@@ -22,7 +22,7 @@ define(function (require, exports) {
 				curPage: 0,
 				getParam: {
 					type: 'ASC',
-					item: 'begin_time',
+					item: 'end_time',
 					page: 1,
 					limit: 15
 				}
@@ -30,7 +30,7 @@ define(function (require, exports) {
 		},
 		computed: {
 			timeDesc() {
-				return this.getParam['item'] === 'begin_time' && this.getParam['type'] === 'DESC';
+				return this.getParam['item'] === 'end_time' && this.getParam['type'] === 'DESC';
 			}
 		},
 		created() {
@@ -40,7 +40,7 @@ define(function (require, exports) {
 			getData() {
 				ui.loading();
 				$.ajax({
-					url: location.origin + '/index.php/train/get_my_apply',
+					url: location.origin + '/index.php/train/get_my_feedback',
 					data: this.getParam,
 					type: 'get'
 				}).done((res) => {
@@ -51,7 +51,7 @@ define(function (require, exports) {
 						this.curPage = +res.data['page']['current_page'];
 					}
 					else {
-						ui.msgError('获取数据失败');
+						ui.msgError(res.msg);
 					}
 				}).fail((res) => {
 					ui.closeAll('loading');
@@ -83,7 +83,7 @@ define(function (require, exports) {
 					yes() {
 						ui.loading();
 						$.ajax({
-							url: location.origin + '/index.php/train/update_item',
+							url: location.origin + '/index.php/train/update_feedback_item',
 							data: {
 								// ES6新语法, 变量名可以直接用到对象字面量中
 								id,
@@ -109,10 +109,6 @@ define(function (require, exports) {
 		}
 	};
 
-	return myApply;
+	return myFeedback;
 
 });
-
-
-
-

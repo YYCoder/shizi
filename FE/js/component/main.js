@@ -24,8 +24,9 @@ define(function (require, exports) {
     // 工作量管理
     // 培训管理
         trainDemand = require('./train/demand'),
-        trainApply = require('./train/apply');
-
+        trainApply = require('./train/apply'),
+        trainFeedback = require('./train/feedback'),
+        trainMyFeedback = require('./train/myFeedback');
 
     var main = {
         template: mainRender,
@@ -44,7 +45,9 @@ define(function (require, exports) {
             courseExamine: courseExamine,
 
             trainDemand: trainDemand,
-            trainApply: trainApply
+            trainApply: trainApply,
+            trainFeedback: trainFeedback,
+            trainMyFeedback: trainMyFeedback
         }
     }
 

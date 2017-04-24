@@ -70,6 +70,10 @@ define('home', function (require, exports) {
                         path: '',
                         components: {
                             'update': main.components.update
+                        },
+                        beforeEnter(to, from, next) {
+                            let rights = window.user.rights;
+                            rights.info == 1 ? next('/info/update') : next();
                         }
                     },
                     {
@@ -103,6 +107,10 @@ define('home', function (require, exports) {
                         path: '',
                         components: {
                             'class': main.components.class
+                        },
+                        beforeEnter(to, from, next) {
+                            let rights = window.user.rights;
+                            rights.course == 1 ? next('/course/allClass') : next();
                         }
                     },
                     {
@@ -148,6 +156,11 @@ define('home', function (require, exports) {
                         path: '',
                         components: {
                             'trainDemand': main.components.trainDemand
+                        },
+                        beforeEnter(to, from, next) {
+                            let rights = window.user.rights;
+                            // 导航钩子里调用next方法跳转尽管会多出来一个history, 但是该history的路径也是调用next方法指定的路由,而不是当时匹配到的路由
+                            rights.train == 1 ? next('/train/apply') : next();
                         }
                     },
                     {
@@ -160,6 +173,18 @@ define('home', function (require, exports) {
                         path: 'apply',
                         components: {
                             'trainApply': main.components.trainApply
+                        }
+                    },
+                    {
+                        path: 'feedback',
+                        components: {
+                            'trainFeedback': main.components.trainFeedback
+                        }
+                    },
+                    {
+                        path: 'myfeedback',
+                        components: {
+                            'trainMyFeedback': main.components.trainMyFeedback
                         }
                     }
                 ]
@@ -202,8 +227,6 @@ define('home', function (require, exports) {
             else if (/^\/user/i.test(route.fullPath)) {
                 this.page = 7;
             }
-            // 为了开发,先写死课程管理权限
-            this.user.rights['course'] = 1;
             this.checkInfo();
         },
         router: router,
@@ -231,7 +254,6 @@ define('home', function (require, exports) {
                             msg: '您的档案不完整',
                             btn: ['前往完善', '下次再说'],
                             yes: function () {
-                                console.log('点击确定');
                                 router.push('/info/update');
                             }
                         });

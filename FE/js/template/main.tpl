@@ -16,5 +16,7 @@
     <!-- 培训管理 -->
     <router-view name="trainDemand"></router-view>
     <router-view name="trainApply"></router-view>
+    <router-view name="trainFeedback"></router-view>
+    <router-view name="trainMyFeedback"></router-view>
 
 </div>

@@ -1350,6 +1350,13 @@ header .user-info .info p.greeting {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
+.apply-container .controls .right-control {
+  display: inline-block;
+  float: right;
+}
+.apply-container .bottom-controls .right-control {
+  max-width: 92%;
+}
 .apply-container .info-list-ul {
   list-style: none;
   padding: 0;
@@ -1379,7 +1386,7 @@ header .user-info .info p.greeting {
   transition: transform 0.3s ease;
   transform-origin: center 25%;
 }
-.apply-container .info-list-ul .title-list > span .border-pointer.desc {
+.apply-container .info-list-ul .title-list > span .border-pointer.pDesc {
   transform: rotate(180deg);
 }
 .apply-container .info-list-ul .info-list {
@@ -1388,23 +1395,12 @@ header .user-info .info p.greeting {
 }
 .apply-container .info-list-ul .info-list:hover {
   background: #eee;
-  cursor: pointer;
-}
-.apply-container .info-list-ul .info-list.checked {
-  background: #eee;
 }
 .apply-container .info-list-ul .info-list span {
   display: inline-block;
   line-height: 30px;
   box-sizing: border-box;
   text-align: center;
-  overflow: hidden;
-}
-.apply-container .info-list-ul .info-list span .img-wrap {
-  width: 50px;
-  height: 50px;
-  vertical-align: middle;
-  border-radius: 50%;
   overflow: hidden;
 }
 .apply-container .info-list-ul .title {
@@ -1415,15 +1411,202 @@ header .user-info .info p.greeting {
   width: 10%;
 }
 .apply-container .info-list-ul .desc {
-  width: 29%;
+  width: 28%;
 }
 .apply-container .info-list-ul .begin-time {
-  width: 8%;
+  width: 9%;
 }
 .apply-container .info-list-ul .price,
 .apply-container .info-list-ul .control {
   width: 5%;
 }
 .apply-container .info-list-ul .place {
+  width: 15%;
+}
+.feedback-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.feedback-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.feedback-container .form-container {
+  width: 50%;
+  height: 75%;
+  margin: 20px auto;
+  position: relative;
+}
+.feedback-container .form-container .info {
+  text-align: center;
+  font-size: 20px;
+  color: #999;
+}
+.feedback-container .form-container .info-container {
+  width: 85%;
+  display: inline-block;
+  margin-bottom: 15px;
+  position: relative;
+}
+.feedback-container .form-container .info-container .info-name {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+  margin-right: -2px;
+}
+.feedback-container .form-container .info-container .info-name.self-desc {
+  vertical-align: top;
+}
+.feedback-container .form-container .info-container .require-icon {
+  color: red;
+  font-style: normal;
+  position: absolute;
+  top: 5px;
+}
+.feedback-container .form-container .info-container textarea {
+  resize: none;
+}
+.feedback-container .form-container .info-container .content-container {
+  display: inline-block;
+  margin-left: 15px;
+  width: 77%;
+  vertical-align: middle;
+}
+.feedback-container .form-container .info-container .content-container .info-inp {
+  padding: 5px 4px 3px 4px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.feedback-container .form-container .info-container .content-container .tip {
+  font-size: 12px;
+  color: #999;
+  margin-left: 15px;
+}
+.feedback-container .form-container .info-container .content-container input[type=number] {
+  width: 50%;
+}
+.feedback-container .form-container .info-container .content-container input[type=number][name=salary] {
+  padding-left: 20px;
+}
+.feedback-container .form-container .info-container .content-container input[type=file] {
+  display: none;
+}
+.feedback-container .form-container .info-container .content-container .btn-upload {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: #4fbfaa;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  float: right;
+}
+.feedback-container .form-container .info-container .content-container .btn-upload.upload {
+  float: left;
+}
+.feedback-container .form-container .btn-container {
+  position: relative;
+  height: 90px;
+}
+.feedback-container .form-container .btn-container .btn1 {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: #33a8ed;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  float: right;
+  margin-right: 15px;
+}
+.my-feedback-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.my-feedback-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.my-feedback-container .controls .right-control {
+  display: inline-block;
+  float: right;
+}
+.my-feedback-container .bottom-controls .right-control {
+  max-width: 92%;
+}
+.my-feedback-container .info-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+.my-feedback-container .info-list-ul .title-list {
+  border-radius: 3px;
+  color: #fff;
+  background: #344152;
+}
+.my-feedback-container .info-list-ul .title-list > span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.my-feedback-container .info-list-ul .title-list > span:not(.checkbox):hover {
+  background: #526681;
+  cursor: pointer;
+}
+.my-feedback-container .info-list-ul .title-list > span .border-pointer {
+  border-top-color: #eee;
+  vertical-align: -3px;
+  position: relative;
+  left: 7%;
+  transition: transform 0.3s ease;
+  transform-origin: center 25%;
+}
+.my-feedback-container .info-list-ul .title-list > span .border-pointer.pDesc {
+  transform: rotate(180deg);
+}
+.my-feedback-container .info-list-ul .info-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+.my-feedback-container .info-list-ul .info-list:hover {
+  background: #eee;
+}
+.my-feedback-container .info-list-ul .info-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+.my-feedback-container .info-list-ul .title {
+  width: 15%;
+}
+.my-feedback-container .info-list-ul .type,
+.my-feedback-container .info-list-ul .state {
+  width: 10%;
+}
+.my-feedback-container .info-list-ul .desc {
+  width: 28%;
+}
+.my-feedback-container .info-list-ul .end-time {
+  width: 9%;
+}
+.my-feedback-container .info-list-ul .price,
+.my-feedback-container .info-list-ul .control {
+  width: 5%;
+}
+.my-feedback-container .info-list-ul .place {
   width: 15%;
 }

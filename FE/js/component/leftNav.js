@@ -31,60 +31,53 @@ define(function (require, exports) {
                 default: 0
             }
         },
-        watch: {
-            '$route': function (to, from) {
+        beforeRouteEnter(to, from, next) {
+            next(vm => {
                 if (/^\/home/i.test(to.fullPath)) {
-                    this.p = 0;
+                    vm.p = 0;
                 }
                 else if (/^\/info/i.test(to.fullPath)) {
-                    this.p = 1;
-                    this.rights['info'] == 1 ? this.isManager = true
-                                             : this.isManager = false;
+                    vm.p = 1;
+                    vm.rights['info'] == 1 ? vm.isManager = true
+                                           : vm.isManager = false;
                 }
                 else if (/^\/course/i.test(to.fullPath)) {
-                    this.p = 2;
-                    this.rights['course'] == 1 ? this.isManager = true
-                                               : this.isManager = false;
+                    vm.p = 2;
+                    vm.rights['course'] == 1 ? vm.isManager = true
+                                           : vm.isManager = false;
                 }
                 else if (/^\/work/i.test(to.fullPath)) {
-                    this.p = 3;
-                    this.rights['work'] == 1 ? this.isManager = true
-                                             : this.isManager = false;
+                    vm.p = 3;
+                    vm.rights['work'] == 1 ? vm.isManager = true
+                                           : vm.isManager = false;
                 }
                 else if (/^\/train/i.test(to.fullPath)) {
-                    this.p = 4;
-                    this.rights['train'] == 1 ? this.isManager = true
-                                              : this.isManager = false;
+                    vm.p = 4;
+                    vm.rights['train'] == 1 ? vm.isManager = true
+                                           : vm.isManager = false;
                 }
                 else if (/^\/assessment/i.test(to.fullPath)) {
-                    this.p = 5;
-                    this.rights['assessment'] == 1 ? this.isManager = true
-                                                   : this.isManager = false;
+                    vm.p = 5;
+                    vm.rights['assessment'] == 1 ? vm.isManager = true
+                                               : vm.isManager = false;
                 }
                 else if (/^\/comment/i.test(to.fullPath)) {
-                    this.p = 6;
-                    this.rights['comment'] == 1 ? this.isManager = true
-                                                : this.isManager = false;
+                    vm.p = 6;
+                    vm.rights['comment'] == 1 ? vm.isManager = true
+                                           : vm.isManager = false;
                 }
                 else if (/^\/user/i.test(to.fullPath)) {
-                    this.p = 7;
-                    this.rights['user'] == 1 ? this.isManager = true
-                                             : this.isManager = false;
+                    vm.p = 7;
+                    vm.rights['user'] == 1 ? vm.isManager = true
+                                           : vm.isManager = false;
                 }
-                // console.log(to);
-                // console.log(this.p);
-            }
-        },
-        created: function () {
+            });
         },
         data: function () {
             return {
                 p: this.page,
                 isManager: false
             };
-        },
-        methods: {
-
         }
     };
 
