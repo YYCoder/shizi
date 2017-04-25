@@ -1,5 +1,4 @@
 .DS_Store
 sessions/
 tmp_file/
-uploads/img/*.png
-uploads/img/*.gif
+uploads/
