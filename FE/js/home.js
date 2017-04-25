@@ -160,7 +160,7 @@ define('home', function (require, exports) {
                         beforeEnter(to, from, next) {
                             let rights = window.user.rights;
                             // 导航钩子里调用next方法跳转尽管会多出来一个history, 但是该history的路径也是调用next方法指定的路由,而不是当时匹配到的路由
-                            rights.train == 1 ? next('/train/apply') : next();
+                            rights.train == 1 ? next('/train/examineApply') : next();
                         }
                     },
                     {
@@ -185,6 +185,18 @@ define('home', function (require, exports) {
                         path: 'myfeedback',
                         components: {
                             'trainMyFeedback': main.components.trainMyFeedback
+                        }
+                    },
+                    {
+                        path: 'examineApply',
+                        components: {
+                            'trainExamineApply': main.components.trainExamineApply
+                        }
+                    },
+                    {
+                        path: 'examineFeedback',
+                        components: {
+                            'trainExamineFeedback': main.components.trainExamineFeedback
                         }
                     }
                 ]

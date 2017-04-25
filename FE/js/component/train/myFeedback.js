@@ -26,7 +26,7 @@ define(function (require, exports) {
 					page: 1,
 					limit: 15
 				}
-			}
+			};
 		},
 		computed: {
 			timeDesc() {

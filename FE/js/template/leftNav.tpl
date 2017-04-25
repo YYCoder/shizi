@@ -47,6 +47,12 @@
         <li class="left-item" v-if="p == 4 && !isManager">
             <router-link to="/train/myfeedback" class="left-btn">我的反馈</router-link>
         </li>
+        <li class="left-item" v-if="p == 4 && isManager">
+            <router-link to="/train/examineApply" class="left-btn">审核申请</router-link>
+        </li>
+        <li class="left-item" v-if="p == 4 && isManager">
+            <router-link to="/train/examineFeedback" class="left-btn">审核反馈</router-link>
+        </li>
     </ul>
 
 </div>

@@ -26,7 +26,9 @@ define(function (require, exports) {
         trainDemand = require('./train/demand'),
         trainApply = require('./train/apply'),
         trainFeedback = require('./train/feedback'),
-        trainMyFeedback = require('./train/myFeedback');
+        trainMyFeedback = require('./train/myFeedback'),
+        trainExamineApply = require('./train/examineApply'),
+        trainExamineFeedback = require('./train/examineFeedback');
 
     var main = {
         template: mainRender,
@@ -47,7 +49,9 @@ define(function (require, exports) {
             trainDemand: trainDemand,
             trainApply: trainApply,
             trainFeedback: trainFeedback,
-            trainMyFeedback: trainMyFeedback
+            trainMyFeedback: trainMyFeedback,
+            trainExamineApply: trainExamineApply,
+            trainExamineFeedback: trainExamineFeedback
         }
     }
 

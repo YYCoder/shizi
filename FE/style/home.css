@@ -1610,3 +1610,279 @@ header .user-info .info p.greeting {
 .my-feedback-container .info-list-ul .place {
   width: 15%;
 }
+.exam-apply-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.exam-apply-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.exam-apply-container .tips {
+  color: #999;
+  font-size: 13px;
+  margin-left: 10px;
+}
+.exam-apply-container .controls .right-control {
+  display: inline-block;
+  float: right;
+}
+.exam-apply-container .controls .left-control {
+  display: inline-block;
+}
+.exam-apply-container .controls .left-control .search-inp {
+  padding: 5px 4px 3px 4px;
+  width: 240px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+.exam-apply-container .controls .left-control .search {
+  margin-left: 15px;
+  line-height: 29px;
+  background: #4fbfaa;
+}
+.exam-apply-container .controls .left-control .search:focus {
+  outline: none;
+}
+.exam-apply-container .controls .left-control .delete-all,
+.exam-apply-container .controls .left-control .check-all {
+  line-height: 29px;
+  background: #4fbfaa;
+  margin-right: 15px;
+}
+.exam-apply-container .controls .left-control .delete-all:focus,
+.exam-apply-container .controls .left-control .check-all:focus {
+  outline: none;
+}
+.exam-apply-container .bottom-controls .right-control {
+  max-width: 92%;
+}
+.exam-apply-container .info-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+.exam-apply-container .info-list-ul .title-list {
+  border-radius: 3px;
+  color: #fff;
+  background: #344152;
+}
+.exam-apply-container .info-list-ul .title-list > span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.exam-apply-container .info-list-ul .title-list > span:not(.checkbox):hover {
+  background: #526681;
+  cursor: pointer;
+}
+.exam-apply-container .info-list-ul .title-list > span .border-pointer {
+  border-top-color: #eee;
+  vertical-align: -3px;
+  position: relative;
+  left: 7%;
+  transition: transform 0.3s ease;
+  transform-origin: center 25%;
+}
+.exam-apply-container .info-list-ul .title-list > span .border-pointer.pDesc {
+  transform: rotate(180deg);
+}
+.exam-apply-container .info-list-ul .info-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+.exam-apply-container .info-list-ul .info-list:hover {
+  background: #eee;
+  cursor: pointer;
+}
+.exam-apply-container .info-list-ul .info-list.checked {
+  background: #eee;
+}
+.exam-apply-container .info-list-ul .info-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+.exam-apply-container .info-list-ul .info-list span .img-wrap {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.exam-apply-container .info-list-ul .checkbox {
+  width: 3%;
+}
+.exam-apply-container .info-list-ul .teacher {
+  width: 5%;
+}
+.exam-apply-container .info-list-ul .title {
+  width: 10%;
+}
+.exam-apply-container .info-list-ul .type,
+.exam-apply-container .info-list-ul .state {
+  width: 7%;
+}
+.exam-apply-container .info-list-ul .desc {
+  width: 25%;
+}
+.exam-apply-container .info-list-ul .begin-time {
+  width: 9%;
+}
+.exam-apply-container .info-list-ul .price,
+.exam-apply-container .info-list-ul .control {
+  width: 8%;
+}
+.exam-apply-container .info-list-ul .place {
+  width: 15%;
+}
+.exam-feedback-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.exam-feedback-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.exam-feedback-container .tips {
+  color: #999;
+  font-size: 13px;
+  margin-left: 10px;
+}
+.exam-feedback-container .controls .right-control {
+  display: inline-block;
+  float: right;
+}
+.exam-feedback-container .controls .left-control {
+  display: inline-block;
+}
+.exam-feedback-container .controls .left-control .search-inp {
+  padding: 5px 4px 3px 4px;
+  width: 240px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+.exam-feedback-container .controls .left-control .search {
+  margin-left: 15px;
+  line-height: 29px;
+  background: #4fbfaa;
+}
+.exam-feedback-container .controls .left-control .search:focus {
+  outline: none;
+}
+.exam-feedback-container .controls .left-control .delete-all,
+.exam-feedback-container .controls .left-control .check-all {
+  line-height: 29px;
+  background: #4fbfaa;
+  margin-right: 15px;
+}
+.exam-feedback-container .controls .left-control .delete-all:focus,
+.exam-feedback-container .controls .left-control .check-all:focus {
+  outline: none;
+}
+.exam-feedback-container .bottom-controls .right-control {
+  max-width: 92%;
+}
+.exam-feedback-container .info-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+.exam-feedback-container .info-list-ul .title-list {
+  border-radius: 3px;
+  color: #fff;
+  background: #344152;
+}
+.exam-feedback-container .info-list-ul .title-list > span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.exam-feedback-container .info-list-ul .title-list > span:not(.checkbox):hover {
+  background: #526681;
+  cursor: pointer;
+}
+.exam-feedback-container .info-list-ul .title-list > span .border-pointer {
+  border-top-color: #eee;
+  vertical-align: -3px;
+  position: relative;
+  left: 7%;
+  transition: transform 0.3s ease;
+  transform-origin: center 25%;
+}
+.exam-feedback-container .info-list-ul .title-list > span .border-pointer.pDesc {
+  transform: rotate(180deg);
+}
+.exam-feedback-container .info-list-ul .info-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+  height: 40px;
+}
+.exam-feedback-container .info-list-ul .info-list:hover {
+  background: #eee;
+  cursor: pointer;
+}
+.exam-feedback-container .info-list-ul .info-list.checked {
+  background: #eee;
+}
+.exam-feedback-container .info-list-ul .info-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  height: 100%;
+}
+.exam-feedback-container .info-list-ul .info-list span .img-wrap {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+}
+.exam-feedback-container .info-list-ul .info-list span .img-wrap .small-img {
+  cursor: pointer;
+}
+.exam-feedback-container .info-list-ul .checkbox {
+  width: 3%;
+}
+.exam-feedback-container .info-list-ul .teacher {
+  width: 5%;
+}
+.exam-feedback-container .info-list-ul .title {
+  width: 11%;
+}
+.exam-feedback-container .info-list-ul .type,
+.exam-feedback-container .info-list-ul .state,
+.exam-feedback-container .info-list-ul .cert,
+.exam-feedback-container .info-list-ul .invoice {
+  width: 7%;
+}
+.exam-feedback-container .info-list-ul .desc {
+  width: 25%;
+}
+.exam-feedback-container .info-list-ul .end-time {
+  width: 9%;
+}
+.exam-feedback-container .info-list-ul .price,
+.exam-feedback-container .info-list-ul .control {
+  width: 8%;
+}

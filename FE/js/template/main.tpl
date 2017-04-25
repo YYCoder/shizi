@@ -18,5 +18,7 @@
     <router-view name="trainApply"></router-view>
     <router-view name="trainFeedback"></router-view>
     <router-view name="trainMyFeedback"></router-view>
+    <router-view name="trainExamineApply"></router-view>
+    <router-view name="trainExamineFeedback"></router-view>
 
 </div>

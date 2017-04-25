@@ -1,0 +1,137 @@
+.exam-apply-container {
+	padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+	& > .title {
+    font-size: 1.5rem;
+    margin: 10px 0 15px;
+  }
+	.tips {
+    color: #999;
+    font-size: 13px;
+    margin-left: 10px;
+	}
+	.controls {
+  	.right-control {
+  		display: inline-block;
+  		float: right;
+  	}
+  	.left-control {
+  		display: inline-block;
+			.search-inp {
+				padding: 5px 4px 3px 4px;
+		    width: 240px;
+		    border-radius: 5px;
+		    border: 1px solid #999;
+		    box-sizing: border-box;
+		    font-size: 15px;
+  		}
+			.search {
+		    margin-left: 15px;
+		    line-height: 29px;
+		    background: @btn1;
+		    &:focus {
+		    	outline: none;
+		    }
+			}
+  		.delete-all, .check-all {
+  			line-height: 29px;
+		    background: @btn1;
+		    margin-right: 15px;
+		    &:focus {
+		    	outline: none;
+		    }
+  		}
+  	}
+  }
+  .bottom-controls {
+  	.right-control {
+  		max-width: 92%;
+  	}
+  }
+  .info-list-ul {
+  	list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    .title-list {
+			border-radius: 3px;
+			color: #fff;
+			background: @leftBg;
+			& > span {
+				display: inline-block;
+				line-height: 30px;
+		    box-sizing: border-box;
+		    text-align: center;
+		    transition: background 0.3s ease;
+		    &:not(.checkbox):hover {
+		    	background: lighten(@leftBg, 15%);
+		    	cursor: pointer;
+		    }
+		    .border-pointer {
+    	    border-top-color: #eee;
+			    vertical-align: -3px;
+			    position: relative;
+			    left: 7%;
+			    transition: transform 0.3s ease;
+	        transform-origin: center 25%;
+			    &.pDesc {
+						transform: rotate(180deg);
+			    }
+		    }
+		  }
+    }
+    .info-list {
+	    padding: 5px 0;
+	    border-bottom: 1px solid #ccc;
+	    &:hover {
+	    	background: #eee;
+	    	cursor: pointer;
+	    }
+	    &.checked {
+	    	background: #eee;
+	    }
+			span {
+				display: inline-block;
+				line-height: 30px;
+		    box-sizing: border-box;
+		    text-align: center;
+		    overflow: hidden;
+		    .img-wrap {
+		    	width: 50px;
+			    height: 50px;
+			    vertical-align: middle;
+			    border-radius: 50%;
+			    overflow: hidden;
+		    }
+		  }
+    }
+    .checkbox {
+    	width: 3%;
+    }
+    .teacher {
+    	width: 5%;
+    }
+		.title {
+			width: 10%;
+		}
+		.type, .state {
+			width: 7%;
+		}
+		.desc {
+			width: 25%;
+		}
+		.begin-time {
+			width: 9%;
+		}
+		.price, .control {
+			width: 8%;
+		}
+		.place {
+			width: 15%;
+		}
+  }
+}

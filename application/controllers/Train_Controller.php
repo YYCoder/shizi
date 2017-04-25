@@ -98,27 +98,7 @@ class Train_Controller extends My_Controller
     );
 		if (!empty($res['data'])) {
 			// 处理数据
-			$state_arr = array(
-				'0' => '未审核',
-				'1' => '审核通过',
-				'2' => '审核未通过',
-				'3' => '用户撤销',
-				'4' => '超过有效时长'
-			);
-			$type_arr = array(
-				'0' => '岗前培训',
-				'1' => '教育技术培训',
-				'2' => '教师发展技术研修',
-				'3' => '青年教师教学能力培训',
-				'4' => '外语培训',
-				'5' => '科研能力与师德培训',
-				'6' => '管理干部培训'
-			);
-			foreach ($res['data'] as $k => $v) {
-				$res['data'][$k]['begin_time'] = date('Y-m-d H:i', $v['begin_time']);
-				$res['data'][$k]['state'] = $state_arr[$res['data'][$k]['state']];
-				$res['data'][$k]['type'] = $type_arr[$res['data'][$k]['type']];
-			}
+			$res['data'] = self::handle_data($res['data'], 1);
 			parent::return_data($res);
 		}
 		else {
@@ -149,11 +129,35 @@ class Train_Controller extends My_Controller
 		}
 	}
 
+	/**
+   * 修改指定所有的项,每项包含参数如下
+   * @param $_POST[array]  => id[String](必选)   [要修改的项的id]
+   *
+   */
+  public function update_items()
+  {
+      $data = $_POST['data'];
+      // 批量处理数据
+      foreach ($data as $k => $v) {
+          $data[$k]['timestamp'] = time();
+      }
+      if (!empty($data)) {
+          $res = $this->Train_Model->update_items($data);
+      }
+      if ($res > 0) {
+          $this->return_data('批量更新成功');
+      }
+      else {
+          $this->return_error('批量更新失败');
+      }
+  }
+
+
 
 	/**
 	 * 更新指定id反馈数据
-	 * @param  $_GET => id(必须)
-	 *               => 其余字段可选
+	 * @param  $_POST => id(必须)
+	 *                => 其余字段可选
 	 * @return [string] [1成功, 0失败]
 	 */
 	public function update_feedback_item()
@@ -172,6 +176,28 @@ class Train_Controller extends My_Controller
 		}
 	}
 
+	/**
+   * 修改指定所有的项,每项包含参数如下
+   * @param $_POST[array]  => id[String](必选)   [要修改的项的id]
+   *
+   */
+  public function update_feedback_items()
+  {
+      $data = $_POST['data'];
+      // 批量处理数据
+      foreach ($data as $k => $v) {
+          $data[$k]['timestamp'] = time();
+      }
+      if (!empty($data)) {
+          $res = $this->Train_Model->update_feedback_items($data);
+      }
+      if ($res > 0) {
+          $this->return_data('批量更新成功');
+      }
+      else {
+          $this->return_error('批量更新失败');
+      }
+  }
 
 	/**
 	 * 获取该用户所有已审核通过的培训申请
@@ -268,6 +294,42 @@ class Train_Controller extends My_Controller
 		}
 	}
 
+	/**
+	 * 处理数据
+	 * @param  [array] $data [数据]
+	 * @param  [number] $type [类型, 1为train_apply数据, 2为train_feedback数据]
+	 * @return [array]       [处理后的数据]
+	 */
+	private function handle_data($data, $type = 1)
+	{
+		$state_arr = array(
+			'0' => '未审核',
+			'1' => '审核通过',
+			'2' => '审核未通过',
+			'3' => '用户撤销',
+			'4' => '超过有效时长'
+		);
+		$type_arr = array(
+			'0' => '岗前培训',
+			'1' => '教育技术培训',
+			'2' => '教学发展技术研修',
+			'3' => '青年教师教学能力培训',
+			'4' => '外语培训',
+			'5' => '科研能力与师德培训',
+			'6' => '管理干部培训'
+		);
+		foreach ($data as $k => $v) {
+			if ($type == 1) {
+				$data[$k]['begin_time'] = date('Y-m-d H:i', $v['begin_time']);
+			}
+			else {
+				$data[$k]['end_time'] = date('Y-m-d H:i', $v['end_time']);
+			}
+			$data[$k]['state'] = $state_arr[$data[$k]['state']];
+			$data[$k]['type'] = $type_arr[$data[$k]['type']];
+		}
+		return $data;
+	}
 
 	/**
 	 * 获取该用户的所有反馈
@@ -327,33 +389,123 @@ class Train_Controller extends My_Controller
     );
 		if (!empty($res['data'])) {
 			// 处理数据
-			$state_arr = array(
-				'0' => '未审核',
-				'1' => '审核通过',
-				'2' => '审核未通过',
-				'3' => '用户撤销',
-				'4' => '超过有效时长'
-			);
-			$type_arr = array(
-				'0' => '岗前培训',
-				'1' => '教育技术培训',
-				'2' => '教师发展技术研修',
-				'3' => '青年教师教学能力培训',
-				'4' => '外语培训',
-				'5' => '科研能力与师德培训',
-				'6' => '管理干部培训'
-			);
-			foreach ($res['data'] as $k => $v) {
-				$res['data'][$k]['end_time'] = date('Y-m-d H:i', $v['end_time']);
-				$res['data'][$k]['state'] = $state_arr[$res['data'][$k]['state']];
-				$res['data'][$k]['type'] = $type_arr[$res['data'][$k]['type']];
-			}
+			$res['data'] = self::handle_data($res['data'], 2);
 			parent::return_data($res);
 		}
 		else {
 			parent::return_error('未获取到数据');
 		}
 	}
+
+
+	/**
+	 * 获取所有申请
+	 * @param  [array] $_GET  => type[String](ASC按升序排列, DESC按降序排列)
+	 *                        => item[String](按申请时间begin_time,或price排序)
+	 *                        => page[String](要前往的页数)
+	 *                        => limit[String](每页显示多少个,默认为15)
+	 *                        => where[String](可以是老师姓名,审核状态)
+	 * @return [array] => data [所有申请, 二维数组]
+	 *                 => page  => page_count(数据可显示的页面数)
+   *                          => current_page(当前所在页面数)
+	 */
+	public function get_all_demand()
+	{
+		// 先检查是否已登录
+		if (!$this->is_login()) {
+        $this->load->view('login.html', $data);
+        die;
+    }
+
+		$param = array(
+        'page' => $_GET['page'],
+        'item' => $_GET['item'],
+        'type' => $_GET['type'],
+        'where' => $_GET['where']
+    );
+    $res = array();
+    $res_temp = array();
+    // 处理limit相关字段
+    $param['limit'] = array(
+        'number'  =>  (int)($_GET['page'] - 1) * (int)$_GET['limit'],
+        'count'   =>  (int)$_GET['limit']
+    );
+    // var_dump($param);die;
+		$res_temp = $this->Train_Model->get_all_demand($param);
+
+    $res['data'] = $res_temp['data'];
+    $page_count = ceil($res_temp['count']/$param['limit']['count']);
+    $res['page'] = array(
+        'page_count'    =>  $page_count,
+        'current_page'  =>  $param['page']
+    );
+		if (!empty($res['data'])) {
+			// 处理数据
+			$res['data'] = self::handle_data($res['data'], 1);
+			parent::return_data($res);
+		}
+		else {
+			parent::return_error('未获取到数据');
+		}
+	}
+
+
+	/**
+	 * 获取所有反馈
+	 * @param  [array] $_GET  => type[String](ASC按升序排列, DESC按降序排列)
+	 *                        => item[String](按申请时间end_time,price排序)
+	 *                        => page[String](要前往的页数)
+	 *                        => where[String](匹配指定条件)
+	 *                        				=> state[状态]
+	 *                        				=> type[培训类型]
+	 *                        				=> like[教师姓名或培训名称模糊匹配]
+	 *                        => limit[String](每页显示多少个,默认为15)
+	 * @return [array] => data [所有申请, 二维数组]
+	 *                 => page  => page_count(数据可显示的页面数)
+   *                          => current_page(当前所在页面数)
+	 */
+	public function get_all_feedback()
+	{
+		// 先检查是否已登录
+		if (!$this->is_login()) {
+        $this->load->view('login.html', $data);
+        die;
+    }
+
+		$param = array(
+        'page' => $_GET['page'],
+        'item' => $_GET['item'],
+        'type' => $_GET['type'],
+        'where'=> $_GET['where']
+    );
+    $res = array();
+    $res_temp = array();
+    // 处理limit相关字段
+    $param['limit'] = array(
+        'number'  =>  (int)($_GET['page'] - 1) * (int)$_GET['limit'],
+        'count'   =>  (int)$_GET['limit']
+    );
+		$res_temp = $this->Train_Model->get_all_feedback($param);
+
+    $res['data'] = $res_temp['data'];
+    $page_count = ceil($res_temp['count']/$param['limit']['count']);
+    $res['page'] = array(
+        'page_count'    =>  $page_count,
+        'current_page'  =>  $param['page']
+    );
+		if (!empty($res['data'])) {
+			// 处理数据
+			$res['data'] = self::handle_data($res['data'], 2);
+			parent::return_data($res);
+		}
+		else {
+			parent::return_error('未获取到数据');
+		}
+	}
+
+
+
+
 
 
 
