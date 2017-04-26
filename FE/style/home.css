@@ -1886,3 +1886,142 @@ header .user-info .info p.greeting {
 .exam-feedback-container .info-list-ul .control {
   width: 8%;
 }
+.assess-insert-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.assess-insert-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.assess-insert-container .form-container {
+  width: 50%;
+  height: 75%;
+  margin: 20px auto;
+  position: relative;
+}
+.assess-insert-container .form-container .info {
+  text-align: center;
+  font-size: 20px;
+  color: #999;
+}
+.assess-insert-container .form-container .teacher-container {
+  display: flex;
+  height: 90px;
+}
+.assess-insert-container .form-container .teacher-container .avatar-wrap {
+  flex: 1;
+  text-align: center;
+}
+.assess-insert-container .form-container .teacher-container .avatar-wrap .avatar {
+  max-height: 100%;
+  max-width: 100%;
+}
+.assess-insert-container .form-container .teacher-container .teacher-info-container {
+  flex: 4;
+  display: flex;
+  flex-wrap: wrap;
+}
+.assess-insert-container .form-container .teacher-container .teacher-info-container p {
+  margin: 0;
+}
+.assess-insert-container .form-container .teacher-container .teacher-info-container .name {
+  flex: 2;
+}
+.assess-insert-container .form-container .teacher-container .teacher-info-container .age {
+  flex: 1;
+}
+.assess-insert-container .form-container .teacher-container .teacher-info-container .major {
+  flex: 5;
+}
+.assess-insert-container .form-container .teacher-container .teacher-info-container .age,
+.assess-insert-container .form-container .teacher-container .teacher-info-container .major {
+  margin-left: 15px;
+}
+.assess-insert-container .form-container .teacher-container .teacher-info-container .self {
+  margin-top: 10px;
+}
+.assess-insert-container .form-container .info-container {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 15px;
+  position: relative;
+}
+.assess-insert-container .form-container .info-container .info-name {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+  margin-right: -2px;
+}
+.assess-insert-container .form-container .info-container .info-name.self-desc {
+  vertical-align: top;
+}
+.assess-insert-container .form-container .info-container .require-icon {
+  color: red;
+  font-style: normal;
+  position: absolute;
+  top: 5px;
+}
+.assess-insert-container .form-container .info-container textarea {
+  resize: none;
+}
+.assess-insert-container .form-container .info-container .content-container {
+  display: inline-block;
+  margin-left: 15px;
+  width: 77%;
+  vertical-align: middle;
+}
+.assess-insert-container .form-container .info-container .content-container .info-inp {
+  padding: 5px 4px 3px 4px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.assess-insert-container .form-container .info-container .content-container .tip {
+  font-size: 12px;
+  color: #999;
+  margin-left: 15px;
+}
+.assess-insert-container .form-container .info-container .content-container input[type=number] {
+  width: 50%;
+}
+.assess-insert-container .form-container .info-container .content-container input[type=number][name=salary] {
+  padding-left: 20px;
+}
+.assess-insert-container .form-container .info-container .content-container .select-teacher {
+  margin-left: 15px;
+  display: inline-block;
+}
+.assess-insert-container .form-container .btn-container {
+  position: relative;
+  height: 90px;
+}
+.assess-insert-container .form-container .btn-container .btn1 {
+  cursor: pointer;
+  padding: 5px 10px;
+  background: #33a8ed;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  float: right;
+  margin-right: 15px;
+}
+.assess-check-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+}
+.assess-check-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}

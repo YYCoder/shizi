@@ -121,7 +121,9 @@ $route['train/update_feedback_items'] = 'Train_Controller/update_feedback_items'
 $route['train/get_passed_apply'] = 'Train_Controller/get_my_passed_apply';
 $route['train/upload_file'] = 'Train_Controller/upload_file';
 $route['train/insert_feedback'] = 'Train_Controller/insert_feedback';
-
-
+// 考核模块
+$route['assessment'] = 'Assess_Controller/index';
+$route['assessment/check'] = 'Assess_Controller/index';
+$route['assessment/insert'] = 'Assess_Controller/index';
 
 

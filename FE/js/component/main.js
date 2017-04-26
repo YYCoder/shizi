@@ -28,7 +28,10 @@ define(function (require, exports) {
         trainFeedback = require('./train/feedback'),
         trainMyFeedback = require('./train/myFeedback'),
         trainExamineApply = require('./train/examineApply'),
-        trainExamineFeedback = require('./train/examineFeedback');
+        trainExamineFeedback = require('./train/examineFeedback'),
+    // 考核管理
+        assessInsert = require('./assess/insert'),
+        assessCheck = require('./assess/check');
 
     var main = {
         template: mainRender,
@@ -51,7 +54,10 @@ define(function (require, exports) {
             trainFeedback: trainFeedback,
             trainMyFeedback: trainMyFeedback,
             trainExamineApply: trainExamineApply,
-            trainExamineFeedback: trainExamineFeedback
+            trainExamineFeedback: trainExamineFeedback,
+
+            assessInsert: assessInsert,
+            assessCheck: assessCheck
         }
     }
 

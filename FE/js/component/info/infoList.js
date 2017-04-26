@@ -194,6 +194,22 @@ define(function (require, exports) {
 			// 只在教师列表组件中用到,触发事件跳转到教师详情组件
 			'toDetail': function (id) {
 				this.$router.push('/home/detail/'+id);
+			},
+			checkImg(item) {
+				layer.photos({
+			    photos: {
+			    	title: `${item.name}的头像`,
+			    	id: Math.random()*10,
+			    	start: 0,
+			    	data: [{
+			    		// 头一次尝试ES6模板字符串哈 ~
+			    		alt: `${item.name}的头像`,
+			    		pid: Math.random()*10,
+			    		src: item.avatar
+			    	}]
+			    },
+			    anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+			  });
 			}
 		}
 	}

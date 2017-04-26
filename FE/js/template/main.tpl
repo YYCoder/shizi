@@ -20,5 +20,8 @@
     <router-view name="trainMyFeedback"></router-view>
     <router-view name="trainExamineApply"></router-view>
     <router-view name="trainExamineFeedback"></router-view>
+    <!-- 考核管理 -->
+    <router-view name="assessInsert"></router-view>
+    <router-view name="assessCheck"></router-view>
 
 </div>

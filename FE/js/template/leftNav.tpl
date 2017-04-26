@@ -53,6 +53,13 @@
         <li class="left-item" v-if="p == 4 && isManager">
             <router-link to="/train/examineFeedback" class="left-btn">审核反馈</router-link>
         </li>
+        <!-- 考核管理模块 -->
+        <li class="left-item" v-if="p == 5 && !isManager">
+            <router-link to="/assessment/check" class="left-btn">查看考核</router-link>
+        </li>
+        <li class="left-item" v-if="p == 5 && isManager">
+            <router-link to="/assessment/insert" class="left-btn">录入考核</router-link>
+        </li>
     </ul>
 
 </div>

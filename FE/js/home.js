@@ -200,6 +200,37 @@ define('home', function (require, exports) {
                         }
                     }
                 ]
+            },
+            {
+                path: '/assessment',
+                components: {
+                    'leftNav': leftNav,
+                    'main': main
+                },
+                children: [
+                    {
+                        path: '',
+                        components: {
+                            'assessCheck': main.components.assessCheck
+                        },
+                        beforeEnter(to, from, next) {
+                            let rights = window.user.rights;
+                            rights.assessment == 1 ? next('/assessment/insert') : next();
+                        }
+                    },
+                    {
+                        path: 'check',
+                        components: {
+                            'assessCheck': main.components.assessCheck
+                        }
+                    },
+                    {
+                        path: 'insert',
+                        components: {
+                            'assessInsert': main.components.assessInsert
+                        }
+                    }
+                ]
             }
         ]
     });
@@ -240,6 +271,8 @@ define('home', function (require, exports) {
                 this.page = 7;
             }
             this.checkInfo();
+            // 写死管理权限开发
+            this.user.rights.assessment = 1;
         },
         router: router,
         data: {

@@ -71,8 +71,8 @@
 																 @click.stop="">
 				</span>
 				<span class="avatar">
-					<div class="img-wrap">
-						<img :data-src="item.avatar" alt="用户头像" class="avatar-img">
+					<div class="img-wrap" @click.stop="checkImg(item)">
+						<img :data-src="item.avatar" alt="用户头像" class="avatar-img" title="点击查看大图">
 					</div>
 				</span>
 				<span class="name single-line">{{item.name}}</span>
