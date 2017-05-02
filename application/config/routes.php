@@ -79,6 +79,7 @@ $route['info/delete_info'] = 'Info_Controller/delete_info';
 $route['info/delete_mult'] = 'Info_Controller/delete_mult_info';
 $route['upload_avatar'] = 'Info_Controller/upload_avatar';
 $route['get_majors'] = 'Info_Controller/get_majors';
+$route['get_teachers'] = 'Info_Controller/get_teachers';
 // 课程管理
 $route['course'] = 'Course_Controller/index';
 $route['course/class'] = 'Course_Controller/index';

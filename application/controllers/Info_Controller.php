@@ -342,6 +342,26 @@ class Info_Controller extends My_Controller
     }
 
 
+    /**
+     * 获取指定条件的所有老师(无分页)
+     * @return [array] [教师列表]
+     */
+    public function get_teachers()
+    {
+        $param = $_GET['where'];
+        $res = $this->Info_Model->get_teachers($param);
+        foreach ($res as $k => $v) {
+            $res[$k]['age'] = floor((time() - strtotime($v['birthday'])) / 365 / 24 / 60 / 60);
+            unset($res[$k]['birthday']);
+        }
+        // 未获取到也直接返回, 由前端判断
+        parent::return_data($res);
+    }
+
+
+
+
+
 }
 
 

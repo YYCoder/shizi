@@ -159,7 +159,22 @@ class Info_Model extends CI_Model
 	}
 
 
-
+	/**
+	 * 获取指定条件的所有教师信息
+	 * @param  [array] $param [指定条件]
+	 * @return [array]        [教师数组]
+	 */
+	public function get_teachers($param)
+	{
+		$res = array();
+		$res = $this->db->select('avatar, teacher.id AS id, teacher.name AS name, major.name AS major, birthday, self_descp AS self')
+										->where($param['item'], $param['value'])
+										->from('teacher')
+										->join('major', 'teacher.mid = major.id')
+										->get()
+										->result_array();
+		return $res;
+	}
 
 
 

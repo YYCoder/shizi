@@ -13,7 +13,9 @@
 	    		<option v-for="item in majorList" :value="item.id">{{item.name}}</option>
 	    	</datalist>
 	    	<!-- 动态渲染的选择教师 -->
-		    <transition name="slide">
+		    <transition name="custom"
+										enter-active-class="animated bounceInRight"
+    								leave-active-class="animated bounceOutRight">
 			    <div class="select-teacher" v-show="hasSelectMajor">
 			    	<span class="teacher">选择教师</span>
 			      <i class="require-icon">*</i>
@@ -26,7 +28,9 @@
       </div>
     </div>
     <!-- 选择教师后,显示出来该教师信息 -->
-    <transition name="custom">
+    <transition name="custom"
+    						enter-active-class="animated tada"
+    						leave-active-class="animated fadeOutDown">
 	    <div class="teacher-container" v-show="hasSelectTeacher">
 	    	<div class="avatar-wrap">
 	    		<img :data-src="teacher.avatar" src="http://www.yyteacher.com/FE/img/user.png" alt="教师头像" class="avatar" title="教师头像">

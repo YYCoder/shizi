@@ -28,7 +28,8 @@ define(function (require, exports) {
 					name: '',
 					age: '',
 					major: '',
-					self: ''
+					self: '',
+					avatar: ''
 				},
 				// 是否已选择专业flag, 用于判断是否发送请求查询教师
 				hasSelectMajor: false,
@@ -61,10 +62,63 @@ define(function (require, exports) {
 		},
 		methods: {
 			selectMajor() {
-				console.log(this.mid);
+				for(let major of this.majorList) {
+					if (this.mid == major.id) {
+						ui.loading();
+						$.ajax({
+							url: `${location.origin}/index.php/get_teachers`,
+							data: {
+								where: {
+									item: 'mid',
+									value: this.mid
+								}
+							},
+							type: 'get'
+						}).done(res => {
+							if (res.code == 0) {
+								this.hasSelectMajor = true;
+								ui.closeAll('loading');
+								if (res.data.length > 0) {
+									this.teacherList = res.data;
+								}
+								else {
+									ui.tips({
+										msg: '暂无该专业的老师',
+										follow: $('input[list="major"]')
+									});
+									this.hasSelectMajor = false;
+								}
+							}
+						}).fail(res => {
+							ui.closeAll('loading');
+							ui.msgError(res.msg);
+						});
+						return;
+					}
+				}
 			},
 			selectTeacher() {
-
+				let teacher = this.teacher;
+				for(let t of this.teacherList) {
+					if (this.formData.tid == t.id) {
+						teacher.name = t.name;
+						teacher.age = t.age;
+						teacher.major = t.major;
+						teacher.self = t.self;
+						teacher.avatar = t.avatar;
+						this.formData.tid = t.id;
+						this.hasSelectTeacher = true;
+						$('img.avatar').attr('src', teacher.avatar);
+						return;
+					}
+					else {
+						this.hasSelectTeacher = false;
+						this.formData.tid = '';
+						for(let k in teacher) {
+							teacher[k] = '';
+						}
+					}
+				}
 			}
 		}
 	};

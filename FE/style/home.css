@@ -1894,6 +1894,7 @@ header .user-info .info p.greeting {
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
+  overflow: hidden;
 }
 .assess-insert-container > .title {
   font-size: 1.5rem;
@@ -1945,6 +1946,7 @@ header .user-info .info p.greeting {
 }
 .assess-insert-container .form-container .teacher-container .teacher-info-container .self {
   margin-top: 10px;
+  width: 100%;
 }
 .assess-insert-container .form-container .info-container {
   width: 100%;
@@ -1997,6 +1999,9 @@ header .user-info .info p.greeting {
 .assess-insert-container .form-container .info-container .content-container .select-teacher {
   margin-left: 15px;
   display: inline-block;
+}
+.assess-insert-container .form-container .info-container .content-container .select-teacher input[list="teacher"] {
+  margin-left: 15px;
 }
 .assess-insert-container .form-container .btn-container {
   position: relative;
