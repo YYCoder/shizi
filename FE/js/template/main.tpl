@@ -23,5 +23,6 @@
     <!-- 考核管理 -->
     <router-view name="assessInsert"></router-view>
     <router-view name="assessCheck"></router-view>
+    <router-view name="assessCount"></router-view>
 
 </div>

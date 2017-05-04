@@ -68,7 +68,7 @@ define(function (require, exports) {
     /**
      * 验证传入的数组||对象是否有空('', null, undefined)
      * @param  {arr}[Array||Object]           [要验证的数组||对象]
-     * @return {res}[String||Boolean]         [有则返回为空的字段, 没有则返回false]
+     * @return {res}[String||Boolean]         [有则返回为空的字段, 没有则返回undefined]
      */
     function hasEmpty(arg) {
       if (arg instanceof Array) {

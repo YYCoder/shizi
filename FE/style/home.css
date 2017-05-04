@@ -162,16 +162,23 @@ header .top-title {
 header .nav {
   display: inline-block;
   height: 100%;
+  position: relative;
+}
+header .nav .bg-color {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #1277a9;
+  width: 0;
+  height: 100%;
+  transition: all 0.4s ease-in-out;
 }
 header .nav .item {
   display: inline-block;
   line-height: 60px;
   padding: 0 20px;
   height: 100%;
-  transition: background 0.3s ease;
-}
-header .nav .item.active {
-  background: #329bd8;
+  position: relative;
 }
 header .nav .item a {
   color: #fff;
@@ -2027,6 +2034,20 @@ header .user-info .info p.greeting {
   position: relative;
 }
 .assess-check-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.count-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+  position: relative;
+  overflow: hidden;
+}
+.count-container > .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }

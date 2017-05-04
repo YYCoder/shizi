@@ -31,6 +31,7 @@ define(function (require, exports) {
         trainExamineFeedback = require('./train/examineFeedback'),
     // 考核管理
         assessInsert = require('./assess/insert'),
+        assessCount = require('./assess/count'),
         assessCheck = require('./assess/check');
 
     var main = {
@@ -57,6 +58,7 @@ define(function (require, exports) {
             trainExamineFeedback: trainExamineFeedback,
 
             assessInsert: assessInsert,
+            assessCount: assessCount,
             assessCheck: assessCheck
         }
     }

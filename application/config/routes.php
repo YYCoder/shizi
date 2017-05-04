@@ -126,5 +126,6 @@ $route['train/insert_feedback'] = 'Train_Controller/insert_feedback';
 $route['assessment'] = 'Assess_Controller/index';
 $route['assessment/check'] = 'Assess_Controller/index';
 $route['assessment/insert'] = 'Assess_Controller/index';
+$route['assessment/insert_assess'] = 'Assess_Controller/insert_assess';
 
 

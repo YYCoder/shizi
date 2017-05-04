@@ -31,7 +31,8 @@ define('home', function (require, exports) {
                 path: '/home',
                 components: {
                     'leftNav': leftNav,
-                    'main': main
+                    'main': main,
+                    'topNav': topNav
                 },
                 children: [
                     {
@@ -63,7 +64,8 @@ define('home', function (require, exports) {
                 path: '/info',
                 components: {
                     'leftNav': leftNav,
-                    'main': main
+                    'main': main,
+                    'topNav': topNav
                 },
                 children: [
                     {
@@ -100,7 +102,8 @@ define('home', function (require, exports) {
                 path: '/course',
                 components: {
                     'leftNav': leftNav,
-                    'main': main
+                    'main': main,
+                    'topNav': topNav
                 },
                 children: [
                     {
@@ -149,7 +152,8 @@ define('home', function (require, exports) {
                 path: '/train',
                 components: {
                     'leftNav': leftNav,
-                    'main': main
+                    'main': main,
+                    'topNav': topNav
                 },
                 children: [
                     {
@@ -205,7 +209,8 @@ define('home', function (require, exports) {
                 path: '/assessment',
                 components: {
                     'leftNav': leftNav,
-                    'main': main
+                    'main': main,
+                    'topNav': topNav
                 },
                 children: [
                     {
@@ -228,6 +233,12 @@ define('home', function (require, exports) {
                         path: 'insert',
                         components: {
                             'assessInsert': main.components.assessInsert
+                        }
+                    },
+                    {
+                        path: 'count',
+                        components: {
+                            'assessCount': main.components.assessCount
                         }
                     }
                 ]

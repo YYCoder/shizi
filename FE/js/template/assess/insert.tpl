@@ -42,16 +42,58 @@
 					<p class="self">{{teacher.self}}</p>
 				</div>
 	    </div>
-
     </transition>
+
 		<p class="info">院系考核成绩</p>
 		<hr>
 		<div class="info-container">
-      <span class="info-name">您要反馈的培训</span>
-      <i class="require-icon" v-if="requires.title">*</i>
+      <span class="info-name">科研考核成绩</span>
+      <i class="require-icon" v-if="requires.science">*</i>
       <div class="content-container">
-
+				<input type="number" class="info-inp" name="science" max=100 min=0 v-model="formData.college.science">
       </div>
+    </div>
+		<div class="info-container">
+      <span class="info-name">教学考核成绩</span>
+      <i class="require-icon" v-if="requires.teach">*</i>
+      <div class="content-container">
+				<input type="number" class="info-inp" name="teach" max=100 min=0 v-model="formData.college.teach">
+      </div>
+    </div>
+		<div class="info-container">
+      <span class="info-name">公益活动考核成绩</span>
+      <i class="require-icon" v-if="requires.public">*</i>
+      <div class="content-container">
+				<input type="number" class="info-inp" name="public" max=100 min=0 v-model="formData.college.public">
+      </div>
+    </div>
+		<p class="info">学生考核成绩</p>
+		<hr>
+		<div class="info-container">
+      <span class="info-name">教学质量考核成绩</span>
+      <i class="require-icon" v-if="requires.course_quality">*</i>
+      <div class="content-container">
+				<input type="number" class="info-inp" name="course_quality" max=100 min=0 v-model="formData.student.course_quality">
+      </div>
+    </div>
+		<div class="info-container">
+      <span class="info-name">课堂纪律考核成绩</span>
+      <i class="require-icon" v-if="requires.course_discipline">*</i>
+      <div class="content-container">
+				<input type="number" class="info-inp" name="course_discipline" max=100 min=0 v-model="formData.student.course_discipline">
+      </div>
+    </div>
+		<div class="info-container">
+      <span class="info-name">教师仪表考核成绩</span>
+      <i class="require-icon" v-if="requires.appearance">*</i>
+      <div class="content-container">
+				<input type="number" class="info-inp" name="appearance" max=100 min=0 v-model="formData.student.appearance">
+      </div>
+    </div>
+
+		<div class="btn-container">
+      <button class="submit btn1" @click="submit">提 交</button>
+      <button class="reset btn1" @click="reset">重 置</button>
     </div>
 	</div>
 </div>

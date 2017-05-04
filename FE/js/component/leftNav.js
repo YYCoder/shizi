@@ -33,41 +33,31 @@ define(function (require, exports) {
         },
         beforeRouteEnter(to, from, next) {
             next(vm => {
-                if (/^\/home/i.test(to.fullPath)) {
-                    vm.p = 0;
-                }
-                else if (/^\/info/i.test(to.fullPath)) {
-                    vm.p = 1;
+                if (vm.page === 1) {
                     vm.rights['info'] == 1 ? vm.isManager = true
                                            : vm.isManager = false;
                 }
-                else if (/^\/course/i.test(to.fullPath)) {
-                    vm.p = 2;
+                else if (vm.page === 2) {
                     vm.rights['course'] == 1 ? vm.isManager = true
-                                           : vm.isManager = false;
+                                             : vm.isManager = false;
                 }
-                else if (/^\/work/i.test(to.fullPath)) {
-                    vm.p = 3;
+                else if (vm.page === 3) {
                     vm.rights['work'] == 1 ? vm.isManager = true
                                            : vm.isManager = false;
                 }
-                else if (/^\/train/i.test(to.fullPath)) {
-                    vm.p = 4;
+                else if (vm.page === 4) {
                     vm.rights['train'] == 1 ? vm.isManager = true
-                                           : vm.isManager = false;
+                                            : vm.isManager = false;
                 }
-                else if (/^\/assessment/i.test(to.fullPath)) {
-                    vm.p = 5;
+                else if (vm.page === 5) {
                     vm.rights['assessment'] == 1 ? vm.isManager = true
-                                               : vm.isManager = false;
+                                                 : vm.isManager = false;
                 }
-                else if (/^\/comment/i.test(to.fullPath)) {
-                    vm.p = 6;
+                else if (vm.page === 6) {
                     vm.rights['comment'] == 1 ? vm.isManager = true
-                                           : vm.isManager = false;
+                                              : vm.isManager = false;
                 }
-                else if (/^\/user/i.test(to.fullPath)) {
-                    vm.p = 7;
+                else if (vm.page === 7) {
                     vm.rights['user'] == 1 ? vm.isManager = true
                                            : vm.isManager = false;
                 }
@@ -75,7 +65,6 @@ define(function (require, exports) {
         },
         data: function () {
             return {
-                p: this.page,
                 isManager: false
             };
         }

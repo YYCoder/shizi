@@ -54,7 +54,6 @@ define(function (require, exports) {
 			this.getData();
 		},
 		updated: function () {
-			console.log('vue updated');
 			if (this.ready) {
 				lazyLoadImage.init();
 				lazyLoadImage.reload();

@@ -35,11 +35,12 @@
 
     <div id="app">
         <!-- 顶导组件 -->
-        <top-nav
+        <router-view name="topNav"
             :user-type="user.type"
             :user-name="user.name"
             :user-avatar="user.avatar"
-        ></top-nav>
+            :page="page"
+        ></router-view>
         <section>
             <!-- 左导航组件 -->
             <router-view name="leftNav"
@@ -65,6 +66,7 @@
             'moment': './dep/moment/moment',
             'text': './dep/text',
             'vue-router': './dep/vue-router',
+            'echart': './dep/echarts.min',
 
             'util': './common/util',
             'ui': './common/ui',
