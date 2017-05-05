@@ -59,7 +59,7 @@
             欢迎你, <span class="user-name">{{userName}}</span>
             </p>
             <p class="identity">
-                <span class="type" v-text="userType == 0 ? '教师' : user.type == 1 ? '管理员' : '超级管理员'">
+                <span class="type" v-text="userType == 0 ? '教师' : userType == 1 ? '管理员' : '超级管理员'">
                 </span>
                 <span class="arrow"></span>
             </p>

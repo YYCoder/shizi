@@ -10,5 +10,47 @@
     font-size: 1.5rem;
     margin: 10px 0 15px;
   }
-
+  .btn {
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    line-height: 30px;
+    background: @btn1;
+  }
+  .detail-table {
+    border-collapse: collapse;
+    width: 50%;
+    height: 82%;
+    margin-top: 10px;
+    caption {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px;
+    }
+    .avatar {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    tr.first-row {
+      height: 0;
+      & > td {
+        border: none;
+      }
+    }
+    td {
+      width: 130px;
+      border: 1px solid black;
+      text-align: center;
+      padding: 10px 0;
+      &.title-td {
+        font-weight: bold;
+      }
+      &.avatar-td {
+        height: 190px;
+      }
+      &.info {
+        color: #666;
+      }
+    }
+  }
 }

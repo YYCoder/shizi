@@ -41,7 +41,7 @@
             :user-avatar="user.avatar"
             :page="page"
         ></router-view>
-        <section>
+        <section :class="{ comment: isComment }">
             <!-- 左导航组件 -->
             <router-view name="leftNav"
                 :rights="user.rights"
@@ -49,6 +49,8 @@
             ></router-view>
             <!-- 主要内容组件 -->
             <router-view name="main"></router-view>
+            <!-- 留言板组件 -->
+            <router-view name="comment"></router-view>
         </section>
     </div>
 
@@ -66,7 +68,7 @@
             'moment': './dep/moment/moment',
             'text': './dep/text',
             'vue-router': './dep/vue-router',
-            'echart': './dep/echarts.min',
+            'echarts': './dep/echarts.min',
 
             'util': './common/util',
             'ui': './common/ui',

@@ -171,7 +171,7 @@ header .nav .bg-color {
   background: #1277a9;
   width: 0;
   height: 100%;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 header .nav .item {
   display: inline-block;
@@ -2037,6 +2037,49 @@ header .user-info .info p.greeting {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
+.assess-check-container .btn {
+  position: absolute;
+  right: 15px;
+  top: 25px;
+  line-height: 30px;
+  background: #4fbfaa;
+}
+.assess-check-container .detail-table {
+  border-collapse: collapse;
+  width: 50%;
+  height: 82%;
+  margin-top: 10px;
+}
+.assess-check-container .detail-table caption {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+}
+.assess-check-container .detail-table .avatar {
+  max-width: 100%;
+  max-height: 100%;
+}
+.assess-check-container .detail-table tr.first-row {
+  height: 0;
+}
+.assess-check-container .detail-table tr.first-row > td {
+  border: none;
+}
+.assess-check-container .detail-table td {
+  width: 130px;
+  border: 1px solid black;
+  text-align: center;
+  padding: 10px 0;
+}
+.assess-check-container .detail-table td.title-td {
+  font-weight: bold;
+}
+.assess-check-container .detail-table td.avatar-td {
+  height: 190px;
+}
+.assess-check-container .detail-table td.info {
+  color: #666;
+}
 .count-container {
   padding: 15px;
   height: 100%;
@@ -2050,4 +2093,118 @@ header .user-info .info p.greeting {
 .count-container > .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
+}
+.count-container .top-control:after {
+  display: block;
+  clear: right;
+  width: 0;
+  content: '';
+}
+.count-container .top-control .right-controls {
+  display: inline-block;
+  float: right;
+}
+.count-container .top-control .right-controls .btn {
+  line-height: 29px;
+  background: #4fbfaa;
+  margin-right: 15px;
+}
+.count-container .top-control .right-controls .btn:focus {
+  outline: none;
+}
+.count-container .chart-container {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.count-container .chart-container .chart {
+  height: 500px;
+  top: 10%;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  padding: 15px;
+  opacity: 1;
+}
+@keyframes left-in {
+  0% {
+    transform: translateX(-150%) scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes right-out {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(150%) scale(0.3);
+    opacity: 0;
+  }
+}
+.count-container .chart-container .chart.left-in {
+  animation: left-in 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.count-container .chart-container .chart.right-out {
+  animation: right-out 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+.count-container .chart-container .bar-chart {
+  width: 65%;
+}
+.count-container .chart-container .line-chart {
+  width: 65%;
+}
+.count-container .chart-container .pie-chart {
+  width: 50%;
+}
+.comment-container {
+  display: block;
+  box-sizing: border-box;
+  padding: 15px;
+  width: 65%;
+  height: 95%;
+  background: #F5F5DC;
+  margin: 0px auto;
+  position: relative;
+  border-radius: 10px;
+}
+.comment-container:after,
+.comment-container:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 84%;
+  height: 92%;
+  left: 8%;
+  top: 4%;
+  z-index: -2;
+}
+.comment-container:after {
+  transform: skew(-15deg) rotate(-3deg);
+  box-shadow: 2px 20px 60px #333;
+}
+.comment-container:before {
+  transform: skew(15deg) rotate(3deg);
+  box-shadow: 0px 20px 60px #333;
+}
+.comment-container .title {
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 1px #344152;
+  letter-spacing: 30px;
+  font-size: 60px;
+  margin: 10px 0;
+  background: linear-gradient(45deg, #7FFFD4 35%, #CD853F, 75%, #ccc);
+  -webkit-background-clip: text;
+}
+section.comment {
+  background: #ccc;
+  box-sizing: border-box;
+  padding: 10px 0;
+  z-index: -1;
+  position: relative;
 }

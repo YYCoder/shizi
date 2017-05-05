@@ -15,6 +15,7 @@ define('home', function (require, exports) {
     var topNav = require('./js/component/topNav');
     var leftNav = require('./js/component/leftNav');
     var main = require('./js/component/main');
+    var comment = require('./js/component/comment/comment');
 
     // 开启路由
     Vue.use(VueRouter);
@@ -149,6 +150,12 @@ define('home', function (require, exports) {
                 ]
             },
             {
+                path: '/work',
+                components: {
+                    'topNav': topNav
+                }
+            },
+            {
                 path: '/train',
                 components: {
                     'leftNav': leftNav,
@@ -242,6 +249,19 @@ define('home', function (require, exports) {
                         }
                     }
                 ]
+            },
+            {
+                path: '/comment',
+                components: {
+                    'topNav': topNav,
+                    'comment': comment
+                }
+            },
+            {
+                path: '/user',
+                components: {
+                    'topNav': topNav
+                }
             }
         ]
     });
@@ -283,7 +303,6 @@ define('home', function (require, exports) {
             }
             this.checkInfo();
             // 写死管理权限开发
-            this.user.rights.assessment = 1;
         },
         router: router,
         data: {
@@ -294,7 +313,9 @@ define('home', function (require, exports) {
                 name: window.user.name,
                 id: window.user.id
             },
-            page: 0
+            page: 0,
+            // 是否为留言板模块, 用于修改样式
+            isComment: false
         },
         methods: {
             // 检查用户的档案是否完整, 不完整提示前往档案管理完善

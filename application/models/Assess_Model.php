@@ -46,10 +46,29 @@ class Assess_Model extends CI_Model
 	public function get_teacher_assess($tid)
 	{
 		$data = $this->db->from('assess')
-										 ->where('tid', $tid)
+										 ->select('assess.id AS id, average, assess.timestamp AS timestamp, mid, college_assessment, student_assessment, science, teach, public, course_quality, course_discipline, appearance, user.name AS m_name')
+										 ->where('assess.tid', $tid)
+										 ->join('assess_college', 'assess.tid = assess_college.tid')
+										 ->join('assess_student', 'assess.tid = assess_student.tid')
+										 ->join('user', 'assess.mid = user.id')
 										 ->get()
 										 ->result_array();
 		return $data;
+	}
+
+
+	/**
+	 * 获取满足条件的全部数据
+	 * @return [array] [满足条件的全部数据]
+	 */
+	public function get_data($param = array())
+	{
+		$this->db->from('assess');
+		if (!empty($param)) {
+			$this->db->where($param['where']['item'], $param['where']['value']);
+		}
+		$res = $this->db->get()->result_array();
+		return $res;
 	}
 
 

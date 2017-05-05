@@ -12,6 +12,8 @@ class Assess_Controller extends My_Controller
 		parent::__construct();
         $this->load->Model('Assess_Model');
         $this->load->Model('Info_Model');
+        $this->load->library('PHPExcel/Iofactory');
+        $this->load->library('Phpexcel');
 	}
 
 
@@ -118,6 +120,136 @@ class Assess_Controller extends My_Controller
     }
 
 
+    /**
+     * 获取图标要显示的数据
+     * @return [array] [几种类型的人数]
+     */
+    public function get_data()
+    {
+        $res = $this->Assess_Model->get_data();
+        $data = array(
+            '不及格' => 0,
+            '及格' => 0,
+            '良好' => 0,
+            '优秀' => 0
+        );
+        foreach ($res as $k => $v) {
+            if ($v['average'] == 0) {
+                $data['不及格']++;
+            }
+            else if ($v['average'] == 1) {
+                $data['及格']++;
+            }
+            else if ($v['average'] == 2) {
+                $data['良好']++;
+            }
+            else if ($v['average'] == 3) {
+                $data['优秀']++;
+            }
+        }
+        parent::return_data($data);
+    }
+
+    /**
+     * 处理评价数据为字符串
+     * @param  [array] $data [要处理的数据]
+     * @return [array]       [处理后的数据]
+     */
+    private function handle_data($data)
+    {
+        foreach ($data as $k => $v) {
+            if (($k == 'student_assessment' && $v == 0) || ($k == 'college_assessment' && $v == 0) || ($k == 'average' && $v == 0)) {
+                $data[$k] = '不及格';
+            }
+            else if (($k == 'student_assessment' && $v == 1) || ($k == 'college_assessment' && $v == 1) || ($k == 'average' && $v == 1)) {
+                $data[$k] = '及格';
+            }
+            else if (($k == 'student_assessment' && $v == 2) || ($k == 'college_assessment' && $v == 2) || ($k == 'average' && $v == 2)) {
+                $data[$k] = '良好';
+            }
+            else if (($k == 'student_assessment' && $v == 3) || ($k == 'college_assessment' && $v == 3) || ($k == 'average' && $v == 3)) {
+                $data[$k] = '优秀';
+            }
+        }
+        return $data;
+    }
+
+
+    /**
+     * 获取用户自己的成绩及其他数据
+     * @return [array] [数据]
+     */
+    public function get_own_data()
+    {
+        $res = self::get_teacher_assess();
+        if ($res) {
+            $res['time'] = date('Y-m-d H:i', $res['timestamp']);
+            $res = self::handle_data($res);
+            parent::return_data($res);
+        }
+        else {
+            parent::return_error('未获取到数据');
+        }
+    }
+
+
+    /**
+     * 下载execl表格
+     * @return [array] => url[string] [生成的excel文档的临时文件路径,用于返回给前端下载]
+     */
+    public function download()
+    {
+        $data = array();
+        //创建PHPExcel实例
+        $excel = new PHPExcel();
+        $filename = 'MarkeyExcelOn'.time().'.xlsx';
+        $excel->getProperties()->setCreator($this->config->item('base_url'))
+                               ->setLastModifiedBy('Markey')
+                               ->setTitle('Office 2007 XLSX Document')
+                               ->setSubject('Office 2007 XLSX Document')
+                               ->setDescription('通过php生成的excel文档')
+                               ->setKeywords('office 2007 openxml php')
+                               ->setCategory('Result file');
+        // 设置当前的excel文档
+        $excel->setActiveSheetIndex(0);
+        // 设置一些默认样式
+        $excel->getDefaultStyle()->getFont()->setName(iconv('gbk', 'utf-8', '宋体'))
+                                            ->setSize(15);
+        $excel->getDefaultStyle()->getAlignment()
+                                 ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        // 设置excel
+        $excel->getActiveSheet()->setTitle('教师档案表')
+                              ->setCellValue('A1', '姓名')
+                              ->setCellValue('B1', '性别')
+                              ->setCellValue('C1', '出生日期')
+                              ->setCellValue('D1', '手机号')
+                              ->setCellValue('E1', '婚否')
+                              ->setCellValue('F1', '身份证')
+                              ->setCellValue('G1', '毕业院校')
+                              ->mergeCells('H1:I1')
+                              ->setCellValue('H1', '家庭住址')
+                              ->mergeCells('J1:K1')
+                              ->setCellValue('J1', '专业')
+                              ->setCellValue('L1', '入职时间')
+                              ->setCellValue('M1', '职称')
+                              ->mergeCells('N1:O1')
+                              ->setCellValue('N1', '爱好');
+
+        // 设置项目名的背景色
+        $excel->getActiveSheet()->getStyle('A1')
+                                ->getFill()
+                                ->getStartColor()->setARGB('AA808080');
+        $excel->getActiveSheet()->getStyle('B1')
+                                ->getFill()
+                                ->getStartColor()->setARGB('AA808080');
+        // 保存为临时文件
+        $objWriter = Iofactory::createWriter($excel, 'Excel2007');
+        $objWriter->save('tmp_file/'.$filename);
+
+        $this->return_data(array(
+            'url' => $this->config->item('base_url').'/tmp_file/'.$filename
+        ));
+    }
 
 
 

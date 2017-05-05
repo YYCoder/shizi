@@ -59,6 +59,7 @@ define(function (require, exports) {
                 }
                 else if (/^\/comment/i.test(to.fullPath)) {
                     vm.$root.page = 6;
+                    vm.$root.isComment = true;
                 }
                 else if (/^\/user/i.test(to.fullPath)) {
                     vm.$root.page = 7;

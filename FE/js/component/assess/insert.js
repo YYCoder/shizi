@@ -5,12 +5,12 @@
  */
 define(function (require, exports) {
 	'use strict';
-	let render = require('text!../../template/assess/insert.tpl');
-	let ui = require('ui');
-	let util = require('util');
-	let drop = require('../common/drop');
+	const render = require('text!../../template/assess/insert.tpl');
+	const ui = require('ui');
+	const util = require('util');
+	const drop = require('../common/drop');
 
-	let insert = {
+	const insert = {
 		template: render,
 		components: {
 			'drop': drop
@@ -127,13 +127,12 @@ define(function (require, exports) {
 						$('img.avatar').attr('src', teacher.avatar);
 						return;
 					}
-					else {
-						this.hasSelectTeacher = false;
-						this.formData.tid = '';
-						for(let k in teacher) {
-							teacher[k] = '';
-						}
-					}
+				}
+				// 若输入的编号不是该专业的老师, 则清空选中的教师数据
+				this.hasSelectTeacher = false;
+				this.formData.tid = '';
+				for(let k in teacher) {
+					teacher[k] = '';
 				}
 			},
 			submit() {

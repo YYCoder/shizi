@@ -126,6 +126,11 @@ $route['train/insert_feedback'] = 'Train_Controller/insert_feedback';
 $route['assessment'] = 'Assess_Controller/index';
 $route['assessment/check'] = 'Assess_Controller/index';
 $route['assessment/insert'] = 'Assess_Controller/index';
+$route['assessment/count'] = 'Assess_Controller/index';
 $route['assessment/insert_assess'] = 'Assess_Controller/insert_assess';
-
+$route['assessment/get_data'] = 'Assess_Controller/get_data';
+$route['assessment/get_own_data'] = 'Assess_Controller/get_own_data';
+$route['assessment/download'] = 'Assess_Controller/download';
+// 留言板模块
+$route['comment'] = 'Comment_Controller/index';
 

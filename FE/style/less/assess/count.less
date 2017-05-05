@@ -11,6 +11,74 @@
     font-size: 1.5rem;
     margin: 10px 0 15px;
   }
-
+  .top-control {
+    &:after {
+      display: block;
+      clear: right;
+      width: 0;
+      content: '';
+    }
+    .right-controls {
+      display: inline-block;
+      float: right;
+      .btn {
+          line-height: 29px;
+          background: @btn1;
+          margin-right: 15px;
+          &:focus {
+            outline: none;
+          }
+      }
+    }
+  }
+  .chart-container {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    .chart {
+      height: 500px;
+      top: 10%;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      padding: 15px;
+      opacity: 1;
+      @keyframes left-in {
+        0% {
+          transform: translateX(-150%) scale(0.3);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(-50%) scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes right-out {
+        0% {
+          transform: translateX(-50%) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(150%) scale(0.3);
+          opacity: 0;
+        }
+      }
+      &.left-in {
+        animation: left-in 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      &.right-out {
+        animation: right-out 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+      }
+    }
+    .bar-chart {
+      width: 65%;
+    }
+    .line-chart {
+      width: 65%;
+    }
+    .pie-chart {
+      width: 50%;
+    }
+  }
 
 }
