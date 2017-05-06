@@ -39,6 +39,7 @@ define(function (require, exports) {
         },
         beforeRouteEnter(to, from, next) {
             next(vm => {
+                vm.$root.isComment = false;
                 if (/^\/home/i.test(to.fullPath)) {
                     vm.$root.page = 0;
                 }
