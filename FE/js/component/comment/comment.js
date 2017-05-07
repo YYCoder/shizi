@@ -7,9 +7,13 @@ define(function (require, exports) {
 	const render = require('text!../../template/comment/comment.tpl');
 	const ui = require('ui');
 	const layer = require('layer');
+	const pager = require('../common/pager');
 
 	const comment = {
 		template: render,
+		components: {
+			pager
+		},
 		data() {
 			return {
 				// 自定义滚动条所需数据
@@ -18,12 +22,23 @@ define(function (require, exports) {
 				// 鼠标离开滚动条2s滚动条消失, 暂时没实现
 				scrollBarBlur: false,
 				commentData: {
-					uid: '',
 					content: '',
 					refer_id: 0,
-					quota_id: 0
+					quota_id: 0,
+					refer_name: '',
+					quota_name: '',
+					quota_content: ''
 				},
-				data: []
+				data: [],
+				// 分页用数据
+				page: {
+					pageNumber: 0,
+					curPage: 0
+				},
+				param: {
+					limit: 10,
+					page: 1
+				}
 			};
 		},
 		computed: {
@@ -33,6 +48,9 @@ define(function (require, exports) {
 			fontLeft() {
 				return 100 - this.commentData.content.length;
 			}
+		},
+		created() {
+			this.getData();
 		},
 		mounted() {
 			const	scroller = document.querySelector('div.scroller'),
@@ -64,6 +82,33 @@ define(function (require, exports) {
 			// console.log(`scroller Height: ${ scroll.scroller.offsetHeight }`);
 		},
 		methods: {
+			getData() {
+				ui.loading();
+				$.ajax({
+					url: `${location.origin}/index.php/comment/get_comments`,
+					type: 'get',
+					data: this.param
+				}).done(res => {
+					ui.closeAll('loading');
+					if (res.code == 0) {
+						console.log(res.data);
+						this.page.pageNumber = +res.data.page.page_count;
+						this.page.curPage = +res.data.page.current_page;
+					}
+					else {
+						ui.msgError(res.msg);
+					}
+				}).fail(res => {
+					ui.closeAll('loading');
+					ui.msgError(res.msg);
+				});
+			},
+			// 分页函数
+			pageChange(p) {
+				this.param.curPage = p;
+				this.getData();
+			},
+			// 自己写的滚动条滚动事件处理函数
 			scrolling(e) {
 				const scroll = this.scroll,
 							scroller = scroll.scroller,
@@ -82,21 +127,73 @@ define(function (require, exports) {
 					scrollBar.style.top = `${parseInt(scroller.scrollTop * ratio)}px`;
 				}
 			},
-			comment() {
+			// 编辑留言
+			comment(opt) {
+				const vm = this;
+				if (typeof opt === 'object') {
+					if (opt.type === 'quota') {
+						this.commentData.quota_id = opt.quota_id;
+						this.commentData.quota_name = opt.quota_name;
+						this.commentData.quota_content = opt.quota_content;
+					}
+					if (opt.type === 'reply') {
+						this.commentData.refer_id = opt.refer_id;
+						this.commentData.refer_name = opt.refer_name;
+					}
+				}
 				layer.open({
 					type: 1,
 					area: '420px',
 					title: false,
 					content: $('.comment-edit'),
 					shade: 0,
-					cancel: function () {
+					cancel() {
+						vm.clearData();
 					}
 				});
 			},
+			// 清空要提交的数据
+			clearData() {
+				const commentData = this.commentData;
+				commentData.refer_name = '';
+				commentData.quota_name = '';
+				commentData.quota_content = '';
+				commentData.content = '';
+				commentData.refer_id = 0;
+				commentData.quota_id = 0;
+			},
+			// 输入留言, 防止输入过长
 			inputComment() {
 				let content = this.commentData.content;
 				if (content.length > 100) {
 					this.commentData.content = content.slice(0, 100);
+				}
+			},
+			// 提交留言
+			submit() {
+				const commentData = this.commentData;
+				if (commentData.content.length === 0) {
+					ui.msgError('留言不能为空喔 ~');
+				}
+				else {
+					ui.loading();
+					$.ajax({
+						url: `${location.origin}/index.php/comment/add_comment`,
+						data: commentData,
+						type: 'post'
+					}).done(res => {
+						ui.closeAll('loading');
+						if (res.code == 0) {
+							ui.msgRight('留言成功');
+							this.clearData();
+						}
+						else {
+							ui.msgError(res.msg);
+						}
+					}).fail(res => {
+						ui.closeAll('loading');
+						ui.msgError(res.msg);
+					});
 				}
 			}
 		}

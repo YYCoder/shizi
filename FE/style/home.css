@@ -2242,6 +2242,24 @@ header .user-info .info p.greeting {
 .comment-container .comment-edit .content .count-font {
   text-align: right;
 }
+.comment-container .comment-edit .btns {
+  text-align: right;
+  margin-top: 20px;
+}
+.comment-container .comment-edit .btns .submit,
+.comment-container .comment-edit .btns .reset {
+  background: #4fbfaa;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.comment-container .page {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
 .comment-container .comment {
   flex: 1;
   overflow: hidden;
@@ -2276,6 +2294,10 @@ header .user-info .info p.greeting {
   padding: 6px;
   background: rgba(222, 184, 135, 0.6);
   display: inline-block;
+  transition: all 0.4s ease;
+}
+.comment-container .comment .comment-item:hover {
+  background: rgba(222, 184, 135, 0);
 }
 .comment-container .comment .comment-item.reply {
   margin-left: 28%;
@@ -2313,14 +2335,16 @@ header .user-info .info p.greeting {
   text-align: right;
   margin: 0;
 }
-.comment-container .comment .comment-item .time .quota {
+.comment-container .comment .comment-item .time .quota,
+.comment-container .comment .comment-item .time .reply {
   text-decoration: underline;
   cursor: pointer;
   border: none;
   background-color: transparent;
   color: #344152;
 }
-.comment-container .comment .comment-item .time .quota:focus {
+.comment-container .comment .comment-item .time .quota:focus,
+.comment-container .comment .comment-item .time .reply:focus {
   outline: none;
 }
 section.comment {

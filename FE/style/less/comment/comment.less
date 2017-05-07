@@ -78,6 +78,23 @@
   			text-align: right;
   		}
   	}
+  	.btns {
+  		text-align: right;
+  		margin-top: 20px;
+  		.submit, .reset {
+				background: @btn1;
+				border: none;
+		    color: #fff;
+		    padding: 5px 10px;
+		    border-radius: 5px;
+		    margin-left: 10px;
+  		}
+  	}
+  }
+  .page {
+  	position: absolute;
+  	right: 0;
+  	bottom: 0;
   }
   .comment {
   	flex: 1;
@@ -112,6 +129,10 @@
 	    padding: 6px;
 	    background: rgba(222,184,135, 0.6);
 	    display: inline-block;
+	    transition: all 0.4s ease;
+	    &:hover {
+	    	background: rgba(222,184,135, 0);
+	    }
 	    &.reply {
 	    	margin-left: 28%;
 	    	width: 66%;
@@ -147,7 +168,7 @@
     	.time {
     		text-align: right;
     		margin: 0;
-    		.quota {
+    		.quota, .reply {
 	    		text-decoration: underline;
 	    		cursor: pointer;
 	    		border: none;

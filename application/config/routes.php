@@ -133,4 +133,7 @@ $route['assessment/get_own_data'] = 'Assess_Controller/get_own_data';
 $route['assessment/download'] = 'Assess_Controller/download';
 // 留言板模块
 $route['comment'] = 'Comment_Controller/index';
+$route['comment/get_comments'] = 'Comment_Controller/get_comments';
+$route['comment/add_comment'] = 'Comment_Controller/add_comment';
+$route['comment/del_comment'] = 'Comment_Controller/del_comment';
 
