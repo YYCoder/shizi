@@ -51,7 +51,6 @@ class Comment_Controller extends My_Controller
         'count'   =>  (int)$_GET['limit']
     );
 
-    // var_dump($param);
     $res_temp = $this->Comment_Model->get_comments($param);
     $page_count = ceil($res_temp['count']/$param['limit']['count']);
     $res['page'] = array(
@@ -75,11 +74,18 @@ class Comment_Controller extends My_Controller
         				array_push($reply_arr, $value);
         			}
         		}
+        		// 再对所有回复进行排序, 将最早的排到最前
+        		uasort($reply_arr, function ($a, $b){
+        			return $a['timestamp'] - $b['timestamp'];
+        		});
         		// 将排序好的留言合并到结果数组中
-        		// array_push($res['data'], $reply_arr);
+        		$res['data'] = array_merge($res['data'], $reply_arr);
         	}
         }
-				var_dump($res['data']);die;
+    		// array_slice不会修改原数组
+    		$res['data'] = array_splice($res['data'], ($res['page']['current_page']-1)*$_GET['limit'], $_GET['limit']);
+    		// echo ($res['page']['current_page']-1)*$_GET['limit'];die;
+    		// var_dump($res['data']);die;
         $this->return_data($res);
     }
     else {
@@ -107,13 +113,14 @@ class Comment_Controller extends My_Controller
 
 
 	/**
-   * 删除留言
+   * 删除留言, 同时删除回复该留言的留言
    */
   public function del_comment()
   {
   	$id = $_POST['id'];
   	$res = $this->Comment_Model->del_comment($id);
-  	if ($res == 1) {
+  	// echo $res;die;
+  	if ($res > 0) {
   		parent::return_data('删除留言成功');
   	}
   	else {

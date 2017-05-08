@@ -23,11 +23,11 @@ class Comment_Model extends CI_Model
 
 
 	/**
-	 * 删除指定id留言
+	 * 删除指定id留言, 同时删除回复该留言的留言
 	 */
 	public function del_comment($id)
 	{
-		$res = $this->db->where('id', $id)
+		$res = $this->db->where("id = {$id} OR refer_id = ${id}")
 										->delete('message');
 		return $res;
 	}
@@ -49,7 +49,7 @@ class Comment_Model extends CI_Model
 		$this->db->start_cache()
 						 ->from('message')
 							 ->join('user', 'message.uid = user.id')
-							 ->select('message.id AS id, user.name, user.avatar AS avatar, message.uid, content, timestamp, refer_id, quota_id');
+							 ->select('message.id AS id, user.name, user.avatar AS avatar, message.uid, content, timestamp, refer_id, quota_id, quota_content, quota_name, refer_name');
 
 		$res['data'] = $this->db->stop_cache()
 														->order_by('message.timestamp', 'DESC')

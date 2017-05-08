@@ -2161,6 +2161,116 @@ header .user-info .info p.greeting {
 .count-container .chart-container .pie-chart {
   width: 50%;
 }
+.user-container {
+  padding: 15px;
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px 1px #333;
+}
+.user-container > .title {
+  font-size: 1.5rem;
+  margin: 10px 0 15px;
+}
+.user-container .tips {
+  color: #999;
+  font-size: 13px;
+  margin-left: 10px;
+}
+.user-container .controls .right-control {
+  display: inline-block;
+  float: right;
+}
+.user-container .controls .left-control {
+  display: inline-block;
+}
+.user-container .controls .left-control .search-inp {
+  padding: 5px 4px 3px 4px;
+  width: 240px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+.user-container .controls .left-control .search {
+  margin-left: 15px;
+  line-height: 29px;
+  background: #4fbfaa;
+}
+.user-container .controls .left-control .search:focus {
+  outline: none;
+}
+.user-container .controls .left-control .delete-all,
+.user-container .controls .left-control .check-all {
+  line-height: 29px;
+  background: #4fbfaa;
+  margin-right: 15px;
+}
+.user-container .controls .left-control .delete-all:focus,
+.user-container .controls .left-control .check-all:focus {
+  outline: none;
+}
+.user-container .bottom-controls .right-control {
+  max-width: 92%;
+}
+.user-container .user-list-ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+.user-container .user-list-ul .title-list {
+  border-radius: 3px;
+  color: #fff;
+  background: #344152;
+}
+.user-container .user-list-ul .title-list > span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+.user-container .user-list-ul .title-list > span:not(.checkbox):hover {
+  background: #526681;
+  cursor: pointer;
+}
+.user-container .user-list-ul .title-list > span .border-pointer {
+  border-top-color: #eee;
+  vertical-align: -3px;
+  position: relative;
+  left: 7%;
+  transition: transform 0.3s ease;
+  transform-origin: center 25%;
+}
+.user-container .user-list-ul .title-list > span .border-pointer.pDesc {
+  transform: rotate(180deg);
+}
+.user-container .user-list-ul .user-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+.user-container .user-list-ul .user-list:hover {
+  background: #eee;
+  cursor: pointer;
+}
+.user-container .user-list-ul .user-list.checked {
+  background: #eee;
+}
+.user-container .user-list-ul .user-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+.user-container .user-list-ul .user-list span .img-wrap {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  border-radius: 50%;
+  overflow: hidden;
+}
 .comment-container {
   box-sizing: border-box;
   padding: 5px 15px 105px;
@@ -2255,10 +2365,10 @@ header .user-info .info p.greeting {
   border-radius: 5px;
   margin-left: 10px;
 }
-.comment-container .page {
+.comment-container .page-wrap {
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 10px;
+  bottom: 10px;
 }
 .comment-container .comment {
   flex: 1;
@@ -2274,6 +2384,8 @@ header .user-info .info p.greeting {
   border-radius: 15px;
   opacity: 0.7;
   top: 0;
+  background: linear-gradient(to right, #666 30%, #eee);
+  box-shadow: 0 0 5px #666;
 }
 .comment-container .comment .scroll-bar.hide {
   opacity: 0;
@@ -2304,14 +2416,17 @@ header .user-info .info p.greeting {
   width: 66%;
 }
 .comment-container .comment .comment-item .user-info {
-  height: 2.5rem;
+  height: 3rem;
   margin: 0;
 }
-.comment-container .comment .comment-item .user-info .avatar {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 50%;
+.comment-container .comment .comment-item .user-info .img-wrap {
+  width: 3rem;
+  height: 100%;
   vertical-align: middle;
+  display: inline-block;
+}
+.comment-container .comment .comment-item .user-info .img-wrap .avatar {
+  border-radius: 50%;
 }
 .comment-container .comment .comment-item .content {
   white-space: pre-line;
@@ -2320,7 +2435,7 @@ header .user-info .info p.greeting {
 .comment-container .comment .comment-item .content blockquote {
   white-space: pre-line;
   border-radius: 1rem;
-  background: #999;
+  background: rgba(99, 99, 99, 0.5);
   box-sizing: border-box;
   padding: 1rem;
   margin: 5px;
@@ -2336,15 +2451,18 @@ header .user-info .info p.greeting {
   margin: 0;
 }
 .comment-container .comment .comment-item .time .quota,
-.comment-container .comment .comment-item .time .reply {
+.comment-container .comment .comment-item .time .reply,
+.comment-container .comment .comment-item .time .delete {
   text-decoration: underline;
   cursor: pointer;
   border: none;
   background-color: transparent;
   color: #344152;
+  border-left: 1px solid #fff;
 }
 .comment-container .comment .comment-item .time .quota:focus,
-.comment-container .comment .comment-item .time .reply:focus {
+.comment-container .comment .comment-item .time .reply:focus,
+.comment-container .comment .comment-item .time .delete:focus {
   outline: none;
 }
 section.comment {

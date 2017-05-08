@@ -260,8 +260,24 @@ define('home', function (require, exports) {
             {
                 path: '/user',
                 components: {
+                    'leftNav': leftNav,
+                    'main': main,
                     'topNav': topNav
-                }
+                },
+                children: [
+                    {
+                        path: '',
+                        components: {
+                            'user': main.components.user
+                        }
+                    },
+                    {
+                        path: 'index',
+                        components: {
+                            'user': main.components.user
+                        }
+                    }
+                ]
             }
         ]
     });
@@ -302,7 +318,6 @@ define('home', function (require, exports) {
                 this.page = 7;
             }
             this.checkInfo();
-            // 写死管理权限开发
         },
         router: router,
         data: {

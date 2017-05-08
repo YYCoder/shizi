@@ -63,6 +63,10 @@
         <li class="left-item" v-if="page == 5 && isManager">
             <router-link to="/assessment/count" class="left-btn">考核统计</router-link>
         </li>
+        <!-- 用户管理模块 -->
+        <li class="left-item" v-if="page == 7">
+            <router-link to="/user/index" class="left-btn">用户管理</router-link>
+        </li>
     </ul>
 
 </div>

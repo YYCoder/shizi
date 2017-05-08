@@ -45,6 +45,7 @@
             <router-view name="leftNav"
                 :rights="user.rights"
                 :page="page"
+                :type="user.type"
             ></router-view>
             <!-- 主要内容组件 -->
             <router-view name="main"></router-view>

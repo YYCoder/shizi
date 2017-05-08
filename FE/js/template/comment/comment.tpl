@@ -6,14 +6,15 @@
 	</div>
 	<div class="comment" @mousewheel="scrolling">
 		<div class="scroll-bar" :class="{ hide: scrollBarBlur }"
-														:style="{ height: `${scroll.scrollBarHeight}px` }"
 														v-show="canScroll"></div>
 		<div class="scroller">
 			<div class="scroll-container">
 
 				<div class="comment-item" :class="{ reply: item.refer_id != 0 }" v-for="item in data">
-					<p class="user-info">
-						<img :data-src="{{item.avatar}}" class="avatar">
+					<div class="user-info">
+						<div class="img-wrap">
+							<img :data-src="item.avatar" class="avatar">
+						</div>
 						<template v-if="item.refer_id != 0">
 							<span class="name">{{item.name}}</span>
 							<span class="type">回复 {{item.refer_name}}:</span>
@@ -22,29 +23,28 @@
 							<span class="name">{{item.name}}</span>
 							<span class="type">说:</span>
 						</template>
-					</p>
-					<div class="content">
-						<blockquote v-if="item.quota_id != 0">
-							<pre>引用 {{item.quota_name}} 的发言:</pre>
-							{{item.quota_content}}
-						</blockquote>
-						{{item.content}}
 					</div>
-					<p class="time">{{item.time}} |
-						<button class="quota" @click="comment({type: 'quota', quota_id: item.id, quota_name: item.name, quota_content: item.content})">引用</button>|
-						<button class="reply" @click="comment({type: 'reply', refer_id: item.id, refer_name: item.name})">回复</button></p>
+					<div class="content">
+						<blockquote v-if="item.quota_id != 0"><pre>引用 {{item.quota_name}} 的发言:</pre>{{item.quota_content}}</blockquote>{{item.content}}
+					</div>
+					<p class="time">{{item.time}}
+						<button class="quota" @click="comment({type: 'quota', quota_id: item.id, quota_name: item.name, quota_content: item.content})">引用</button>
+						<button class="reply" @click="comment({type: 'reply', refer_id: item.refer_id == 0 ? item.id : item.refer_id, refer_name: item.name})">回复</button>
+						<button class="delete" @click="del(item.id)"
+																	 v-if="item.uid == +user.id">删除</button>
+					</p>
 				</div>
 
 			</div>
 		</div>
 	</div>
-	<div class="page">
+	<div class="page-wrap">
 		<pager :pageNumber="page.pageNumber"
 					 :curPage="page.curPage"
 					 @page-change="pageChange"></pager>
 	</div>
 	<div class="comment-edit">
-		<div class="title" v-if="commentData.refer_id != 0">您想说的话:</div>
+		<div class="title" v-if="commentData.refer_id == 0">您想说的话:</div>
 		<div class="title" v-else>您想回复{{commentData.refer_name}}的话:</div>
 		<div class="content">
 			<div class="quota" v-if="commentData.quota_id != 0">您已引用了{{commentData.quota_name}}的话</div>

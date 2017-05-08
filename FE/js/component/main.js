@@ -32,7 +32,9 @@ define(function (require, exports) {
     // 考核管理
         assessInsert = require('./assess/insert'),
         assessCount = require('./assess/count'),
-        assessCheck = require('./assess/check');
+        assessCheck = require('./assess/check'),
+    // 用户管理
+        user = require('./user/user');
 
     var main = {
         template: mainRender,
@@ -59,7 +61,9 @@ define(function (require, exports) {
 
             assessInsert: assessInsert,
             assessCount: assessCount,
-            assessCheck: assessCheck
+            assessCheck: assessCheck,
+
+            user: user
         }
     }
 

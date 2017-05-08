@@ -11,6 +11,8 @@ define(function (require, exports) {
     var leftNav = {
         template: leftNavRender,
         props: {
+            // 用户类型, type为2是超级管理员
+            type: 0,
             // 用户的权限
             rights: {
                 type: Object,
@@ -58,8 +60,8 @@ define(function (require, exports) {
                                               : vm.isManager = false;
                 }
                 else if (vm.page === 7) {
-                    vm.rights['user'] == 1 ? vm.isManager = true
-                                           : vm.isManager = false;
+                    vm.type == 2 ? vm.isManager = true
+                                 : vm.isManager = false;
                 }
             });
         },

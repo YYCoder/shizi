@@ -24,5 +24,7 @@
     <router-view name="assessInsert"></router-view>
     <router-view name="assessCheck"></router-view>
     <router-view name="assessCount"></router-view>
+    <!-- 用户管理 -->
+    <router-view name="user"></router-view>
 
 </div>

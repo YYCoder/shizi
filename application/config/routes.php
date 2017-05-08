@@ -136,4 +136,7 @@ $route['comment'] = 'Comment_Controller/index';
 $route['comment/get_comments'] = 'Comment_Controller/get_comments';
 $route['comment/add_comment'] = 'Comment_Controller/add_comment';
 $route['comment/del_comment'] = 'Comment_Controller/del_comment';
+// 用户管理模块
+$route['user'] = 'User_Controller/index';
+$route['user/index'] = 'User_Controller/index';
 

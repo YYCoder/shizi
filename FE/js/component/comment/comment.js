@@ -8,6 +8,7 @@ define(function (require, exports) {
 	const ui = require('ui');
 	const layer = require('layer');
 	const pager = require('../common/pager');
+	const lazyLoadImage = require('lazyLoadImage');
 
 	const comment = {
 		template: render,
@@ -36,9 +37,12 @@ define(function (require, exports) {
 					curPage: 0
 				},
 				param: {
-					limit: 10,
+					limit: 20,
 					page: 1
-				}
+				},
+				// 用于告知是否为data的更新, 从而更新滚动条样式
+				isDataUpdate: false,
+				user: this.$root.user
 			};
 		},
 		computed: {
@@ -70,16 +74,36 @@ define(function (require, exports) {
 				scrollBarLength: 0
 			}
 			// 不知道为什么, mounted钩子和updated钩子时的scroller高度不同, 只能在updated时再修改一下
-			// console.log(`scroller Height: ${ scroller.offsetHeight }`);
+			console.log(`scroller Height: ${ scroller.offsetHeight }`);
+			console.log(`scrollContainer Height: ${ scrollContainer.offsetHeight }`);
 		},
-		beforeUpdate() {
-			let scroll = this.scroll;
-			scroll.ratio = scroll.scroller.offsetHeight / scroll.scrollContainer.offsetHeight;
-			scroll.scrollLength = scroll.scrollContainer.offsetHeight - scroll.scroller.offsetHeight;
-			scroll.scrollBarHeight = parseInt(scroll.scroller.offsetHeight * scroll.ratio);
-			scroll.scrollBarLength = scroll.scrollLength * scroll.ratio;
-			this.canScroll = scroll.scroller.offsetHeight <= scroll.scrollContainer.offsetHeight;
-			// console.log(`scroller Height: ${ scroll.scroller.offsetHeight }`);
+		updated() {
+			// 更新自定义滚动条数据, 只有是data更新时才执行
+			if (this.isDataUpdate) {
+				let scroll = this.scroll;
+				scroll.ratio = scroll.scroller.offsetHeight / scroll.scrollContainer.offsetHeight;
+				scroll.scrollLength = scroll.scrollContainer.offsetHeight - scroll.scroller.offsetHeight;
+				scroll.scrollBarHeight = parseInt(scroll.scroller.offsetHeight * scroll.ratio);
+				scroll.scrollBarLength = scroll.scrollLength * scroll.ratio;
+				this.canScroll = scroll.scroller.offsetHeight <= scroll.scrollContainer.offsetHeight;
+				// 由于必须得在列表渲染之后才能计算出正确的滚动条数据, 并且此时修改绑定数据又不会更新DOM, 所以只能手动修改自定义滚动条的样式
+				if (this.canScroll) {
+					$('div.scroll-bar').css({
+						'height': `${scroll.scrollBarHeight}px`,
+						'display': 'block',
+						'top': '0px'
+					});
+				}
+				else {
+					$('div.scroll-bar').css('display', 'none');
+				}
+				scroll.scroller.scrollTop = 0;
+				this.isDataUpdate = false;
+				lazyLoadImage.init();
+				lazyLoadImage.reload();
+				console.log(`scroller Height: ${ scroll.scroller.offsetHeight }`);
+				console.log(`scrollContainer Height: ${ scroll.scrollContainer.offsetHeight }`);
+			}
 		},
 		methods: {
 			getData() {
@@ -94,6 +118,8 @@ define(function (require, exports) {
 						console.log(res.data);
 						this.page.pageNumber = +res.data.page.page_count;
 						this.page.curPage = +res.data.page.current_page;
+						this.data = res.data.data;
+						this.isDataUpdate = true;
 					}
 					else {
 						ui.msgError(res.msg);
@@ -105,7 +131,7 @@ define(function (require, exports) {
 			},
 			// 分页函数
 			pageChange(p) {
-				this.param.curPage = p;
+				this.param.page = p;
 				this.getData();
 			},
 			// 自己写的滚动条滚动事件处理函数
@@ -118,7 +144,7 @@ define(function (require, exports) {
 							ratio = scroll.ratio;
 				const top = parseInt(window.getComputedStyle(scroll.scrollBar, null).top);
 				if (scroller.scrollTop >= 0 && scroller.scrollTop <= scrollLength) {
-					scroller.scrollTop += e.deltaY / 3;
+					scroller.scrollTop += e.deltaY / 2;
 				}
 				if (top >= 0 && top <= scrollBarLength) {
 					/*console.log(`top: ${scrollBar.style.top}`);
@@ -126,6 +152,8 @@ define(function (require, exports) {
 					console.log(`scrollBarLength: ${this.scroll.scrollBarLength}`);*/
 					scrollBar.style.top = `${parseInt(scroller.scrollTop * ratio)}px`;
 				}
+				lazyLoadImage.init();
+				lazyLoadImage.reload();
 			},
 			// 编辑留言
 			comment(opt) {
@@ -149,6 +177,31 @@ define(function (require, exports) {
 					shade: 0,
 					cancel() {
 						vm.clearData();
+					}
+				});
+			},
+			// 删除自己的留言, 同时删除所有回复该留言
+			del(id) {
+				const vm = this;
+				ui.info({
+					title: '确认要删除留言吗',
+					msg: '若删除了该留言, 所有的回复与引用也会一同删除喔',
+					yes() {
+						$.ajax({
+							url: `${location.origin}/index.php/comment/del_comment`,
+							data: {id},
+							type: 'post'
+						}).done(res => {
+							if (res.code == 0) {
+								ui.msgRight('删除成功');
+								vm.getData();
+							}
+							else {
+								ui.msgError(res.msg);
+							}
+						}).fail(res => {
+							ui.msgError(res.msg);
+						});
 					}
 				});
 			},
@@ -186,6 +239,7 @@ define(function (require, exports) {
 						if (res.code == 0) {
 							ui.msgRight('留言成功');
 							this.clearData();
+							this.getData();
 						}
 						else {
 							ui.msgError(res.msg);
