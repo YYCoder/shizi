@@ -179,6 +179,17 @@
 				    border-radius: 50%;
 					}
 		    }
+		    .gag {
+					text-decoration: underline;
+	    		cursor: pointer;
+	    		border: none;
+	    		background-color: transparent;
+	    		color: @leftBg;
+	    		float: right;
+	    		&:focus {
+	    			outline: none;
+	    		}
+		    }
 	    }
 	    .content {
 	    	white-space: pre-line;
@@ -214,6 +225,48 @@
 	    	}
 	    }
   	}
+  }
+  .gaged-users {
+  	padding: 15px;
+  	display: none;
+  	.empty {
+	    text-align: center;
+	    font-size: 25px;
+  	}
+		.users {
+	  	list-style: none;
+	    padding: 0;
+	    margin: 0;
+	    max-height: 350px;
+	    overflow-y: scroll;
+	    .title-list {
+				border-radius: 3px;
+				color: #fff;
+				background: @leftBg;
+				display: flex;
+				span {
+					display: inline-block;
+					line-height: 30px;
+			    box-sizing: border-box;
+			    text-align: center;
+			  }
+	    }
+	    .user-list {
+		    padding: 5px 0;
+		    border-bottom: 1px solid #ccc;
+				display: flex;
+				text-align: center;
+				&:hover {
+					background: #eee;
+				}
+	    }
+	    .id, .name {
+				flex: 2;
+	    }
+	    .control {
+	    	flex: 3;
+	    }
+	  }
   }
 
 }

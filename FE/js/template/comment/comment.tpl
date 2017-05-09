@@ -7,7 +7,7 @@
 			<span class="mask" v-if="user.isGag == 1"></span>我要发言
 		</button>
 		<button class="control-gag" v-if="user.isGag == 1"
-																@click="changeGag">解除用户禁言</button>
+																@click="getGagedUsers">解除用户禁言</button>
 	</div>
 	<div class="comment" @mousewheel="scrolling">
 		<div class="scroll-bar" :class="{ hide: scrollBarBlur }"
@@ -28,6 +28,8 @@
 							<span class="name">{{item.name}}</span>
 							<span class="type">说:</span>
 						</template>
+						<button class="gag" @click="changeGag({id: item.uid, is_gag: 1})"
+																v-if="user.rights.comment == 1 && item.uid != +user.id">禁言</button>
 					</div>
 					<div class="content">
 						<blockquote v-if="item.quota_id != 0"><pre>引用 {{item.quota_name}} 的发言:</pre>{{item.quota_content}}</blockquote>{{item.content}}
@@ -67,20 +69,21 @@
 	</div>
 
 	<div class="gaged-users">
-		<ul class="users">
+		<ul class="users" v-if="gagedUsers.length > 0">
 			<li class="title-list">
 				<span class="id">用户id</span>
 				<span class="name">用户名</span>
 				<span class="control">操作</span>
 			</li>
-			<li class="user-list">
-				<span class="id">123</span>
-				<span class="name">歪歪</span>
+			<li class="user-list" v-for="gagedUser in gagedUsers">
+				<span class="id single-line">{{gagedUser.id}}</span>
+				<span class="name single-line">{{gagedUser.name}}</span>
 				<span class="control">
-					<a href="javascript:;">解除禁言</a>
+					<a href="javascript:;" @click="changeGag({id: gagedUser.id, is_gag: 0})">解除禁言</a>
 				</span>
 			</li>
 		</ul>
+		<div class="empty" v-else>没有被禁言的用户</div>
 	</div>
 
 </div>

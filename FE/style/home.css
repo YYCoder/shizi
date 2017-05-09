@@ -2521,6 +2521,17 @@ header .user-info .info p.greeting {
 .comment-container .comment .comment-item .user-info .img-wrap .avatar {
   border-radius: 50%;
 }
+.comment-container .comment .comment-item .user-info .gag {
+  text-decoration: underline;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #344152;
+  float: right;
+}
+.comment-container .comment .comment-item .user-info .gag:focus {
+  outline: none;
+}
 .comment-container .comment .comment-item .content {
   white-space: pre-line;
   margin: 0 0 0 3rem;
@@ -2557,6 +2568,49 @@ header .user-info .info p.greeting {
 .comment-container .comment .comment-item .time .reply:focus,
 .comment-container .comment .comment-item .time .delete:focus {
   outline: none;
+}
+.comment-container .gaged-users {
+  padding: 15px;
+  display: none;
+}
+.comment-container .gaged-users .empty {
+  text-align: center;
+  font-size: 25px;
+}
+.comment-container .gaged-users .users {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+.comment-container .gaged-users .users .title-list {
+  border-radius: 3px;
+  color: #fff;
+  background: #344152;
+  display: flex;
+}
+.comment-container .gaged-users .users .title-list span {
+  display: inline-block;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.comment-container .gaged-users .users .user-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  text-align: center;
+}
+.comment-container .gaged-users .users .user-list:hover {
+  background: #eee;
+}
+.comment-container .gaged-users .users .id,
+.comment-container .gaged-users .users .name {
+  flex: 2;
+}
+.comment-container .gaged-users .users .control {
+  flex: 3;
 }
 section.comment {
   background: #ccc;

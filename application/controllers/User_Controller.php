@@ -117,4 +117,15 @@ class User_Controller extends My_Controller
   	}
   }
 
+
+  /**
+   * 获取被禁言的用户
+   * @return [array]
+   */
+  public function get_gaged_users()
+  {
+  	$data = $this->User_Model->get_gaged_users();
+		parent::return_data($data);
+  }
+
 }

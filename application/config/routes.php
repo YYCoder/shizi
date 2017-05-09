@@ -141,4 +141,5 @@ $route['user'] = 'User_Controller/index';
 $route['user/index'] = 'User_Controller/index';
 $route['user/get_all'] = 'User_Controller/get_all_user';
 $route['user/mod'] = 'User_Controller/mod_user';
+$route['user/get_gaged_users'] = 'User_Controller/get_gaged_users';
 

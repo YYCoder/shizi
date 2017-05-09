@@ -102,4 +102,19 @@ class User_Model extends CI_Model
         return $res;
     }
 
+
+    /**
+     * 获取被禁言的用户
+     * @return [array] [用户数据]
+     */
+    public function get_gaged_users()
+    {
+        $data = $this->db->where('is_gag', '1')
+                         ->from('user')
+                         ->select('id, name')
+                         ->get()
+                         ->result_array();
+        return $data;
+    }
+
 }

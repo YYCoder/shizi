@@ -42,7 +42,8 @@ define(function (require, exports) {
 				},
 				// 用于告知是否为data的更新, 从而更新滚动条样式
 				isDataUpdate: false,
-				user: this.$root.user
+				user: this.$root.user,
+				gagedUsers: []
 			};
 		},
 		computed: {
@@ -252,14 +253,43 @@ define(function (require, exports) {
 					});
 				}
 			},
-			changeGag() {
-				console.log('change gag');
-				layer.open({
-					type: 1,
-					area: '420px',
-					title: false,
-					content: $('.gaged-users'),
-					shade: 0
+			getGagedUsers() {
+				ui.loading();
+				$.ajax({
+					url: `${location.origin}/index.php/user/get_gaged_users`,
+					type: 'get'
+				}).done(res => {
+					ui.closeAll('loading');
+					if (res.code == 0) {
+						this.gagedUsers = res.data;
+						layer.open({
+							type: 1,
+							area: '420px',
+							title: false,
+							content: $('.gaged-users'),
+							shade: 0
+						});
+					}
+				}).fail(res => {
+					ui.closeAll('loading');
+					ui.msgError(res.msg);
+				});
+			},
+			changeGag(opt) {
+				$.ajax({
+					url: `${location.origin}/index.php/user/mod`,
+					data: {id: opt.id, is_gag: opt.is_gag},
+					type: 'post'
+				}).done(res => {
+					if (res.code == 0) {
+						ui.msgRight(`${opt.is_gag == 1 ? '禁言' : '解除禁言'}成功`);
+						this.getGagedUsers();
+					}
+					else {
+						ui.msgError(res.msg);
+					}
+				}).fail(res => {
+					ui.msgError(res.msg);
 				});
 			}
 		}
