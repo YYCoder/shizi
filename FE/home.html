@@ -18,6 +18,7 @@
         $name = $_SESSION['user']['name'];
         $avatar = $_SESSION['user']['avatar'];
         $id = $_SESSION['user']['id'];
+        $is_gag = $_SESSION['user']['is_gag'];
     ?>
     <script type="text/javascript">
     // 用户信息
@@ -26,7 +27,8 @@
         rights: JSON.parse('<?php echo $rights ?>'),
         name: '<?php echo $name ?>',
         avatar: '<?php echo $avatar ?>',
-        id: '<?php echo $id ?>'
+        id: '<?php echo $id ?>',
+        isGag: '<?php echo $is_gag ?>'
     };
     </script>
 </head>

@@ -326,7 +326,8 @@ define('home', function (require, exports) {
                 rights: window.user.rights,
                 avatar: window.user.avatar,
                 name: window.user.name,
-                id: window.user.id
+                id: window.user.id,
+                isGag: window.user.isGag
             },
             page: 0,
             // 是否为留言板模块, 用于修改样式

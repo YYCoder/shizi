@@ -18,13 +18,15 @@
 		<ul class="user-list-ul">
 			<li class="title-list">
 				<span class="avatar">用户头像</span>
-				<span class="id">用户id</span>
+				<span class="id" @click.stop="sort('id')">
+					用户id<i class="border-pointer" :class="{ pDesc: idDesc }" />
+				</span>
 				<span class="name">用户名</span>
 				<span class="type">用户类型</span>
 				<span class="mobile">手机号</span>
 				<span class="email">邮箱</span>
 				<span class="reg-time" @click.stop="sort('reg_time')">
-					注册时间<i class="border-pointer" :class="{ rDesc: regDesc }" />
+					注册时间<i class="border-pointer" :class="{ pDesc: rDesc }" />
 				</span>
 				<span class="rights">档案管理权限</span>
 				<span class="rights">课程管理权限</span>
@@ -32,55 +34,34 @@
 				<span class="rights">培训管理权限</span>
 				<span class="rights">考核管理权限</span>
 				<span class="rights">留言板管理权限</span>
-				<span class="gag">是否禁言</span>
 				<span class="control">操作</span>
 			</li>
 
-			<li class="user-list">
+			<li class="user-list" v-for="item in list"
+														:key="item.id">
 				<span class="avatar">
-					<img src="http://www.yyteacher.com/uploads/img/R5lqGQdcWIm306As.gif" class="avatar">
+					<div class="img-wrap" @click.stop="checkImg(item)">
+						<img :data-src="item.avatar" alt="用户头像" class="avatar-img" title="点击查看大图">
+					</div>
 				</span>
-				<span class="id">123</span>
-				<span class="name">袁野</span>
-				<span class="type">超级管理员</span>
-				<span class="mobile">15811153743</span>
-				<span class="email">931345066@qq.com</span>
-				<span class="reg-time">
-					2017-09-10
-				</span>
-				<span class="rights">是</span>
-				<span class="rights">是</span>
-				<span class="rights">否</span>
-				<span class="rights">否</span>
-				<span class="rights">是</span>
-				<span class="rights">否</span>
-				<span class="gag">否</span>
+				<span class="id single-line">{{item.id}}</span>
+				<span class="name single-line">{{item.name}}</span>
+				<span class="type single-line">{{item.type}}</span>
+				<span class="mobile single-line">{{item.mobile}}</span>
+				<span class="email single-line" :title="item.email">{{item.email}}</span>
+				<span class="reg-time">{{item.reg_time}}</span>
+				<span class="rights">{{item.info}}</span>
+				<span class="rights">{{item.course}}</span>
+				<span class="rights">{{item.work}}</span>
+				<span class="rights">{{item.train}}</span>
+				<span class="rights">{{item.assessment}}</span>
+				<span class="rights">{{item.comment}}</span>
 				<span class="control">
-					<a href="javascript:;">禁言</a>
-					<a href="javascript:;">修改权限</a>
+					<a href="javascript:;" v-if="item.is_gag == 0" @click="mod({type: 'gag', id: item.id, value: 1})">禁言</a>
+					<a href="javascript:;" v-else @click="mod({type: 'gag', id: item.id, value: 0})">解除禁言</a>
+					<a href="javascript:;" @click="mod({type: 'rights', id: item.id, userType: item.type, info: item.info, course: item.course, work: item.work, train: item.train, assessment: item.assessment, comment: item.comment})">修改权限</a>
 				</span>
 			</li>
-			<!-- <li class="user-list" v-for="item in list"
-														:class="{ checked: item.checked }"
-														:key="item.id"
-														@click="item.checked = !item.checked">
-				<span class="checkbox">
-					<input type="checkbox" v-model="item.checked"
-																 @click.stop="">
-				</span>
-				<span class="teacher single-line">{{item.teacher}}</span>
-				<span class="title single-line" :title="item.title">{{item.title}}</span>
-				<span class="type single-line" :title="item.type">{{item.type}}</span>
-				<span class="desc single-line" :title="item.desc">{{item.desc}}</span>
-				<span class="begin-time">{{item.begin_time}}</span>
-				<span class="price">{{item.price}}k</span>
-				<span class="place single-line" :title="item.place">{{item.place}}</span>
-				<span class="state single-line">{{item.state}}</span>
-				<span class="control">
-					<a href="javascript:;" @click.stop="denyItem(item.id)">驳回</a>
-					<a href="javascript:;" @click.stop="agreeItem(item.id)">通过</a>
-				</span>
-			</li> -->
 
 		</ul>
 	</div>
@@ -93,4 +74,30 @@
 			></pager>
 		</div>
 	</div>
+
+	<div class="rights-container">
+		<h1 class="title">请选择需要修改的权限</h1>
+		<div class="rights">
+			<label>
+				<input type="checkbox" v-model="rights.info">档案管理权限
+			</label>
+			<label>
+				<input type="checkbox" v-model="rights.course">课程管理权限
+			</label>
+			<label>
+				<input type="checkbox" v-model="rights.work">工作量管理权限
+			</label>
+			<label>
+				<input type="checkbox" v-model="rights.train">培训管理权限
+			</label>
+			<label>
+				<input type="checkbox" v-model="rights.assessment">考核管理权限
+			</label>
+			<label>
+				<input type="checkbox" v-model="rights.comment">留言板管理权限
+			</label>
+		</div>
+		<button class="submit btn" @click="submit">提 交</button>
+	</div>
+
 </div>

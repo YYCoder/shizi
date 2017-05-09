@@ -158,6 +158,8 @@ define(function (require, exports) {
 			// 编辑留言
 			comment(opt) {
 				const vm = this;
+				// 若用户被禁言, 则不能弹出留言框
+				if (vm.user.isGag == 1) return;
 				if (typeof opt === 'object') {
 					if (opt.type === 'quota') {
 						this.commentData.quota_id = opt.quota_id;
@@ -249,6 +251,16 @@ define(function (require, exports) {
 						ui.msgError(res.msg);
 					});
 				}
+			},
+			changeGag() {
+				console.log('change gag');
+				layer.open({
+					type: 1,
+					area: '420px',
+					title: false,
+					content: $('.gaged-users'),
+					shade: 0
+				});
 			}
 		}
 	}

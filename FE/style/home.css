@@ -2178,6 +2178,29 @@ header .user-info .info p.greeting {
   font-size: 13px;
   margin-left: 10px;
 }
+.user-container .rights-container {
+  display: none;
+  padding: 15px;
+  text-align: center;
+}
+.user-container .rights-container .title {
+  text-align: center;
+}
+.user-container .rights-container .rights {
+  text-align: center;
+}
+.user-container .rights-container .rights label {
+  display: block;
+  margin: 10px;
+  font-size: 22px;
+}
+.user-container .rights-container .rights label input {
+  margin-right: 5px;
+}
+.user-container .rights-container .submit {
+  background: #33a8ed;
+  line-height: 30px;
+}
 .user-container .controls .right-control {
   display: inline-block;
   float: right;
@@ -2259,7 +2282,7 @@ header .user-info .info p.greeting {
 }
 .user-container .user-list-ul .user-list span {
   display: inline-block;
-  line-height: 30px;
+  line-height: 58px;
   box-sizing: border-box;
   text-align: center;
   overflow: hidden;
@@ -2270,6 +2293,46 @@ header .user-info .info p.greeting {
   vertical-align: middle;
   border-radius: 50%;
   overflow: hidden;
+  display: inline-block;
+}
+.user-container .user-list-ul .user-list span .img-wrap img {
+  width: 100%;
+  height: 100%;
+}
+.user-container .user-list-ul .avatar,
+.user-container .user-list-ul .type {
+  width: 5%;
+}
+.user-container .user-list-ul .avatar.avatar,
+.user-container .user-list-ul .type.avatar {
+  margin-left: 0.16%;
+}
+.user-container .user-list-ul .id,
+.user-container .user-list-ul .control {
+  width: 6%;
+}
+.user-container .user-list-ul .id.control,
+.user-container .user-list-ul .control.control {
+  line-height: 25px;
+}
+.user-container .user-list-ul .id.control a,
+.user-container .user-list-ul .control.control a {
+  display: block;
+}
+.user-container .user-list-ul .name,
+.user-container .user-list-ul .mobile,
+.user-container .user-list-ul .email,
+.user-container .user-list-ul .reg-time {
+  width: 8%;
+}
+.user-container .user-list-ul .name.reg-time,
+.user-container .user-list-ul .mobile.reg-time,
+.user-container .user-list-ul .email.reg-time,
+.user-container .user-list-ul .reg-time.reg-time {
+  line-height: 25px;
+}
+.user-container .user-list-ul .rights {
+  width: 7%;
 }
 .comment-container {
   box-sizing: border-box;
@@ -2323,15 +2386,45 @@ header .user-info .info p.greeting {
   width: 2rem;
   top: 6%;
 }
-.comment-container .top-btns .leave-message {
+.comment-container .top-btns .mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  cursor: not-allowed;
+  opacity: 0.7;
+  background: #666;
+  top: 0;
+  left: 0;
+}
+.comment-container .top-btns .mask:hover:after {
+  content: '您已被禁言';
+  display: inline-block;
+  position: absolute;
+  background: #4fbfaa;
+  left: 100%;
+  width: 6rem;
+  padding: 5px 10px 5px 5px;
+  top: 15%;
+  color: #fff;
+  letter-spacing: 3px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.comment-container .top-btns .leave-message,
+.comment-container .top-btns .control-gag {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   padding: 5px 10px 7px 5px;
   border: none;
   color: #fff;
   background-color: #4fbfaa;
+  position: relative;
+  margin-bottom: 10px;
 }
-.comment-container .top-btns .leave-message:focus {
+.comment-container .top-btns .leave-message:focus,
+.comment-container .top-btns .control-gag:focus {
   outline: none;
 }
 .comment-container .comment-edit {

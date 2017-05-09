@@ -2,7 +2,12 @@
 	<h1 class="title animated wobble">留言板</h1>
 	<hr>
 	<div class="top-btns">
-		<button class="leave-message" @click="comment">我要发言</button>
+
+		<button class="leave-message" @click="comment">
+			<span class="mask" v-if="user.isGag == 1"></span>我要发言
+		</button>
+		<button class="control-gag" v-if="user.isGag == 1"
+																@click="changeGag">解除用户禁言</button>
 	</div>
 	<div class="comment" @mousewheel="scrolling">
 		<div class="scroll-bar" :class="{ hide: scrollBarBlur }"
@@ -28,8 +33,10 @@
 						<blockquote v-if="item.quota_id != 0"><pre>引用 {{item.quota_name}} 的发言:</pre>{{item.quota_content}}</blockquote>{{item.content}}
 					</div>
 					<p class="time">{{item.time}}
-						<button class="quota" @click="comment({type: 'quota', quota_id: item.id, quota_name: item.name, quota_content: item.content})">引用</button>
-						<button class="reply" @click="comment({type: 'reply', refer_id: item.refer_id == 0 ? item.id : item.refer_id, refer_name: item.name})">回复</button>
+						<button class="quota" v-if="user.isGag == 0"
+																	@click="comment({type: 'quota', quota_id: item.id, quota_name: item.name, quota_content: item.content})">引用</button>
+						<button class="reply" v-if="user.isGag == 0"
+																  @click="comment({type: 'reply', refer_id: item.refer_id == 0 ? item.id : item.refer_id, refer_name: item.name})">回复</button>
 						<button class="delete" @click="del(item.id)"
 																	 v-if="item.uid == +user.id">删除</button>
 					</p>
@@ -58,4 +65,22 @@
 			<button class="reset" @click="commentData.content = ''">重新输入</button>
 		</div>
 	</div>
+
+	<div class="gaged-users">
+		<ul class="users">
+			<li class="title-list">
+				<span class="id">用户id</span>
+				<span class="name">用户名</span>
+				<span class="control">操作</span>
+			</li>
+			<li class="user-list">
+				<span class="id">123</span>
+				<span class="name">歪歪</span>
+				<span class="control">
+					<a href="javascript:;">解除禁言</a>
+				</span>
+			</li>
+		</ul>
+	</div>
+
 </div>
