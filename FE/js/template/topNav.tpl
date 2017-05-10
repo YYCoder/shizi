@@ -53,16 +53,21 @@
         </router-link>
     </div>
     <div class="user-info">
-        <img class="top-avatar" :src="userAvatar" alt="头像">
-        <div class="info">
+        <img class="top-avatar" alt="头像" :src="userAvatar">
+        <div class="info" @click="showControl = !showControl">
             <p class="greeting">
             欢迎你, <span class="user-name">{{userName}}</span>
             </p>
             <p class="identity">
                 <span class="type" v-text="userType == 0 ? '教师' : userType == 1 ? '管理员' : '超级管理员'">
                 </span>
-                <span class="arrow"></span>
+                <span class="border-pointer" :class="{ revert: showControl }"></span>
             </p>
+        </div>
+        <div class="control-container" :class="{ show: showControl }">
+            <span class="border-pointer"></span>
+            <span class="logout" @click="logout">注销</span>
+            <span class="modify" @click="modInfo">修改档案</span>
         </div>
     </div>
 </header>

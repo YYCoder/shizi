@@ -207,6 +207,16 @@ class Login_Controller extends My_Controller
     }
 
 
+    /**
+     * 注销
+     * @return [type] [description]
+     */
+    public function logout()
+    {
+        $_SESSION['user'] = array();
+    }
+
+
 
 }
 

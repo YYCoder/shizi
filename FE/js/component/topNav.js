@@ -34,7 +34,8 @@ define(function (require, exports) {
         data: function () {
             return {
                 width: 0,
-                left: 0
+                left: 0,
+                showControl: false
             }
         },
         beforeRouteEnter(to, from, next) {
@@ -68,6 +69,20 @@ define(function (require, exports) {
                 vm.width = $('.item.active')[0].offsetWidth;
                 vm.left = $('.item.active')[0].offsetLeft;
             });
+        },
+        methods: {
+            logout() {
+                $.ajax({
+                    url: `${location.origin}/index.php/logout`,
+                    type: 'get'
+                }).done(res => {
+                    location.reload();
+                });
+            },
+            modInfo() {
+                this.showControl = false;
+                this.$router.push('/info/update');
+            }
         }
     };
 

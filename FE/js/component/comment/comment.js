@@ -253,7 +253,7 @@ define(function (require, exports) {
 					});
 				}
 			},
-			getGagedUsers() {
+			getGagedUsers(type = 0) {
 				ui.loading();
 				$.ajax({
 					url: `${location.origin}/index.php/user/get_gaged_users`,
@@ -262,13 +262,16 @@ define(function (require, exports) {
 					ui.closeAll('loading');
 					if (res.code == 0) {
 						this.gagedUsers = res.data;
-						layer.open({
-							type: 1,
-							area: '420px',
-							title: false,
-							content: $('.gaged-users'),
-							shade: 0
-						});
+						// type为1打开弹层, 为0不开弹层
+						if (type == 1) {
+							layer.open({
+								type: 1,
+								area: '420px',
+								title: false,
+								content: $('.gaged-users'),
+								shade: 0
+							});
+						}
 					}
 				}).fail(res => {
 					ui.closeAll('loading');
@@ -283,7 +286,8 @@ define(function (require, exports) {
 				}).done(res => {
 					if (res.code == 0) {
 						ui.msgRight(`${opt.is_gag == 1 ? '禁言' : '解除禁言'}成功`);
-						this.getGagedUsers();
+						this.getData();
+						this.getGagedUsers(0);
 					}
 					else {
 						ui.msgError(res.msg);

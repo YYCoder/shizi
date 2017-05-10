@@ -58,6 +58,7 @@ $route['login'] = 'Login_Controller/do_login';
 $route['add_teacher'] = 'Login_Controller/insert_teacher';
 $route['register'] = 'Login_Controller/register';
 $route['change_avatar'] = 'Login_Controller/change_avatar';
+$route['logout'] = 'Login_Controller/logout';
 // 首页
 $route['home'] = 'Index_Controller/index';
 $route['home/list'] = 'Index_Controller/index';

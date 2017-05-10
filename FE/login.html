@@ -7,76 +7,77 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $base_url ?>/FE/style/login.css">
 </head>
 <body>
-    <canvas id="bg">你的浏览器不支持canvas!</canvas>
-    <div id="wrap" v-bind:style="{height: height}">
-        <div class="login" id="login" v-bind:class="{active: show}">
-            <h1>LOGIN</h1>
-            <p>师资信息管理系统</p>
-            <form action="javascript:;" method="post" name="login" accept-charset="utf-8">
-                <p class="form-p">
-                    <label class="form-label">
-                        <span class="form-span">手机(邮箱)</span>/
-                        <input v-model="logData.user" @focus="focused" @blur="blured" type="text" name="user" maxlength=15 autocomplete="off">
-                    </label>
+    <div id="canvas-container">
+        <div id="wrap">
+            <div class="login" id="login" v-bind:class="{active: show}">
+                <h1>LOGIN</h1>
+                <p>师资信息管理系统</p>
+                <form action="javascript:;" method="post" name="login" accept-charset="utf-8">
+                    <p class="form-p">
+                        <label class="form-label">
+                            <span class="form-span">手机(邮箱)</span>/
+                            <input v-model="logData.user" @focus="focused" @blur="blured" type="text" name="user" maxlength=15 autocomplete="off">
+                        </label>
+                    </p>
+                    <p class="form-p">
+                        <label class="form-label">
+                            <span class="form-span">密码</span>/
+                            <input v-model="logData.pw" @focus="focused" @blur="blured" type="password" name="pw" autocomplete="off">
+                        </label>
+                    </p>
+                    <button id="submit" type="submit" @click="login">登录</button>
+                </form>
+                <p class="hrefs">
+                    <a href="javascript:;" id="forget" @click="error">忘记密码</a>
+                    <a href="javascript:;" id="goRegister" @click="toggle">注册</a>
                 </p>
-                <p class="form-p">
-                    <label class="form-label">
-                        <span class="form-span">密码</span>/
-                        <input v-model="logData.pw" @focus="focused" @blur="blured" type="password" name="pw" autocomplete="off">
-                    </label>
-                </p>
-                <button id="submit" type="submit" @click="login">登录</button>
-            </form>
-            <p class="hrefs">
-                <a href="javascript:;" id="forget" @click="error">忘记密码</a>
-                <a href="javascript:;" id="goRegister" @click="toggle">注册</a>
-            </p>
-        </div>
+            </div>
 
-        <div class="register" id="register" v-bind:class="{active: !show}">
-            <h1>REGISTER</h1>
-            <p>师资信息管理系统</p>
-            <input type="file" name="avatar" id="avatar" class="avatar-upload" accept="image/png,image/gif" @change="avatarChange">
-            <form action="javascript:;" method="post" name="register" accept-charset="UTF-8">
-                <p class="avatar-container">
-                    <label for="avatar" class="click-avatar" title="点击上传头像"></label>
-                    <img src="<?php echo $base_url ?>/FE/img/user.png" class="avatar">
+            <div class="register" id="register" v-bind:class="{active: !show}">
+                <h1>REGISTER</h1>
+                <p>师资信息管理系统</p>
+                <input type="file" name="avatar" id="avatar" class="avatar-upload" accept="image/png,image/gif" @change="avatarChange">
+                <form action="javascript:;" method="post" name="register" accept-charset="UTF-8">
+                    <p class="avatar-container">
+                        <label for="avatar" class="click-avatar" title="点击上传头像"></label>
+                        <img src="<?php echo $base_url ?>/FE/img/user.png" class="avatar">
+                    </p>
+                    <p class="form-p">
+                        <label class="form-label">
+                            <span class="form-span">手机号</span>/
+                            <input v-model="regData.mobile" @focus="focused" @blur="blured" type="text" name="mobile" maxlength=11 autocomplete="off">
+                        </label>
+                    </p>
+                    <p class="form-p">
+                        <label class="form-label">
+                            <span class="form-span">姓名</span>/
+                            <input v-model="regData.name" @focus="focused" @blur="blured" type="text" name="name" maxlength=15 autocomplete="off">
+                        </label>
+                    </p>
+                    <p class="form-p">
+                        <label class="form-label">
+                            <span class="form-span">密码</span>/
+                            <input v-model="regData.pw" @focus="focused" @blur="blured" type="password" name="pw">
+                        </label>
+                    </p>
+                    <p class="form-p">
+                        <label class="form-label">
+                            <span class="form-span">确认密码</span>/
+                            <input v-model="regData.confirmPw" @focus="focused" @blur="blured" type="password" name="confirm-pw">
+                        </label>
+                    </p>
+                    <p class="form-p">
+                        <label class="form-label">
+                            <span class="form-span">邮箱</span>/
+                            <input v-model="regData.email" @focus="focused" @blur="blured" type="text" name="email" autocomplete="off">
+                        </label>
+                    </p>
+                    <button id="submit" type="submit" @click="register">注册</button>
+                </form>
+                <p class="hrefs">
+                    <a href="javascript:;" id="goLogin" @click="toggle">登陆</a>
                 </p>
-                <p class="form-p">
-                    <label class="form-label">
-                        <span class="form-span">手机号</span>/
-                        <input v-model="regData.mobile" @focus="focused" @blur="blured" type="text" name="mobile" maxlength=11 autocomplete="off">
-                    </label>
-                </p>
-                <p class="form-p">
-                    <label class="form-label">
-                        <span class="form-span">姓名</span>/
-                        <input v-model="regData.name" @focus="focused" @blur="blured" type="text" name="name" maxlength=15 autocomplete="off">
-                    </label>
-                </p>
-                <p class="form-p">
-                    <label class="form-label">
-                        <span class="form-span">密码</span>/
-                        <input v-model="regData.pw" @focus="focused" @blur="blured" type="password" name="pw">
-                    </label>
-                </p>
-                <p class="form-p">
-                    <label class="form-label">
-                        <span class="form-span">确认密码</span>/
-                        <input v-model="regData.confirmPw" @focus="focused" @blur="blured" type="password" name="confirm-pw">
-                    </label>
-                </p>
-                <p class="form-p">
-                    <label class="form-label">
-                        <span class="form-span">邮箱</span>/
-                        <input v-model="regData.email" @focus="focused" @blur="blured" type="text" name="email" autocomplete="off">
-                    </label>
-                </p>
-                <button id="submit" type="submit" @click="register">注册</button>
-            </form>
-            <p class="hrefs">
-                <a href="javascript:;" id="goLogin" @click="toggle">登陆</a>
-            </p>
+            </div>
         </div>
     </div>
     <footer>Markey&nbsp;&copy;版权所有</footer>
@@ -92,6 +93,8 @@
             'jquery': './dep/jquery-2.2.0.min',
             'layer': './dep/layer/layer',
             'moment': './dep/moment/moment',
+            'cavas': './dep/canvas/cavas',
+            'flashat': './dep/canvas/flashat',
 
             'util': './common/util',
             'ui': './common/ui'

@@ -6,8 +6,8 @@
 		<button class="leave-message" @click="comment">
 			<span class="mask" v-if="user.isGag == 1"></span>我要发言
 		</button>
-		<button class="control-gag" v-if="user.isGag == 1"
-																@click="getGagedUsers">解除用户禁言</button>
+		<button class="control-gag" v-if="user.rights.comment == 1"
+																@click="getGagedUsers(1)">解除用户禁言</button>
 	</div>
 	<div class="comment" @mousewheel="scrolling">
 		<div class="scroll-bar" :class="{ hide: scrollBarBlur }"
@@ -29,7 +29,8 @@
 							<span class="type">说:</span>
 						</template>
 						<button class="gag" @click="changeGag({id: item.uid, is_gag: 1})"
-																v-if="user.rights.comment == 1 && item.uid != +user.id">禁言</button>
+																v-if="user.rights.comment == 1 && item.uid != +user.id && item.is_gag == 0">禁言</button>
+						<span class="has-gaged" v-if="user.rights.comment == 1 && item.uid != +user.id && item.is_gag == 1">该用户已被禁言</span>
 					</div>
 					<div class="content">
 						<blockquote v-if="item.quota_id != 0"><pre>引用 {{item.quota_name}} 的发言:</pre>{{item.quota_content}}</blockquote>{{item.content}}

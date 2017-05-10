@@ -48,8 +48,8 @@ class Comment_Model extends CI_Model
 
 		$this->db->start_cache()
 						 ->from('message')
-							 ->join('user', 'message.uid = user.id')
-							 ->select('message.id AS id, user.name, user.avatar AS avatar, message.uid, content, timestamp, refer_id, quota_id, quota_content, quota_name, refer_name');
+						 ->join('user', 'message.uid = user.id')
+						 ->select('message.id AS id, user.name, user.avatar AS avatar, message.uid, content, timestamp, refer_id, quota_id, quota_content, quota_name, refer_name, user.is_gag');
 
 		$res['data'] = $this->db->stop_cache()
 														->order_by('message.timestamp', 'DESC')

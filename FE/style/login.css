@@ -14,8 +14,131 @@
 .hide {
   display: none;
 }
-body {
-  background: #37afea;
+.border-pointer {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 5px solid rgba(255, 255, 255, 0);
+  border-top-color: #666;
+}
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btn {
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 0 15px;
+  cursor: pointer;
+  display: inline-block;
+}
+.drop {
+  position: relative;
+  text-align: center;
+  font-size: 15px;
+  margin-right: 15px;
+  padding: 3px 10px;
+  background: #4fbfaa;
+}
+.drop .selected {
+  user-select: none;
+}
+.drop .border-pointer {
+  vertical-align: -2px;
+  transition: all 0.2s ease-in-out;
+  transform-origin: center 25%;
+  border-top-color: #eee;
+}
+.drop .border-pointer.rotated {
+  transform: rotateZ(180deg);
+}
+.drop .selection {
+  position: absolute;
+  width: 100%;
+  border-radius: 4px;
+  background: #4fbfaa;
+  margin-top: 3px;
+  left: 0;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  transform-origin: top;
+  z-index: 100;
+}
+.drop .selection.item-enter-active,
+.drop .selection.item-leave {
+  transform: scaleY(1);
+}
+.drop .selection.item-enter,
+.drop .selection.item-leave-active {
+  transform: scaleY(0);
+}
+.drop .selection .option {
+  padding: 2px 5px;
+  border-top: 1px solid #fff;
+  font-size: 13px;
+  transition: all 0.3s ease-in-out;
+}
+.drop .selection .option:hover {
+  background: #9adace;
+}
+.pager-container .page-control {
+  display: inline-block;
+  overflow: hidden;
+}
+.pager-container .page-control div {
+  display: inline-block;
+  float: left;
+  border: 1px solid #33a8ed;
+  color: #33a8ed;
+  transition: all 0.4s ease;
+  user-select: none;
+}
+.pager-container .page-control div:hover,
+.pager-container .page-control div.active {
+  background: #33a8ed;
+  color: #fff;
+}
+.pager-container .page-control div.prev,
+.pager-container .page-control div.next {
+  padding: 3px 10px;
+  cursor: pointer;
+}
+.pager-container .page-control div.prev {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-right: none;
+}
+.pager-container .page-control div.next {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.pager-container .page-control div.page {
+  cursor: pointer;
+  padding: 3px 10px;
+  border-right: none;
+}
+.pager-container .page-control div.disabled {
+  background: #eee;
+  color: #aaa;
+  border-color: #aaa;
+  cursor: not-allowed;
+}
+.pager-container .leap-control {
+  margin-left: 15px;
+  display: inline-block;
+  overflow: hidden;
+}
+.pager-container .leap-control .page-inp {
+  width: 30px;
+  margin: 0 5px;
+  padding: 2px 5px;
+  font-size: 14px;
+}
+.pager-container .leap-control .leap {
+  padding: 3px 10px;
+  background: #33a8ed;
 }
 body #wrap {
   overflow: hidden;
@@ -37,11 +160,21 @@ body .register {
   width: 350px;
   text-align: center;
   opacity: 0;
-  padding: 130px 0 55px;
+  padding: 0 0 55px;
   transform: translateX(-50%);
   position: absolute;
   left: 50%;
   transition: all 0.4s ease;
+}
+body .login.register,
+body .register.register {
+  margin-top: 50px;
+  overflow-y: scroll;
+  max-height: 85%;
+}
+body .login.login,
+body .register.login {
+  margin-top: 130px;
 }
 body .login .avatar-container,
 body .register .avatar-container {
@@ -95,7 +228,7 @@ body .register form[name="register"] #submit {
   height: 45px;
   line-height: 45px;
   border-radius: 35px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #fff;
   padding: 0 20px;
   box-sizing: content-box;
   margin: 0 auto;
@@ -174,4 +307,7 @@ body footer {
   width: 100%;
   color: #e0e0e0;
   line-height: 50px;
+  position: fixed;
+  bottom: 0;
+  background: transparent;
 }

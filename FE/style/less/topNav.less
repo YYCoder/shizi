@@ -89,7 +89,9 @@ header {
         display: inline-block;
         height: 100%;
         float: right;
-        width: 200px;
+        text-align: center;
+        margin-right: 1rem;
+        position: relative;
         .top-avatar {
             width: 40px;
             height: 40px;
@@ -97,11 +99,70 @@ header {
         }
         .info {
             display: inline-block;
+            text-align: left;
+            cursor: pointer;
             p {
                 margin: 5px;
                 &.greeting {
                     margin-bottom: -1px;
                     margin-top: 10px;
+                }
+            }
+            .identity {
+                .border-pointer {
+                    transform: translateY(30%);
+                    border-top-color: #fff;
+                    transition: transform 0.4s ease;
+                    transform-origin: center 35%;
+                    &.revert {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+        .control-container {
+            position: absolute;
+            top: 110%;
+            left: 20%;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            padding: 5px;
+            background: @mainBtnBg;
+            transform: scaleY(0);
+            opacity: 0;
+            z-index: 100;
+            transform-origin: top;
+            border-radius: 5px;
+            box-sizing: border-box;
+            max-width: 80%;
+            .border-pointer {
+                position: absolute;
+                top: 0%;
+                right: 16%;
+                transform: translateY(-100%) rotate(180deg);
+                border-top-color: @mainBtnBg;
+            }
+            &.show {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+            .logout, .modify {
+                cursor: pointer;
+                padding: 5px 10px;
+                border-radius: 5px;
+                display: block;
+                transition: background 0.4s ease;
+                &:hover {
+                    background: lighten(@mainBtnBg, 10%);
+                }
+                &.logout:before {
+                    font-family: 'FontAwesome';
+                    content: '\f08b';
+                    padding-right: 5px;
+                }
+                &.modify:before {
+                    font-family: 'FontAwesome';
+                    content: '\f044';
+                    padding-right: 5px;
                 }
             }
         }

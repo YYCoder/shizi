@@ -235,7 +235,9 @@ header .user-info {
   display: inline-block;
   height: 100%;
   float: right;
-  width: 200px;
+  text-align: center;
+  margin-right: 1rem;
+  position: relative;
 }
 header .user-info .top-avatar {
   width: 40px;
@@ -244,6 +246,8 @@ header .user-info .top-avatar {
 }
 header .user-info .info {
   display: inline-block;
+  text-align: left;
+  cursor: pointer;
 }
 header .user-info .info p {
   margin: 5px;
@@ -251,6 +255,65 @@ header .user-info .info p {
 header .user-info .info p.greeting {
   margin-bottom: -1px;
   margin-top: 10px;
+}
+header .user-info .info .identity .border-pointer {
+  transform: translateY(30%);
+  border-top-color: #fff;
+  transition: transform 0.4s ease;
+  transform-origin: center 35%;
+}
+header .user-info .info .identity .border-pointer.revert {
+  transform: rotate(180deg);
+}
+header .user-info .control-container {
+  position: absolute;
+  top: 110%;
+  left: 20%;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  padding: 5px;
+  background: #37afea;
+  transform: scaleY(0);
+  opacity: 0;
+  z-index: 100;
+  transform-origin: top;
+  border-radius: 5px;
+  box-sizing: border-box;
+  max-width: 80%;
+}
+header .user-info .control-container .border-pointer {
+  position: absolute;
+  top: 0%;
+  right: 16%;
+  transform: translateY(-100%) rotate(180deg);
+  border-top-color: #37afea;
+}
+header .user-info .control-container.show {
+  transform: scaleY(1);
+  opacity: 1;
+}
+header .user-info .control-container .logout,
+header .user-info .control-container .modify {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: block;
+  transition: background 0.4s ease;
+}
+header .user-info .control-container .logout:hover,
+header .user-info .control-container .modify:hover {
+  background: #65c1ef;
+}
+header .user-info .control-container .logout.logout:before,
+header .user-info .control-container .modify.logout:before {
+  font-family: 'FontAwesome';
+  content: '\f08b';
+  padding-right: 5px;
+}
+header .user-info .control-container .logout.modify:before,
+header .user-info .control-container .modify.modify:before {
+  font-family: 'FontAwesome';
+  content: '\f044';
+  padding-right: 5px;
 }
 .left-nav {
   background: #344152;
@@ -2531,6 +2594,10 @@ header .user-info .info p.greeting {
 }
 .comment-container .comment .comment-item .user-info .gag:focus {
   outline: none;
+}
+.comment-container .comment .comment-item .user-info .has-gaged {
+  float: right;
+  color: #344152;
 }
 .comment-container .comment .comment-item .content {
   white-space: pre-line;
