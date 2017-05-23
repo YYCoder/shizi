@@ -41,7 +41,7 @@ define('login', function (require, exports) {
             'focused': function (e) {
                 $(e.target).parent('.form-label').css({
                     'border': '1px solid #e0e0e0',
-                    'box-shadow': '0 0 4px #eee',
+                    'box-shadow': '0 0 5px 1px #eee',
                     'color': '#e0e0e0'
                 });
             },

@@ -281,6 +281,8 @@ define('home', function (require, exports) {
             }
         ]
     });
+
+
     // 定义顶级VM对象
     var topVM = new Vue({
         el: '#app',

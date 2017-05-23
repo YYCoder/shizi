@@ -5,7 +5,9 @@
   background: #fff;
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
-	& > .title {
+  display: flex;
+  flex-direction: column;
+	.list-head > .title {
     font-size: 1.5rem;
     margin: 10px 0 15px;
   }
@@ -75,6 +77,9 @@
   		max-width: 92%;
   	}
   }
+	.user-list-wrap {
+		overflow-y: scroll;
+	}
   .user-list-ul {
   	list-style: none;
     padding: 0;
@@ -136,29 +141,28 @@
 		    }
 		  }
     }
-    .avatar, .type {
-    	width: 5%;
-    	&.avatar {
-    		margin-left: 0.16%;
-    	}
-    }
-    .id, .control {
+		.user-list .control {
+  		line-height: 25px;
+  		a {
+  			display: block;
+  		}
+  	}
+  	.user-list .reg-time {
+  		line-height: 25px;
+  	}
+    .id, .control, .avatar, .type {
     	width: 6%;
-    	&.control {
-    		line-height: 25px;
-    		a {
-    			display: block;
-    		}
+			&.avatar {
+    		margin-left: 0.16%;
     	}
     }
     .name, .mobile, .email, .reg-time {
     	width: 8%;
-    	&.reg-time {
-    		line-height: 25px;
-    	}
     }
     .rights {
-    	width: 7%;
+    	width: 6.4%;
+    	vertical-align: top;
+	    padding: 0 0.2%;
     }
   }
 }

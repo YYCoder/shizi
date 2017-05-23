@@ -1,17 +1,19 @@
 <div class="user-container">
-	<h1 class="title">用户管理</h1>
-	<hr>
-	<div class="controls">
-		<div class="left-control">
-			<input type="text" class="search-inp" placeholder="可搜索用户名,id,手机号"
-						 v-model="getParam.where">
-			<button class="search btn" @click="getData">搜 索</button>
-		</div>
-		<div class="right-control">
-			<span class="tips">您还可以选择筛选用户类型</span>
-			<drop :dropName="drop.name"
-						:items="drop.items"
-						@drop-click="dropClick"></drop>
+	<div class="list-head">
+		<h1 class="title">用户管理</h1>
+		<hr>
+		<div class="controls">
+			<div class="left-control">
+				<input type="text" class="search-inp" placeholder="可搜索用户名,id,手机号"
+							 v-model="getParam.where">
+				<button class="search btn" @click="getData">搜 索</button>
+			</div>
+			<div class="right-control">
+				<span class="tips">您还可以选择筛选用户类型</span>
+				<drop :dropName="drop.name"
+							:items="drop.items"
+							@drop-click="dropClick"></drop>
+			</div>
 		</div>
 	</div>
 	<div class="user-list-wrap">
@@ -28,12 +30,12 @@
 				<span class="reg-time" @click.stop="sort('reg_time')">
 					注册时间<i class="border-pointer" :class="{ pDesc: rDesc }" />
 				</span>
-				<span class="rights">档案管理权限</span>
-				<span class="rights">课程管理权限</span>
-				<span class="rights">工作量管理权限</span>
-				<span class="rights">培训管理权限</span>
-				<span class="rights">考核管理权限</span>
-				<span class="rights">留言板管理权限</span>
+				<span class="rights single-line" title="档案管理权限">档案管理权限</span>
+				<span class="rights single-line" title="课程管理权限">课程管理权限</span>
+				<span class="rights single-line" title="工作量管理权限">工作量管理权限</span>
+				<span class="rights single-line" title="培训管理权限">培训管理权限</span>
+				<span class="rights single-line" title="考核管理权限">考核管理权限</span>
+				<span class="rights single-line" title="留言板管理权限">留言板管理权限</span>
 				<span class="control">操作</span>
 			</li>
 

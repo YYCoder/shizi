@@ -1,47 +1,49 @@
 <div class="info-list-container">
-	<slot name="title">
-		<h1 class="title">全部档案</h1>
-	</slot>
-	<hr>
-	<div class="controls">
-		<div class="right-control">
-			<input type="text" placeholder="可搜索姓名,编号,专业,手机" class="search-inp"
-						 v-model="getParam.where">
-			<button class="search btn" @click="getData">搜 索</button>
-		</div>
-		<div class="left-control">
-			<div class="drop btn">
-				<span class="selected"
-							@click.self="itemShow = !itemShow"
-				>字段名</span>
-				<span class="border-pointer"
-						  :class="{ rotated: itemShow }"
-						  @click.self="itemShow = !itemShow"
-			  ></span>
-				<transition name="item">
-					<div class="selection item" v-show="itemShow">
-						<div class="option" @click="changeSortItem('code')">编号</div>
-						<div class="option" @click="changeSortItem('age')">年龄</div>
-						<div class="option" @click="changeSortItem('entry')">入职时间</div>
-					</div>
-				</transition>
+	<div class="list-head">
+		<slot name="title">
+			<h1 class="title">全部档案</h1>
+		</slot>
+		<hr>
+		<div class="controls">
+			<div class="right-control">
+				<input type="text" placeholder="可搜索姓名,编号,专业,手机" class="search-inp"
+							 v-model="getParam.where">
+				<button class="search btn" @click="getData">搜 索</button>
 			</div>
-			<div class="drop btn">
-				<span class="selected"
-							@click.self="typeShow = !typeShow"
-				>方式</span>
-				<span class="border-pointer"
-							:class="{ rotated: typeShow }"
-						  @click.self="typeShow = !typeShow"
-				></span>
-				<transition name="item">
-					<div class="selection type" v-show="typeShow">
-						<div class="option" @click="changeSortType('ASC')">升序</div>
-						<div class="option" @click="changeSortType('DESC')">降序</div>
-					</div>
-				</transition>
+			<div class="left-control">
+				<div class="drop btn">
+					<span class="selected"
+								@click.self="itemShow = !itemShow"
+					>字段名</span>
+					<span class="border-pointer"
+							  :class="{ rotated: itemShow }"
+							  @click.self="itemShow = !itemShow"
+				  ></span>
+					<transition name="item">
+						<div class="selection item" v-show="itemShow">
+							<div class="option" @click="changeSortItem('code')">编号</div>
+							<div class="option" @click="changeSortItem('age')">年龄</div>
+							<div class="option" @click="changeSortItem('entry')">入职时间</div>
+						</div>
+					</transition>
+				</div>
+				<div class="drop btn">
+					<span class="selected"
+								@click.self="typeShow = !typeShow"
+					>方式</span>
+					<span class="border-pointer"
+								:class="{ rotated: typeShow }"
+							  @click.self="typeShow = !typeShow"
+					></span>
+					<transition name="item">
+						<div class="selection type" v-show="typeShow">
+							<div class="option" @click="changeSortType('ASC')">升序</div>
+							<div class="option" @click="changeSortType('DESC')">降序</div>
+						</div>
+					</transition>
+				</div>
+				<span class="tips">您可以选择数据的排序方式, 默认是按编号的升序排列</span>
 			</div>
-			<span class="tips">您可以选择数据的排序方式, 默认是按编号的升序排列</span>
 		</div>
 	</div>
 	<div class="info-list-wrap">

@@ -41,7 +41,6 @@
   position: relative;
   text-align: center;
   font-size: 15px;
-  margin-right: 15px;
   padding: 3px 10px;
   background: #4fbfaa;
 }
@@ -365,6 +364,7 @@ header .user-info .control-container .modify.modify:before {
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
+  overflow-y: scroll;
 }
 .teacher-detail-container .download {
   position: absolute;
@@ -616,10 +616,17 @@ header .user-info .control-container .modify.modify:before {
   background: #fff;
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
+  display: flex;
+  flex-direction: column;
 }
-.info-list-container > .title {
+.info-list-container .list-head .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
+}
+.info-list-container .info-list-wrap {
+  font-size: 15px;
+  overflow-y: scroll;
+  margin-top: 10px;
 }
 .info-list-container .controls .right-control {
   display: inline-block;
@@ -664,7 +671,7 @@ header .user-info .control-container .modify.modify:before {
 .info-list-container .info-list-ul {
   list-style: none;
   padding: 0;
-  margin: 10px 0;
+  margin: 0;
 }
 .info-list-container .info-list-ul .title-list {
   border-radius: 3px;
@@ -696,20 +703,22 @@ header .user-info .control-container .modify.modify:before {
   overflow: hidden;
 }
 .info-list-container .info-list-ul .info-list span .img-wrap {
-  width: 50px;
+  width: 100%;
   height: 50px;
   vertical-align: middle;
   border-radius: 50%;
   overflow: hidden;
 }
-.info-list-container .info-list-ul .avatar,
+.info-list-container .info-list-ul .avatar {
+  width: 5%;
+}
 .info-list-container .info-list-ul .checkbox,
 .info-list-container .info-list-ul .age,
 .info-list-container .info-list-ul .sex {
   width: 3%;
 }
 .info-list-container .info-list-ul .entry {
-  width: 9%;
+  width: 8%;
 }
 .info-list-container .info-list-ul .code,
 .info-list-container .info-list-ul .title,
@@ -724,7 +733,7 @@ header .user-info .control-container .modify.modify:before {
   width: 12%;
 }
 .info-list-container .info-list-ul .address {
-  width: 15%;
+  width: 13%;
 }
 .info-list-container .info-list-ul .name {
   width: 7%;
@@ -821,6 +830,12 @@ header .user-info .control-container .modify.modify:before {
   position: relative;
   z-index: 2;
 }
+.insert-course-container .form-container .class-time-container .info-container {
+  width: 100%;
+}
+.insert-course-container .form-container .class-time-container .info-container .info-name {
+  width: 17%;
+}
 .insert-course-container .form-container .info-container {
   width: 85%;
   display: inline-block;
@@ -829,7 +844,7 @@ header .user-info .control-container .modify.modify:before {
 }
 .insert-course-container .form-container .info-container .info-name {
   display: inline-block;
-  width: 15%;
+  width: 20%;
   text-align: right;
   margin-right: -2px;
 }
@@ -851,11 +866,11 @@ header .user-info .control-container .modify.modify:before {
 .insert-course-container .form-container .info-container .content-container {
   display: inline-block;
   margin-left: 15px;
-  width: 80%;
+  width: 75%;
   vertical-align: middle;
 }
 .insert-course-container .form-container .info-container .content-container.pick-time {
-  width: 30%;
+  width: 24%;
 }
 .insert-course-container .form-container .info-container .content-container .info-inp {
   padding: 5px 4px 3px 4px;
@@ -927,10 +942,12 @@ header .user-info .control-container .modify.modify:before {
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.all-class-container > .title {
+.all-class-container .list-head > .title {
   font-size: 1.5rem;
-  margin: 10px 0 15px;
+  margin: 0;
 }
 .all-class-container .controls .right-control {
   display: inline-block;
@@ -972,6 +989,9 @@ header .user-info .control-container .modify.modify:before {
 }
 .all-class-container .bottom-controls .right-control {
   max-width: 92%;
+}
+.all-class-container .info-list-wrap {
+  overflow-y: scroll;
 }
 .all-class-container .info-list-ul {
   list-style: none;
@@ -1034,7 +1054,7 @@ header .user-info .control-container .modify.modify:before {
   width: 3%;
 }
 .all-class-container .info-list-ul .room {
-  width: 5%;
+  width: 6%;
 }
 .all-class-container .info-list-ul .teacher {
   width: 8%;
@@ -1162,8 +1182,10 @@ header .user-info .control-container .modify.modify:before {
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.examine-container > .title {
+.examine-container .list-head > .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
@@ -1207,6 +1229,9 @@ header .user-info .control-container .modify.modify:before {
 }
 .examine-container .bottom-controls .right-control {
   max-width: 92%;
+}
+.examine-container .info-list-wrap {
+  overflow-y: scroll;
 }
 .examine-container .info-list-ul {
   list-style: none;
@@ -1268,10 +1293,14 @@ header .user-info .control-container .modify.modify:before {
 .examine-container .info-list-ul .checkbox {
   width: 3%;
 }
-.examine-container .info-list-ul .room,
-.examine-container .info-list-ul .control,
-.examine-container .info-list-ul .teacher {
+.examine-container .info-list-ul .room {
   width: 7%;
+}
+.examine-container .info-list-ul .control {
+  width: 6%;
+}
+.examine-container .info-list-ul .teacher {
+  width: 8%;
 }
 .examine-container .info-list-ul .week,
 .examine-container .info-list-ul .time {
@@ -1280,9 +1309,11 @@ header .user-info .control-container .modify.modify:before {
 .examine-container .info-list-ul .demand-time {
   width: 9%;
 }
-.examine-container .info-list-ul .class,
 .examine-container .info-list-ul .course {
   width: 12%;
+}
+.examine-container .info-list-ul .class {
+  width: 11%;
 }
 .examine-container .update-content {
   background: #eee;
@@ -1688,8 +1719,10 @@ header .user-info .control-container .modify.modify:before {
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.exam-apply-container > .title {
+.exam-apply-container .list-head .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
@@ -1733,6 +1766,9 @@ header .user-info .control-container .modify.modify:before {
 }
 .exam-apply-container .bottom-controls .right-control {
   max-width: 92%;
+}
+.exam-apply-container .info-list-wrap {
+  overflow-y: scroll;
 }
 .exam-apply-container .info-list-ul {
   list-style: none;
@@ -1795,7 +1831,7 @@ header .user-info .control-container .modify.modify:before {
   width: 3%;
 }
 .exam-apply-container .info-list-ul .teacher {
-  width: 5%;
+  width: 6%;
 }
 .exam-apply-container .info-list-ul .title {
   width: 10%;
@@ -1805,14 +1841,16 @@ header .user-info .control-container .modify.modify:before {
   width: 7%;
 }
 .exam-apply-container .info-list-ul .desc {
-  width: 25%;
+  width: 23%;
 }
 .exam-apply-container .info-list-ul .begin-time {
   width: 9%;
+  vertical-align: top;
+  line-height: 20px!important;
 }
 .exam-apply-container .info-list-ul .price,
 .exam-apply-container .info-list-ul .control {
-  width: 8%;
+  width: 7.8%;
 }
 .exam-apply-container .info-list-ul .place {
   width: 15%;
@@ -1825,8 +1863,10 @@ header .user-info .control-container .modify.modify:before {
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.exam-feedback-container > .title {
+.exam-feedback-container .list-head .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
@@ -1870,6 +1910,9 @@ header .user-info .control-container .modify.modify:before {
 }
 .exam-feedback-container .bottom-controls .right-control {
   max-width: 92%;
+}
+.exam-feedback-container .info-list-wrap {
+  overflow-y: scroll;
 }
 .exam-feedback-container .info-list-ul {
   list-style: none;
@@ -1935,7 +1978,7 @@ header .user-info .control-container .modify.modify:before {
   width: 3%;
 }
 .exam-feedback-container .info-list-ul .teacher {
-  width: 5%;
+  width: 6%;
 }
 .exam-feedback-container .info-list-ul .title {
   width: 11%;
@@ -1945,16 +1988,18 @@ header .user-info .control-container .modify.modify:before {
 .exam-feedback-container .info-list-ul .cert,
 .exam-feedback-container .info-list-ul .invoice {
   width: 7%;
+  vertical-align: top;
 }
 .exam-feedback-container .info-list-ul .desc {
-  width: 25%;
+  width: 23%;
 }
 .exam-feedback-container .info-list-ul .end-time {
   width: 9%;
+  line-height: 20px!important;
 }
 .exam-feedback-container .info-list-ul .price,
 .exam-feedback-container .info-list-ul .control {
-  width: 8%;
+  width: 7.7%;
 }
 .assess-insert-container {
   padding: 15px;
@@ -1975,6 +2020,7 @@ header .user-info .control-container .modify.modify:before {
   height: 75%;
   margin: 20px auto;
   position: relative;
+  overflow-y: scroll;
 }
 .assess-insert-container .form-container .info {
   text-align: center;
@@ -2026,7 +2072,7 @@ header .user-info .control-container .modify.modify:before {
 }
 .assess-insert-container .form-container .info-container .info-name {
   display: inline-block;
-  width: 20%;
+  width: 25%;
   text-align: right;
   margin-right: -2px;
 }
@@ -2045,7 +2091,7 @@ header .user-info .control-container .modify.modify:before {
 .assess-insert-container .form-container .info-container .content-container {
   display: inline-block;
   margin-left: 15px;
-  width: 77%;
+  width: 72%;
   vertical-align: middle;
 }
 .assess-insert-container .form-container .info-container .content-container .info-inp {
@@ -2095,8 +2141,10 @@ header .user-info .control-container .modify.modify:before {
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.assess-check-container > .title {
+.assess-check-container .head > .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
@@ -2106,6 +2154,9 @@ header .user-info .control-container .modify.modify:before {
   top: 25px;
   line-height: 30px;
   background: #4fbfaa;
+}
+.assess-check-container .table-container {
+  overflow-y: scroll;
 }
 .assess-check-container .detail-table {
   border-collapse: collapse;
@@ -2152,8 +2203,10 @@ header .user-info .control-container .modify.modify:before {
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.count-container > .title {
+.count-container .list-head > .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
@@ -2178,10 +2231,10 @@ header .user-info .control-container .modify.modify:before {
 .count-container .chart-container {
   position: relative;
   overflow: hidden;
-  height: 100%;
+  flex: 1;
 }
 .count-container .chart-container .chart {
-  height: 500px;
+  height: 75%;
   top: 10%;
   left: 50%;
   position: absolute;
@@ -2231,8 +2284,10 @@ header .user-info .control-container .modify.modify:before {
   background: #fff;
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
+  display: flex;
+  flex-direction: column;
 }
-.user-container > .title {
+.user-container .list-head > .title {
   font-size: 1.5rem;
   margin: 10px 0 15px;
 }
@@ -2300,6 +2355,9 @@ header .user-info .control-container .modify.modify:before {
 .user-container .bottom-controls .right-control {
   max-width: 92%;
 }
+.user-container .user-list-wrap {
+  overflow-y: scroll;
+}
 .user-container .user-list-ul {
   list-style: none;
   padding: 0;
@@ -2362,25 +2420,26 @@ header .user-info .control-container .modify.modify:before {
   width: 100%;
   height: 100%;
 }
+.user-container .user-list-ul .user-list .control {
+  line-height: 25px;
+}
+.user-container .user-list-ul .user-list .control a {
+  display: block;
+}
+.user-container .user-list-ul .user-list .reg-time {
+  line-height: 25px;
+}
+.user-container .user-list-ul .id,
+.user-container .user-list-ul .control,
 .user-container .user-list-ul .avatar,
 .user-container .user-list-ul .type {
-  width: 5%;
+  width: 6%;
 }
+.user-container .user-list-ul .id.avatar,
+.user-container .user-list-ul .control.avatar,
 .user-container .user-list-ul .avatar.avatar,
 .user-container .user-list-ul .type.avatar {
   margin-left: 0.16%;
-}
-.user-container .user-list-ul .id,
-.user-container .user-list-ul .control {
-  width: 6%;
-}
-.user-container .user-list-ul .id.control,
-.user-container .user-list-ul .control.control {
-  line-height: 25px;
-}
-.user-container .user-list-ul .id.control a,
-.user-container .user-list-ul .control.control a {
-  display: block;
 }
 .user-container .user-list-ul .name,
 .user-container .user-list-ul .mobile,
@@ -2388,14 +2447,10 @@ header .user-info .control-container .modify.modify:before {
 .user-container .user-list-ul .reg-time {
   width: 8%;
 }
-.user-container .user-list-ul .name.reg-time,
-.user-container .user-list-ul .mobile.reg-time,
-.user-container .user-list-ul .email.reg-time,
-.user-container .user-list-ul .reg-time.reg-time {
-  line-height: 25px;
-}
 .user-container .user-list-ul .rights {
-  width: 7%;
+  width: 6.4%;
+  vertical-align: top;
+  padding: 0 0.2%;
 }
 .comment-container {
   box-sizing: border-box;
@@ -2524,7 +2579,7 @@ header .user-info .control-container .modify.modify:before {
 .comment-container .page-wrap {
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  bottom: 0px;
 }
 .comment-container .comment {
   flex: 1;
@@ -2533,7 +2588,7 @@ header .user-info .control-container .modify.modify:before {
 }
 .comment-container .comment .scroll-bar {
   position: absolute;
-  right: 2.4rem;
+  right: 1.7rem;
   width: 1rem;
   height: 0;
   background: #666;

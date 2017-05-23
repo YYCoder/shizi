@@ -144,10 +144,10 @@ define(function (require, exports) {
 							scrollLength = scroll.scrollLength,
 							ratio = scroll.ratio;
 				const top = parseInt(window.getComputedStyle(scroll.scrollBar, null).top);
-				if (scroller.scrollTop >= 0 && scroller.scrollTop <= scrollLength) {
+				if (scroller.scrollTop >= 0 && scroller.scrollTop <= scrollLength + 10) {
 					scroller.scrollTop += e.deltaY / 2;
 				}
-				if (top >= 0 && top <= scrollBarLength) {
+				if (top >= 0 && top <= scrollBarLength + 10) {
 					/*console.log(`top: ${scrollBar.style.top}`);
 					console.log(`scrollLength: ${scrollLength}`);
 					console.log(`scrollBarLength: ${this.scroll.scrollBarLength}`);*/

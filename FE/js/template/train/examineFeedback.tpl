@@ -1,20 +1,22 @@
 <div class="exam-feedback-container">
-	<h1 class="title">审核反馈</h1>
-	<hr>
-	<div class="controls">
-		<div class="left-control">
-			<input type="text" class="search-inp" placeholder="可搜索教师姓名,培训名称"
-						 v-model="getParam.where.like">
-			<button class="search btn" @click="getData">搜 索</button>
-		</div>
-		<div class="right-control">
-			<span class="tips">您可以选择筛选审核状态, 培训类型</span>
-			<drop :dropName="drop.stateName"
-						:items="drop.stateItems"
-						@drop-click="stateClick"></drop>
-			<drop :dropName="drop.typeName"
-						:items="drop.typeItems"
-						@drop-click="typeClick"></drop>
+	<div class="list-head">
+		<h1 class="title">审核反馈</h1>
+		<hr>
+		<div class="controls">
+			<div class="left-control">
+				<input type="text" class="search-inp" placeholder="可搜索教师姓名,培训名称"
+							 v-model="getParam.where.like">
+				<button class="search btn" @click="getData">搜 索</button>
+			</div>
+			<div class="right-control">
+				<span class="tips">您可以选择筛选审核状态, 培训类型</span>
+				<drop :dropName="drop.stateName"
+							:items="drop.stateItems"
+							@drop-click="stateClick"></drop>
+				<drop :dropName="drop.typeName"
+							:items="drop.typeItems"
+							@drop-click="typeClick"></drop>
+			</div>
 		</div>
 	</div>
 	<div class="info-list-wrap">
@@ -31,7 +33,7 @@
 				<span class="price" @click.stop="sort('price')">
 					培训费用<i class="border-pointer" :class="{ pDesc: priceDesc }" />
 				</span>
-				<span class="cert">结业/毕业证书</span>
+				<span class="cert single-line" title="结业/毕业证书">结业/毕业证书</span>
 				<span class="invoice">发票证明</span>
 				<span class="state">审核状态</span>
 				<span class="control">操作</span>

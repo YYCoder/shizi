@@ -6,7 +6,9 @@
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
-	& > .title {
+  display: flex;
+  flex-direction: column;
+	.list-head > .title {
     font-size: 1.5rem;
     margin: 10px 0 15px;
   }
@@ -53,6 +55,9 @@
   	.right-control {
   		max-width: 92%;
   	}
+  }
+  .info-list-wrap {
+  	overflow-y: scroll;
   }
   .info-list-ul {
   	list-style: none;
@@ -113,8 +118,14 @@
     .checkbox {
     	width: 3%;
     }
-    .room, .control, .teacher {
+    .room {
     	width: 7%;
+    }
+    .control {
+    	width: 6%;
+    }
+    .teacher {
+    	width: 8%;
     }
     .week, .time {
     	width: 8%;
@@ -122,8 +133,11 @@
     .demand-time {
     	width: 9%;
     }
-    .class, .course {
+    .course {
     	width: 12%;
+    }
+    .class {
+    	width: 11%;
     }
 	}
 	// 修改弹层

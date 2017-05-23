@@ -1,17 +1,19 @@
 <div class="exam-apply-container">
-	<h1 class="title">审核申请</h1>
-	<hr>
-	<div class="controls">
-		<div class="left-control">
-			<input type="text" class="search-inp" placeholder="可搜索教师姓名"
-						 v-model="getParam.where.name">
-			<button class="search btn" @click="getData">搜 索</button>
-		</div>
-		<div class="right-control">
-			<span class="tips">您还可以选择筛选审核状态</span>
-			<drop :dropName="drop.name"
-						:items="drop.items"
-						@drop-click="dropClick"></drop>
+	<div class="list-head">
+		<h1 class="title">审核申请</h1>
+		<hr>
+		<div class="controls">
+			<div class="left-control">
+				<input type="text" class="search-inp" placeholder="可搜索教师姓名"
+							 v-model="getParam.where.name">
+				<button class="search btn" @click="getData">搜 索</button>
+			</div>
+			<div class="right-control">
+				<span class="tips">您还可以选择筛选审核状态</span>
+				<drop :dropName="drop.name"
+							:items="drop.items"
+							@drop-click="dropClick"></drop>
+			</div>
 		</div>
 	</div>
 	<div class="info-list-wrap">

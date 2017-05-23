@@ -1,10 +1,12 @@
 <div class="count-container">
-	<h1 class="title">考核成绩统计</h1>
-	<hr>
-	<div class="top-control">
-		<div class="right-controls">
-			<button class="btn" @click="changeChart('bar')">柱状图</button>
-			<button class="btn" @click="changeChart('pie')">饼图</button>
+	<div class="list-head">
+		<h1 class="title">考核成绩统计</h1>
+		<hr>
+		<div class="top-control">
+			<div class="right-controls">
+				<button class="btn" @click="changeChart('bar')">柱状图</button>
+				<button class="btn" @click="changeChart('pie')">饼图</button>
+			</div>
 		</div>
 	</div>
 	<div class="chart-container">

@@ -6,7 +6,9 @@
   border-radius: 10px;
   box-shadow: 1px 2px 5px 1px #333;
   position: relative;
-	& > .title {
+  display: flex;
+  flex-direction: column;
+	.list-head .title {
     font-size: 1.5rem;
     margin: 10px 0 15px;
   }
@@ -52,6 +54,9 @@
   	.right-control {
   		max-width: 92%;
   	}
+  }
+  .info-list-wrap {
+  	overflow-y: scroll;
   }
   .info-list-ul {
   	list-style: none;
@@ -116,22 +121,24 @@
     	width: 3%;
     }
     .teacher {
-    	width: 5%;
+    	width: 6%;
     }
 		.title {
 			width: 11%;
 		}
 		.type, .state, .cert, .invoice {
 			width: 7%;
+	    vertical-align: top;
 		}
 		.desc {
-			width: 25%;
+			width: 23%;
 		}
 		.end-time {
 			width: 9%;
+	    line-height: 20px!important;
 		}
 		.price, .control {
-			width: 8%;
+			width: 7.7%;
 		}
   }
 }

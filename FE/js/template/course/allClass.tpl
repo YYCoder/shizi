@@ -1,12 +1,14 @@
 <div class="all-class-container">
-	<h1 class="title">全部排课</h1>
-	<hr>
-	<div class="controls">
-		<div class="left-control">
-			<input type="text" class="search-inp"
-						 v-model="getParam.where">
-			<button class="search btn" @click="getData">搜 索</button>
-			<span class="tips">可搜索教师姓名,教师编号,课程名,授课班级名,教室编号</span>
+	<div class="list-head">
+		<h1 class="title">全部排课</h1>
+		<hr>
+		<div class="controls">
+			<div class="left-control">
+				<input type="text" class="search-inp"
+							 v-model="getParam.where">
+				<button class="search btn" @click="getData">搜 索</button>
+				<span class="tips">可搜索教师姓名,教师编号,课程名,授课班级名,教室编号</span>
+			</div>
 		</div>
 	</div>
 	<div class="info-list-wrap">
