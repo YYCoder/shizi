@@ -12,6 +12,7 @@ class Course_Controller extends My_Controller
 		parent::__construct();
         $this->load->Model('Mult_Model');
         $this->load->Model('Course_Model');
+        $this->load->Model('Info_Model');
         $this->load->library('PHPExcel/Iofactory');
         $this->load->library('Phpexcel');
 	}
@@ -112,8 +113,9 @@ class Course_Controller extends My_Controller
      */
     public function get_class()
     {
+        $tid = $this->Info_Model->get_info_by_uid($_SESSION['user']['id'])['id'];
         $param = array(
-            'tid' => $_SESSION['user']['id'],
+            'tid' => $tid,
             'start' => !empty($_GET['start']) ? $_GET['start'] : ''
         );
         $data = $this->Course_Model->get_course($param);

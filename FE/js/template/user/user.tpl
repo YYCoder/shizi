@@ -49,7 +49,7 @@
 				<span class="id single-line">{{item.id}}</span>
 				<span class="name single-line">{{item.name}}</span>
 				<span class="type single-line">{{item.type}}</span>
-				<span class="mobile single-line">{{item.mobile}}</span>
+				<span class="mobile single-line" :title="item.mobile">{{item.mobile}}</span>
 				<span class="email single-line" :title="item.email">{{item.email}}</span>
 				<span class="reg-time">{{item.reg_time}}</span>
 				<span class="rights">{{item.info}}</span>

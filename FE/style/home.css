@@ -1505,7 +1505,7 @@ header .user-info .control-container .modify.modify:before {
   overflow: hidden;
 }
 .apply-container .info-list-ul .title {
-  width: 15%;
+  width: 13%;
 }
 .apply-container .info-list-ul .type,
 .apply-container .info-list-ul .state {
@@ -1519,7 +1519,7 @@ header .user-info .control-container .modify.modify:before {
 }
 .apply-container .info-list-ul .price,
 .apply-container .info-list-ul .control {
-  width: 5%;
+  width: 6%;
 }
 .apply-container .info-list-ul .place {
   width: 15%;
@@ -1556,7 +1556,7 @@ header .user-info .control-container .modify.modify:before {
 }
 .feedback-container .form-container .info-container .info-name {
   display: inline-block;
-  width: 20%;
+  width: 30%;
   text-align: right;
   margin-right: -2px;
 }
@@ -1575,7 +1575,7 @@ header .user-info .control-container .modify.modify:before {
 .feedback-container .form-container .info-container .content-container {
   display: inline-block;
   margin-left: 15px;
-  width: 77%;
+  width: 65%;
   vertical-align: middle;
 }
 .feedback-container .form-container .info-container .content-container .info-inp {
@@ -1692,7 +1692,7 @@ header .user-info .control-container .modify.modify:before {
   overflow: hidden;
 }
 .my-feedback-container .info-list-ul .title {
-  width: 15%;
+  width: 13%;
 }
 .my-feedback-container .info-list-ul .type,
 .my-feedback-container .info-list-ul .state {
@@ -1706,7 +1706,7 @@ header .user-info .control-container .modify.modify:before {
 }
 .my-feedback-container .info-list-ul .price,
 .my-feedback-container .info-list-ul .control {
-  width: 5%;
+  width: 6%;
 }
 .my-feedback-container .info-list-ul .place {
   width: 15%;
@@ -1813,6 +1813,10 @@ header .user-info .control-container .modify.modify:before {
 .exam-apply-container .info-list-ul .info-list.checked {
   background: #eee;
 }
+.exam-apply-container .info-list-ul .info-list .begin-time {
+  vertical-align: top;
+  line-height: 20px;
+}
 .exam-apply-container .info-list-ul .info-list span {
   display: inline-block;
   line-height: 30px;
@@ -1845,8 +1849,6 @@ header .user-info .control-container .modify.modify:before {
 }
 .exam-apply-container .info-list-ul .begin-time {
   width: 9%;
-  vertical-align: top;
-  line-height: 20px!important;
 }
 .exam-apply-container .info-list-ul .price,
 .exam-apply-container .info-list-ul .control {
@@ -2607,7 +2609,7 @@ header .user-info .control-container .modify.modify:before {
   overflow: hidden;
 }
 .comment-container .comment .comment-item {
-  color: #fff;
+  color: #222;
   font-size: 15px;
   width: 70%;
   box-sizing: border-box;
